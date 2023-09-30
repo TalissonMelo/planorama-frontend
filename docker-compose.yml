@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  liberbox:
+    image: talissonmelo/frontend-liberbox
+    build: .
+    ports:
+      - 80:80
