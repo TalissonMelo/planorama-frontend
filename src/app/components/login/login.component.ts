@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,6 +9,14 @@ import { Router } from '@angular/router';
 export class LoginComponent {
 
   showPassword: boolean = false;
+  @ViewChild('carousel', { static: false }) carousel!: ElementRef;
+
+  carouselImages: string[] = [
+    'assets/img/home-image.svg',
+    'assets/img/login-image.svg',
+    'assets/img/side-image.svg',
+  ];
+  
 
   constructor(private router: Router){
 
@@ -22,5 +30,14 @@ export class LoginComponent {
 
   login(){
       this.router.navigate(['home']);
+  }
+
+
+  scrollLeft() {
+    this.carousel.nativeElement.scrollLeft -= 300; 
+  }
+
+  scrollRight() {
+    this.carousel.nativeElement.scrollLeft += 300; 
   }
 }

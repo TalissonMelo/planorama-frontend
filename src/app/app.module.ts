@@ -25,6 +25,10 @@ import { MatInputModule } from '@angular/material/input';
 //Components
 import { LoginComponent } from './components/login/login.component';
 
+
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +54,8 @@ import { LoginComponent } from './components/login/login.component';
     MatIconModule,
     MatListModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    CarouselModule.forRoot()
 
   ],
   providers: [],

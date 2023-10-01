@@ -1,4 +1,4 @@
-.container {
+.ls {
    height: 100%;
    background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(37, 97, 207, 1) 0%, rgba(0, 212, 255, 1) 100%);
    display: flex;
@@ -6,9 +6,15 @@
    justify-content: center;
  }
  
- .left-space,
+ .left-space {
+  flex: 10;
+ }
+
+
  .right-space {
+  padding: 10px;
    flex: 2; 
+
  }
  
  .form {
@@ -26,7 +32,7 @@
    text-align: center;
  }
  
- img {
+ .img {
    height: 15rem;
    width: 100%;
    margin: 1.5rem auto 1.5rem auto;
@@ -40,10 +46,6 @@
    margin-top: 1.5rem;
  }
  
- mat-icon {
-   opacity: .6;
- }
- 
  .password-input {
    display: flex;
    align-items: center;
@@ -53,9 +55,10 @@
    flex: 1;
  }
  
- .password-input mat-icon {
+ .password-input  {
    font-size: 24px;
    color: #888;
    cursor: pointer;
  }
+ 
  
