@@ -11,9 +11,10 @@ const routes: Routes = [
   {
     path: '', component: NavComponent, children: [
       { path: 'home', component: HomeComponent },
-      { path: 'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) }
+      { path: 'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) },
     ]
   },
+  { path: 'register', loadChildren: () => import('./register/register.module').then(m => m.RegisterModule) },
 
 ];
 

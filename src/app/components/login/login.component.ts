@@ -32,6 +32,10 @@ export class LoginComponent {
       this.router.navigate(['home']);
   }
 
+  register(){
+    this.router.navigate(['register']);
+  }
+
 
   scrollLeft() {
     this.carousel.nativeElement.scrollLeft -= 300; 
