@@ -20,8 +20,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
-import { LoginComponent } from './components/login/login.component';
+import { MatInputModule } from '@angular/material/input';
 
+//Components
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { LoginComponent } from './components/login/login.component';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    MatInputModule
 
   ],
   providers: [],
