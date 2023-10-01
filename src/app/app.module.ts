@@ -27,6 +27,7 @@ import { LoginComponent } from './components/login/login.component';
 
 
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     AppComponent,
     HomeComponent,
     NavComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
