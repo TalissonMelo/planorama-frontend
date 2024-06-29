@@ -6,8 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Para trabalhar com formulários no Angular 12
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Para realizar requisições HTTP
 import { HttpClientModule } from '@angular/common/http';
@@ -25,10 +24,9 @@ import { MatInputModule } from '@angular/material/input';
 //Components
 import { LoginComponent } from './components/login/login.component';
 
-
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { HeaderComponent } from './components/header/header.component';
-
+import { ScheduleComponent } from './schedule/schedule.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +34,8 @@ import { HeaderComponent } from './components/header/header.component';
     HomeComponent,
     NavComponent,
     LoginComponent,
-    HeaderComponent
+    HeaderComponent,
+    ScheduleComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,10 +56,9 @@ import { HeaderComponent } from './components/header/header.component';
     MatListModule,
     MatButtonModule,
     MatInputModule,
-    CarouselModule.forRoot()
-
+    CarouselModule.forRoot(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

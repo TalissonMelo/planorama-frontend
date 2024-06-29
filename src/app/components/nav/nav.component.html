@@ -1,10 +1,24 @@
 <mat-drawer-container class="ls" autosize>
     <mat-drawer #drawer class="sidenav" mode="side">
-        <img src="assets/img/side-image.svg" alt="" routerLink="home" style="cursor: pointer;">
         <mat-nav-list class="nav-list">
-            <a mat-list-item routerLink="profile">
-                <i class="material-icons">person</i>
-            </a>
+            <mat-list-item>
+                <button mat-button routerLink="/schedule">
+                    <mat-icon>list</mat-icon>
+                    <span>Agenda</span>
+                </button>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-button routerLink="/profile">
+                    <mat-icon>person</mat-icon>
+                    <span>Perfil</span>
+                </button>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-button (click)="logout()">
+                    <mat-icon>exit_to_app</mat-icon>
+                    <span>Sair</span>
+                </button>
+            </mat-list-item>
         </mat-nav-list>
     </mat-drawer>
 

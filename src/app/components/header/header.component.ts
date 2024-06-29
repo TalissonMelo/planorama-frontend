@@ -4,15 +4,6 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent {
-
-  constructor(private router: Router) {
-
-  }
-
-  toProfile(): void {
-    this.router.navigate(["/profile"])
-  }
-}
+export class HeaderComponent {}
