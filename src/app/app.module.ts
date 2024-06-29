@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,9 +24,14 @@ import { MatInputModule } from '@angular/material/input';
 //Components
 import { LoginComponent } from './components/login/login.component';
 
-import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { HeaderComponent } from './components/header/header.component';
 import { ScheduleComponent } from './schedule/schedule.component';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
@@ -56,9 +61,12 @@ import { ScheduleComponent } from './schedule/schedule.component';
     MatListModule,
     MatButtonModule,
     MatInputModule,
-    CarouselModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'pt' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
