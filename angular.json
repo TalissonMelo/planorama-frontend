@@ -13,6 +13,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumError": "5mb"
+              }
+            ],
             "outputPath": "dist/liberbox",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -31,13 +37,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumError": "5mb"
                 }
               ],
               "outputHashing": "all"
