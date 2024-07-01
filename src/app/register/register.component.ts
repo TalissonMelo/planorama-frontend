@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -8,8 +9,14 @@ import { Component } from '@angular/core';
 export class RegisterComponent {
   user!: any;
 
+  constructor(private router: Router) {}
+
   onSubmit() {
     console.log('Formulário enviado com sucesso!');
     console.log('Dados do usuário:', this.user);
+  }
+
+  back(): void {
+    this.router.navigate(['login']);
   }
 }

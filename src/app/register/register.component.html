@@ -7,11 +7,6 @@
                <!-- [(ngModel)]="user.email" required /> -->
       </div>
       <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" class="my-custom-form-control">
-               <!-- [(ngModel)]="user.password" required /> -->
-      </div>
-      <div class="form-group">
         <label for="nickname">Nickname:</label>
         <input type="text" id="nickname" name="nickname" class="my-custom-form-control">
                <!-- [(ngModel)]="user.nickname" required /> -->
@@ -21,7 +16,20 @@
         <input type="text" id="telefone" name="telefone" class="my-custom-form-control">
                <!-- [(ngModel)]="user.telefone" /> -->
       </div>
-      <button type="submit" class="my-custom-ok-button">Cadastrar</button>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" class="my-custom-form-control">
+               <!-- [(ngModel)]="user.password" required /> -->
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" class="my-custom-form-control">
+               <!-- [(ngModel)]="user.password" required /> -->
+      </div>
+      <div class="form-group buttons-container">
+        <button type="submit" class="my-custom-ok-button">Cadastrar</button>
+        <button type="button" class="my-custom-back-button" (click)="back()">Voltar</button>
+      </div>
     </form>
   </div>
   

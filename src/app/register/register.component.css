@@ -22,7 +22,7 @@
 }
 
 .my-custom-ok-button {
-    background-color: #007bff;
+    background-color: #28a745;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -30,10 +30,24 @@
     border-radius: 4px;
 }
 
-.my-custom-ok-button:hover {
-    background-color: #0056b3;
+.my-custom-back-button {
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
 }
 
-h2 {
-    text-align: center;
+.buttons-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.my-custom-ok-button:hover {
+    background-color: #218838;
+}
+
+.my-custom-back-button:hover {
+    background-color: #5a6268;
 }
