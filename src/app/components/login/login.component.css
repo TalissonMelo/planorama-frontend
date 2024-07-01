@@ -1,70 +1,56 @@
-.ls {
-   height: 100%;
-   background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(37, 97, 207, 1) 0%, rgba(0, 212, 255, 1) 100%);
-   display: flex;
-   align-items: center;
-   justify-content: center;
- }
- 
- .left-space {
-  flex: 10;
- }
-
-
- .right-space {
-  padding: 10px;
-   flex: 2; 
-
- }
- 
- .form {
-   flex: 10; 
-   width: 20rem;
-   margin: auto;
-   background-color: rgb(235, 235, 235);
-   padding: 2rem 1rem;
-   border-radius: 1rem;
- }
- 
- 
- h1 {
-   width: 100%;
-   text-align: center;
- }
- 
- .img {
-   height: 10rem;
-   width: 100%;
- }
- 
- .full-width {
-   width: 100%;
- }
- 
- button {
-   margin-top: 1.5rem;
- }
- 
- .password-input {
-   display: flex;
-   align-items: center;
- }
- 
- .password-input input {
-   flex: 1;
- }
- 
- .password-input  {
-   font-size: 24px;
-   color: #888;
-   cursor: pointer;
- }
- 
- 
- .link {
-  display: block; 
-  width: fit-content; 
-  margin: 0 auto; 
-  padding-top: 10px;
-  text-align: center;
+.my-custom-form-container {
+  max-width: 400px;
+  margin: auto; /* Centraliza horizontalmente */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin-top: 10vh; /* Espaçamento do topo em relação à altura da tela */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  text-align: center; /* Centraliza o texto e conteúdo dentro do contêiner */
 }
+
+.my-custom-form-container.ls {
+  text-align: left; /* Alinha o texto à esquerda dentro do contêiner */
+}
+
+.my-custom-form-container h2 {
+  margin-bottom: 20px; /* Espaçamento inferior para separar o título do formulário */
+}
+
+.my-custom-form-control {
+  width: calc(100% - 20px); /* Ajusta a largura para 100% do contêiner, considerando o padding */
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.my-custom-ok-button {
+  width: calc(100% - 20px); /* Ajusta a largura para 100% do contêiner, considerando o padding */
+  padding: 10px 0;
+  margin-top: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+}
+
+.my-custom-ok-button:hover {
+  opacity: 0.8;
+}
+
+.password-input {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #007bff;
+}
+

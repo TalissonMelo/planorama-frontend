@@ -1,0 +1,39 @@
+.my-custom-form-container {
+    max-width: 400px;
+    margin: auto;
+    /* Centraliza horizontalmente */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-top: 10vh;
+    /* Espaçamento do topo em relação à altura da tela */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+}
+
+
+.my-custom-form-control {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.my-custom-ok-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.my-custom-ok-button:hover {
+    background-color: #0056b3;
+}
+
+h2 {
+    text-align: center;
+}

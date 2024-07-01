@@ -20,6 +20,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+
+import { MatTableModule } from '@angular/material/table';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 //Components
 import { LoginComponent } from './components/login/login.component';
@@ -30,6 +35,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { ModalComponent } from './components/modal/modal.component';
 
 registerLocaleData(localePt);
 
@@ -39,6 +45,7 @@ registerLocaleData(localePt);
     HomeComponent,
     NavComponent,
     LoginComponent,
+    ModalComponent,
     HeaderComponent,
     ScheduleComponent,
   ],
@@ -56,6 +63,10 @@ registerLocaleData(localePt);
 
     //Material
     MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatTableModule,
+    MatDialogModule,
     MatSidenavModule,
     MatIconModule,
     MatListModule,

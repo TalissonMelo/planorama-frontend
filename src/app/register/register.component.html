@@ -1,0 +1,27 @@
+<div class="my-custom-form-container">
+    <h2>Criar conta</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" class="my-custom-form-control">
+               <!-- [(ngModel)]="user.email" required /> -->
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" class="my-custom-form-control">
+               <!-- [(ngModel)]="user.password" required /> -->
+      </div>
+      <div class="form-group">
+        <label for="nickname">Nickname:</label>
+        <input type="text" id="nickname" name="nickname" class="my-custom-form-control">
+               <!-- [(ngModel)]="user.nickname" required /> -->
+      </div>
+      <div class="form-group">
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" name="telefone" class="my-custom-form-control">
+               <!-- [(ngModel)]="user.telefone" /> -->
+      </div>
+      <button type="submit" class="my-custom-ok-button">Cadastrar</button>
+    </form>
+  </div>
+  

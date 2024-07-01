@@ -1,4 +1,5 @@
 import { Component, LOCALE_ID } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import {
   CalendarEvent,
   CalendarEventTimesChangedEvent,
@@ -6,6 +7,7 @@ import {
 } from 'angular-calendar';
 import { addHours, isSameDay, isSameMonth, startOfDay } from 'date-fns';
 import { Subject } from 'rxjs';
+import { ModalComponent } from '../components/modal/modal.component';
 
 @Component({
   selector: 'app-schedule',
@@ -71,6 +73,8 @@ export class ScheduleComponent {
   refresh: Subject<void> = new Subject<void>();
   activeDayIsOpen: boolean = true;
 
+  constructor(public dialog: MatDialog) {}
+
   setView(view: CalendarView) {
     this.view = view;
   }
@@ -88,18 +92,8 @@ export class ScheduleComponent {
     this.events = this.events.filter((event) => event !== eventToDelete);
   }
 
-  addEvent(): void {
-    this.events = [
-      ...this.events,
-      {
-        title: 'New event',
-        start: startOfDay(new Date()),
-        draggable: true,
-        resizable: {
-          beforeStart: true,
-          afterEnd: true,
-        },
-      },
-    ];
+  openModal(day: { date: Date }) {
+    console.log(day);
+    this.dialog.open(ModalComponent);
   }
 }

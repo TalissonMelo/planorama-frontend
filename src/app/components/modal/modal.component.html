@@ -1,0 +1,59 @@
+<div class="my-custom-modal-header">
+    <div class="header-content">
+        <h5 class="my-custom-modal-title">Gerenciamento de eventos</h5>
+        <button type="button" class="my-custom-ok-button" (click)="addEvent()">Adicionar
+        </button>
+        <button type="button" class="my-custom-close-button" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>
+
+<div class="my-custom-modal-body">
+    <div class="my-custom-table-responsive">
+        <table class="my-custom-table">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Inicio</th>
+                    <th>Fim</th>
+                    <th>Cor</th>
+                    <th>Descrição</th>
+                    <th>Deletar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let event of events">
+                    <td>
+                        <input type="text" class="form-control" [(ngModel)]="event.title" />
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.start" dateFormat="H:i"
+                            altFormat="H:i" placeholder="Not set" />
+                    </td>
+                    <td>
+                        <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.end" dateFormat="H:i"
+                            altFormat="H:i" placeholder="Not set" />
+                    </td>
+                    <td>
+                        <input type="color" [(ngModel)]="event.color" />
+                    </td>
+                    <td>
+                        <input type="text" class="form-control custom-width" [(ngModel)]="event.meta.description" />
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" (click)="deleteEvent(event)">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+<div class="my-custom-modal-footer">
+    <button type="button" class="my-custom-ok-button" (click)="close()">Salvar
+    </button>
+</div>
