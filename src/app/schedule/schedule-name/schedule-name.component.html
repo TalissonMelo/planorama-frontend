@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="form-container">
+        <h2>Agendas</h2>
+        <div class="form-group row">
+            <div class="col-8">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" class="my-custom-form-control form-control">
+            </div>
+            <div class="col-2">
+                <label for="horario-inicial">Horário Inicial:</label>
+                <input type="time" id="horario-inicial" name="horario-inicial"
+                    class="my-custom-form-control form-control">
+            </div>
+            <div class="col-2">
+                <label for="horario-final">Horário Final:</label>
+                <input type="time" id="horario-final" name="horario-final" class="my-custom-form-control form-control">
+            </div>
+        </div>
+
+        <button type="button" (click)="adicionarHorario()" class="my-custom-ok-button">Adicionar Horário</button>
+    </div>
+
+    <div class="list-container">
+        <table class="table table-bordered schedule-table">
+            <thead>
+                <tr>
+                    <th class="col-6">Nome</th>
+                    <th class="col-2">Horário Inicial</th>
+                    <th class="col-2">Horário Final</th>
+                    <th class="col-2">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aqui serão exibidos os dados da lista -->
+                <tr *ngFor="let horario of horarios">
+                    <td class="col-6">{{ horario.nome }}</td>
+                    <td class="col-2">{{ horario.horarioInicial }}</td>
+                    <td class="col-2">{{ horario.horarioFinal }}</td>
+                    <td class="col-3 text-center align-middle">
+                        <button mat-icon-button color="primary" (click)="visualizarHorario(horario)">
+                            <mat-icon>visibility</mat-icon>
+                        </button>
+                        <button mat-icon-button color="accent" (click)="verParticipantes()">
+                            <mat-icon>group</mat-icon>
+                        </button>
+                        <button mat-icon-button color="primary" (click)="editarHorario(horario)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" (click)="deletarHorario(horario)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

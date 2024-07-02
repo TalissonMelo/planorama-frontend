@@ -1,0 +1,83 @@
+.my-custom-form-container {
+    max-width: 400px;
+    margin: auto; /* Centraliza horizontalmente */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-top: 10vh; /* Espaçamento do topo em relação à altura da tela */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    text-align: center; /* Centraliza o texto e conteúdo dentro do contêiner */
+  }
+  
+  .my-custom-form-container.ls {
+    text-align: left; /* Alinha o texto à esquerda dentro do contêiner */
+  }
+  
+  .my-custom-form-container h2 {
+    margin-bottom: 20px; /* Espaçamento inferior para separar o título do formulário */
+  }
+  
+  .my-custom-form-control {
+    width: calc(100% - 20px); /* Ajusta a largura para 100% do contêiner, considerando o padding */
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .my-custom-ok-button {
+    width: calc(100% - 20px); /* Ajusta a largura para 100% do contêiner, considerando o padding */
+    padding: 10px 0;
+    margin-top: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+  }
+  
+  .my-custom-ok-button:hover {
+    opacity: 0.8;
+  }
+  
+  .password-input {
+    position: relative;
+  }
+  
+  .password-toggle {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #007bff;
+  }
+  
+  .back-link {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .back-link:hover {
+    text-decoration: underline;
+  }
+  
+  .code-inputs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .code-input {
+    width: calc(25% - 5px);
+    text-align: center;
+    padding: 8px;
+    margin-right: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  

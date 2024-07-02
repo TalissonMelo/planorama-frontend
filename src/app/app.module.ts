@@ -31,6 +31,8 @@ import { ModalComponent } from './components/modal/modal.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 
 import localePt from '@angular/common/locales/pt';
+import { ScheduleNameComponent } from './schedule/schedule-name/schedule-name.component';
+import { MembersComponent } from './schedule/members/members.component';
 
 registerLocaleData(localePt);
 
@@ -43,6 +45,8 @@ registerLocaleData(localePt);
     ModalComponent,
     HeaderComponent,
     ScheduleComponent,
+    ScheduleNameComponent,
+    MembersComponent,
   ],
   imports: [
     BrowserModule,

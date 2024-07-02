@@ -4,6 +4,8 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavComponent } from './components/nav/nav.component';
 import { ScheduleComponent } from './schedule/schedule.component';
+import { ScheduleNameComponent } from './schedule/schedule-name/schedule-name.component';
+import { MembersComponent } from './schedule/members/members.component';
 
 const routes: Routes = [
   {
@@ -15,7 +17,9 @@ const routes: Routes = [
     component: NavComponent,
     children: [
       { path: 'home', component: HomeComponent },
-      { path: 'schedule', component: ScheduleComponent },
+      { path: 'schedule', component: ScheduleNameComponent },
+      { path: 'session', component: ScheduleComponent },
+      { path: 'members', component: MembersComponent },
       {
         path: 'profile',
         loadChildren: () =>

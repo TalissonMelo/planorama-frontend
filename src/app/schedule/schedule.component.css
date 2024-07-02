@@ -1,0 +1,18 @@
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    color: #007bff;
+}
+
+.back-link mat-icon {
+    margin-right: 4px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}

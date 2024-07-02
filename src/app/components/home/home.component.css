@@ -1,5 +1,45 @@
-.card {
-   width: 90%;
-   margin: 1rem auto;
-   background-color: rgb(235, 235, 235);
-}
+/* Estilos para o container principal */
+.container {
+   padding-top: 20px;
+ }
+ 
+ /* Estilos para os cards */
+ .card {
+   margin-bottom: 20px;
+   border: 1px solid #ccc;
+   border-radius: 8px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ }
+ 
+ .card-body {
+   padding: 20px;
+ }
+ 
+ .card-title {
+   font-size: 1.5rem;
+   margin-bottom: 10px;
+ }
+ 
+ /* Estilos para as listas de horários */
+ .list-group {
+   max-height: 300px; /* Define uma altura máxima para a lista para scroll vertical */
+   overflow-y: auto; /* Adiciona scroll quando a lista excede a altura máxima */
+ }
+ 
+ .list-group-item {
+   border: none;
+   border-bottom: 1px solid #eee;
+   padding: 10px 15px;
+ }
+ 
+ .list-group-item:last-child {
+   border-bottom: none;
+ }
+ 
+ /* Estilos para os botões de ação */
+ .btn-action {
+   margin-right: 10px;
+ }
+ 
+ /* Estilos adicionais conforme necessário */
+ 
