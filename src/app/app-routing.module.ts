@@ -23,15 +23,21 @@ const routes: Routes = [
       {
         path: 'profile',
         loadChildren: () =>
-          import('./profile/profile.module').then((m) => m.ProfileModule),
+          import('./profile/profile.module').then((p) => p.ProfileModule),
+      },
+      {
+        path: 'legend',
+        loadChildren: () =>
+          import('./legend/legend.module').then((l) => l.LegendModule),
       },
     ],
   },
   {
     path: 'register',
     loadChildren: () =>
-      import('./register/register.module').then((m) => m.RegisterModule),
+      import('./register/register.module').then((r) => r.RegisterModule),
   },
+
   {
     path: 'recover-password',
     loadChildren: () =>
