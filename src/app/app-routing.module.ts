@@ -6,6 +6,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { ScheduleNameComponent } from './schedule/schedule-name/schedule-name.component';
 import { MembersComponent } from './schedule/members/members.component';
+import { GuardRotasGuard } from './guard-rotas.guard';
 
 const routes: Routes = [
   {
@@ -15,11 +16,27 @@ const routes: Routes = [
   {
     path: '',
     component: NavComponent,
+    canActivate: [GuardRotasGuard],
     children: [
       { path: 'home', component: HomeComponent },
-      { path: 'schedule', component: ScheduleNameComponent },
-      { path: 'session', component: ScheduleComponent },
-      { path: 'members', component: MembersComponent },
+      {
+        path: 'schedule',
+        component: ScheduleNameComponent,
+        canActivate: [GuardRotasGuard],
+        data: { title: 'Agenda' },
+      },
+      {
+        path: 'session',
+        component: ScheduleComponent,
+        canActivate: [GuardRotasGuard],
+        data: { title: 'Sessões' },
+      },
+      {
+        path: 'members',
+        component: MembersComponent,
+        canActivate: [GuardRotasGuard],
+        data: { title: 'Participantes' },
+      },
       {
         path: 'profile',
         loadChildren: () =>

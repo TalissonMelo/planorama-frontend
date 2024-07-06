@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { NotificationService } from '../notification/notification.service';
+import { UseSession } from 'src/app/util/useSession';
 import { LoaderService } from '../loader/loader.service';
+import { NotificationService } from '../notification/notification.service';
+import { Login } from './user/model/login';
+import { UserService } from './user/service/user.service';
 
 @Component({
   selector: 'app-login',
@@ -9,14 +12,19 @@ import { LoaderService } from '../loader/loader.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-  showPassword: boolean = false;
-  typeButtom: string = 'password';
+  public useSession: UseSession = new UseSession();
+  public typeButtom: string = 'password';
+  public showPassword: boolean = false;
+  public login: Login;
 
   constructor(
     private router: Router,
+    private service: UserService,
     private notificationService: NotificationService,
     private loaderService: LoaderService
-  ) {}
+  ) {
+    this.login = new Login('', '');
+  }
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
@@ -25,17 +33,26 @@ export class LoginComponent {
       : (this.typeButtom = 'password');
   }
 
-  login() {
-    this.router.navigate(['home']);
-    /*this.notificationService.showSuccess('Operação realizada com sucesso!');
+  enter(): void {
     this.loaderService.show();
-    setTimeout(() => {
-      this.loaderService.hide();
-    }, 3000);*/
+    this.service.logar(this.login).subscribe(
+      (res) => {
+        this.useSession.setToken(res.authorization);
+        this.useSession.setUser(res);
+        this.loaderService.hide();
+        this.notificationService.showSuccess('Operação realizada com sucesso!');
+        this.router.navigate(['home']);
+      },
+      (error) => {
+        this.loaderService.hide();
+        this.notificationService.showError(
+          'Ocorreu um erro durante a operação.'
+        );
+      }
+    );
   }
 
   register() {
     this.router.navigate(['register']);
-    //this.notificationService.showError('Ocorreu um erro durante a operação.');
   }
 }
