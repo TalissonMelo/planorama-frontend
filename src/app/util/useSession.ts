@@ -20,4 +20,17 @@ export class UseSession {
     const token = localStorage.getItem('token');
     return token ? JSON.parse(token) : '';
   }
+
+  setData(data: any): void {
+    localStorage.setItem('data', JSON.stringify(data));
+  }
+
+  getData(): any | null {
+    const data = localStorage.getItem('data');
+    if (data) {
+      localStorage.removeItem('data');
+      return JSON.parse(data) as UserLogin;
+    }
+    return null;
+  }
 }

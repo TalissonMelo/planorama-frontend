@@ -10,9 +10,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { RecoverCodeComponent } from './recover-code/recover-code.component';
 import { RecoverChangePasswordComponent } from './recover-change-password/recover-change-password.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [RecoverPasswordComponent, RecoverCodeComponent, RecoverChangePasswordComponent],
+  declarations: [
+    RecoverPasswordComponent,
+    RecoverCodeComponent,
+    RecoverChangePasswordComponent,
+  ],
   imports: [
     CommonModule,
     RecoverPasswordRoutingModule,
@@ -20,6 +25,8 @@ import { RecoverChangePasswordComponent } from './recover-change-password/recove
     MatInputModule,
     MatFormFieldModule,
     MatIconModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
 })
 export class RecoverPasswordModule {}
