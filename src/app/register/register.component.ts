@@ -16,7 +16,7 @@ export class RegisterComponent {
     console.log('Dados do usuário:', this.user);
   }
 
-  back(): void {
+  toGoBack(): void {
     this.router.navigate(['login']);
   }
 }

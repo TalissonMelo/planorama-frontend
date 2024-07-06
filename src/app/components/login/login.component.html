@@ -1,25 +1,39 @@
-<div class="my-custom-form-container ls">
-  <div class="right-space">
-    <form >
-      <div class="form-group">
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" class="my-custom-form-control">
-      </div>
-  
-      <div class="form-group">
-        <label for="password">Senha:</label>
-        <div class="password-input">
-          <input type="password" id="password" name="password" class="my-custom-form-control">
-          <span class="password-toggle" (click)="togglePasswordVisibility()">
-            <i class="fas fa-eye" *ngIf="!showPassword"></i>
-            <i class="fas fa-eye-slash" *ngIf="showPassword"></i>
-          </span>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-5">
+      <div class="card shadow-lg border-0 rounded-lg mt-5">
+        <div class="card-header">
+          <h3 class="text-center font-weight-light my-4">liberbox</h3>
         </div>
-      </div>        
-  
-      <button type="button" (click)="login()" class="full-width mat-elevation-z4 my-custom-ok-button">Entrar</button>
-      <a routerLink="/recover-password" href="#" class="full-width mat-elevation-z4">Esqueceu a senha?</a>
-      <button type="button" (click)="register()" class="full-width mat-elevation-z4 my-custom-ok-button">Criar nova conta</button>
-    </form>
+        <div class="card-body">
+          <form>
+            <div class="form-group">
+              <label for="email">E-mail:</label>
+              <input type="email" id="email" name="email" class="my-custom-form-control">
+            </div>
+            <div class="form-group">
+              <label for="password">Senha:</label>
+              <div class="password-input">
+                <input type={{typeButtom}} id="password" name="password" class="my-custom-form-control">
+                <span class="password-toggle" (click)="togglePasswordVisibility()">
+                  <i class="fas fa-eye space" *ngIf="!showPassword"></i>
+                  <i class="fas fa-eye-slash space" *ngIf="showPassword"></i>
+                </span>
+              </div>
+            </div>
+            <button type="button" (click)="login()"
+              class="full-width mat-elevation-z4 my-custom-ok-button">Entrar</button>
+            <button type="button" (click)="register()" class="full-width mat-elevation-z4 my-custom-ok-button">Não
+              possui usuário. Cadastre-se!</button>
+          </form>
+        </div>
+        <div class="card-footer text-center">
+          <div class="small">
+            <a routerLink="/recover-password" href="#" class="full-width mat-elevation-z4">Esqueceu a senha?</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

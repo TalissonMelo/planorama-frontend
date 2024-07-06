@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,11 +8,15 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   showPassword: boolean = false;
+  typeButtom: string = 'password';
 
   constructor(private router: Router) {}
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
+    this.showPassword == true
+      ? (this.typeButtom = 'text')
+      : (this.typeButtom = 'password');
   }
 
   login() {
