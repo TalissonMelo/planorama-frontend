@@ -10,7 +10,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class UserService {
-  public idUser!: number;
   public useSession: UseSession;
 
   constructor(private http: HttpClient) {

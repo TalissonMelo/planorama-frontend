@@ -34,25 +34,38 @@ export class LoginComponent {
   }
 
   enter(): void {
-    this.loaderService.show();
-    this.service.logar(this.login).subscribe(
-      (res) => {
-        this.useSession.setToken(res.authorization);
-        this.useSession.setUser(res);
-        this.loaderService.hide();
-        this.notificationService.showSuccess('Operação realizada com sucesso!');
-        this.router.navigate(['home']);
-      },
-      (error) => {
-        this.loaderService.hide();
-        this.notificationService.showError(
-          'Ocorreu um erro durante a operação.'
-        );
-      }
-    );
+    if (this.isValid()) {
+      this.loaderService.show();
+      this.service.logar(this.login).subscribe(
+        (res) => {
+          this.useSession.setToken(res.authorization);
+          this.useSession.setUser(res);
+          this.loaderService.hide();
+          this.notificationService.showSuccess(
+            'Operação realizada com sucesso!'
+          );
+          this.router.navigate(['home']);
+        },
+        (error) => {
+          this.loaderService.hide();
+          this.notificationService.showError(
+            'E-mail ou senha, inválidos por favor tente novamente.'
+          );
+        }
+      );
+    }
   }
 
-  register() {
+  isValid(): boolean {
+    if (this.login.email == '' || this.login.password == '') {
+      this.notificationService.showError('Preencha email e senha!');
+      return false;
+    }
+
+    return true;
+  }
+
+  register(): void {
     this.router.navigate(['register']);
   }
 }

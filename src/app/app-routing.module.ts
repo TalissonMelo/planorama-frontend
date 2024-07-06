@@ -18,7 +18,7 @@ const routes: Routes = [
     component: NavComponent,
     canActivate: [GuardRotasGuard],
     children: [
-      { path: 'home', component: HomeComponent },
+      { path: '', component: HomeComponent },
       {
         path: 'schedule',
         component: ScheduleNameComponent,
