@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { RecoverService } from './service/recover.service';
 import { LoaderService } from '../components/loader/loader.service';
 import { NotificationService } from '../components/notification/notification.service';
-import { RecoverEmail } from './domain/recover_email';
-import { PhoneNumber } from './domain/phone_number';
 import { UseSession } from '../util/useSession';
+import { RecoverEmail } from './domain/recover_email';
+import { RecoverService } from './service/recover.service';
 
 @Component({
   selector: 'app-recover-password',

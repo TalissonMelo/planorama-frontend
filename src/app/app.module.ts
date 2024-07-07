@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Para realizar requisições HTTP
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/nav/nav.component';
 
@@ -37,6 +37,8 @@ import { LoaderComponent } from './components/loader/loader/loader.component';
 import { MembersComponent } from './schedule/members/members.component';
 import { ScheduleNameComponent } from './schedule/schedule-name/schedule-name.component';
 import { PasswordModule } from './components/password/password.module';
+import { UseSession } from './util/useSession';
+import { TokenInterceptor } from './token.interceptor';
 
 registerLocaleData(localePt);
 
@@ -84,7 +86,15 @@ registerLocaleData(localePt);
       useFactory: adapterFactory,
     }),
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'pt' }],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pt' },
+    UseSession,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

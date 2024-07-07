@@ -1,25 +1,33 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-3 "></div>
+    <div class="col-sm-6 ">
+      <h2>ALTERAÇÃO DE PERFIL</h2>
       <div class="form-group">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" class="my-custom-form-control" required>
+        <input type="email" id="email" name="email" class="my-custom-form-control" [(ngModel)]="email" required
+          disabled />
       </div>
       <div class="form-group">
         <label for="nickname">Nome:</label>
-        <input type="text" id="nickname" name="nickname" class="my-custom-form-control" required>
+        <input type="text" id="nickname" name="nickname" class="my-custom-form-control"
+          [(ngModel)]="userUpdate.nickname" required />
       </div>
       <div class="form-group">
         <label for="telefone">Telefone:</label>
-        <input type="text" id="telefone" name="telefone" class="my-custom-form-control">
+        <input type="text" id="telefone" name="telefone" class="my-custom-form-control"
+          [(ngModel)]="userUpdate.phone" />
       </div>
-      <button type="submit" class="my-custom-ok-button">Alterar Dados</button>
-    </div>
-    <div class="col-sm-6">
-      <app-password [title]="'Senha atual:'"></app-password>
-      <app-password [title]="'Nova senha:'"> </app-password>
-      <app-password [title]="'Confirme sua senha:'"></app-password>
-      <button type="submit" class="my-custom-ok-button">Alterar Senha</button>
+      <button type="submit" class="my-custom-ok-button" (click)="onSubmit()">Alterar Dados</button>
+      <h2 class="mt-5">ALTERAÇÃO DE SENHA</h2>
+      <app-password [title]="'Senha atual:'" [id]="'password'"
+        (passwordChange)="chancePassword.oldPassword = $event"></app-password>
+      <app-password [title]="'Nova senha:'" [id]="'password'"
+        (passwordChange)="chancePassword.newPassword = $event"></app-password>
+      <app-password [title]="'Confirme sua senha:'" [id]="'password'"
+        (passwordChange)="passwordConfirm = $event"></app-password>
+      <button type="submit" class="my-custom-ok-button" (click)="onChangePassword()">Alterar Senha</button>
     </div>
   </div>
+  <div class="col-sm-3 "></div>
 </div>
