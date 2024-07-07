@@ -13,8 +13,6 @@ import { UserService } from './user/service/user.service';
 })
 export class LoginComponent {
   public useSession: UseSession = new UseSession();
-  public typeButtom: string = 'password';
-  public showPassword: boolean = false;
   public login: Login;
 
   constructor(
@@ -24,13 +22,6 @@ export class LoginComponent {
     private loaderService: LoaderService
   ) {
     this.login = new Login('', '');
-  }
-
-  togglePasswordVisibility() {
-    this.showPassword = !this.showPassword;
-    this.showPassword == true
-      ? (this.typeButtom = 'text')
-      : (this.typeButtom = 'password');
   }
 
   enter(): void {

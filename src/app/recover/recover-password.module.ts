@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RecoverCodeComponent } from './recover-code/recover-code.component';
 import { RecoverChangePasswordComponent } from './recover-change-password/recover-change-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PasswordModule } from '../components/password/password.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
+    PasswordModule,
   ],
 })
 export class RecoverPasswordModule {}

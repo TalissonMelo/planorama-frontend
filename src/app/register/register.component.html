@@ -20,26 +20,8 @@
             <label for="telefone">Telefone:</label>
             <input type="text" id="telefone" name="telefone" class="my-custom-form-control" [(ngModel)]="user.phone" placeholder="00000000000" />
           </div>
-          <div class="password-input">
-            <label for="password">Senha:</label>
-            <input  type={{typeButtom}} id="password" name="password" class="my-custom-form-control"  [(ngModel)]="user.password" required />
-            <span class="password-toggle" (click)="togglePasswordVisibility()">
-              <i class="fas fa-eye space" *ngIf="!showPassword"></i>
-              <i class="fas fa-eye-slash space" *ngIf="showPassword"></i>
-            </span>
-            <p class="small-text">Senha 8 e 12 caracteres, pelo menos 1 letra maiúscula, 1 minúscula, 1 símbolo e 1 número.
-            </p>
-          </div>
-          <div class="password-input">
-            <label for="password">Confirme sua senha</label>
-            <input  type={{typeConfirmButtom}} id="password" name="password" class="my-custom-form-control" [(ngModel)]="passwordConfirm" required />
-            <span class="password-toggle" (click)="toggleConfirmPasswordVisibility()">
-              <i class="fas fa-eye space" *ngIf="!showConfirmPassword"></i>
-              <i class="fas fa-eye-slash space" *ngIf="showConfirmPassword"></i>
-            </span>
-            <p class="small-text">Senha 8 e 12 caracteres, pelo menos 1 letra maiúscula, 1 minúscula, 1 símbolo e 1 número.
-            </p>
-          </div>
+          <app-password [title]="'Senha:'" [id]="'password'"  (passwordChange)="user.password = $event"></app-password>
+          <app-password [title]="'Confirme sua senha:'" [id]="'password'"  (passwordChange)="passwordConfirm = $event"></app-password>
           <div class="form-group buttons-container">
             <button type="button" class="my-custom-back-button" (click)="toGoBack()">Voltar</button>
             <button type="submit" class="my-custom-ok-button" (click)="onSubmit()">Cadastrar</button>

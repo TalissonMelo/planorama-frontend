@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { LoaderService } from 'src/app/components/loader/loader.service';
 import { NotificationService } from 'src/app/components/notification/notification.service';
 import { UseSession } from 'src/app/util/useSession';
-import { CodeResponse } from '../domain/code_response';
 import { ChangePassword } from '../domain/change_password';
+import { CodeResponse } from '../domain/code_response';
 import { ChangePasswordService } from '../service/change_password.service';
 
 @Component({
@@ -13,12 +13,8 @@ import { ChangePasswordService } from '../service/change_password.service';
   styleUrls: ['./recover-change-password.component.css'],
 })
 export class RecoverChangePasswordComponent {
-  public changePassword: ChangePassword;
   public passwordConfirm: string = '';
-  public typeButtom: string = 'password';
-  public showPassword: boolean = false;
-  public showConfirmPassword: boolean = false;
-  public typeConfirmButtom: string = 'password';
+  public changePassword: ChangePassword;
   public useSession: UseSession = new UseSession();
 
   constructor(
@@ -47,20 +43,6 @@ export class RecoverChangePasswordComponent {
       'Senhas não conferem. Por favor, tente novamente.'
     );
     return false;
-  }
-
-  togglePasswordVisibility() {
-    this.showPassword = !this.showPassword;
-    this.showPassword == true
-      ? (this.typeButtom = 'text')
-      : (this.typeButtom = 'password');
-  }
-
-  toggleConfirmPasswordVisibility() {
-    this.showConfirmPassword = !this.showConfirmPassword;
-    this.showConfirmPassword == true
-      ? (this.typeConfirmButtom = 'text')
-      : (this.typeConfirmButtom = 'password');
   }
 
   resetPassword() {

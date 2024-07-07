@@ -13,10 +13,6 @@ import { LoaderService } from '../components/loader/loader.service';
 export class RegisterComponent {
   public user: UserRequest;
   public passwordConfirm: string = '';
-  public typeButtom: string = 'password';
-  public showPassword: boolean = false;
-  public typeConfirmButtom: string = 'password';
-  public showConfirmPassword: boolean = false;
 
   constructor(
     private router: Router,
@@ -59,6 +55,9 @@ export class RegisterComponent {
     ) {
       return true;
     }
+    this.notificationService.showError(
+      'Dados de usuário, inválidos por favor tente novamente.'
+    );
     return false;
   }
 
@@ -79,19 +78,5 @@ export class RegisterComponent {
 
   toGoBack(): void {
     this.router.navigate(['/login']);
-  }
-
-  togglePasswordVisibility() {
-    this.showPassword = !this.showPassword;
-    this.showPassword == true
-      ? (this.typeButtom = 'text')
-      : (this.typeButtom = 'password');
-  }
-
-  toggleConfirmPasswordVisibility() {
-    this.showConfirmPassword = !this.showConfirmPassword;
-    this.showConfirmPassword == true
-      ? (this.typeConfirmButtom = 'text')
-      : (this.typeConfirmButtom = 'password');
   }
 }

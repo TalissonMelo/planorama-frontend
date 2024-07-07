@@ -1,7 +1,7 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -25,17 +25,18 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 //Components
-import { LoginComponent } from './components/login/login.component';
 import { registerLocaleData } from '@angular/common';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HeaderComponent } from './components/header/header.component';
+import { LoginComponent } from './components/login/login.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { ScheduleComponent } from './schedule/schedule.component';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import localePt from '@angular/common/locales/pt';
-import { ScheduleNameComponent } from './schedule/schedule-name/schedule-name.component';
-import { MembersComponent } from './schedule/members/members.component';
 import { LoaderComponent } from './components/loader/loader/loader.component';
+import { MembersComponent } from './schedule/members/members.component';
+import { ScheduleNameComponent } from './schedule/schedule-name/schedule-name.component';
+import { PasswordModule } from './components/password/password.module';
 
 registerLocaleData(localePt);
 
@@ -56,6 +57,9 @@ registerLocaleData(localePt);
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+
+    //CREATE MODULES
+    PasswordModule,
 
     //HTTP
     HttpClientModule,

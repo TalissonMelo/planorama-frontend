@@ -61,7 +61,7 @@ export class RecoverCodeComponent {
         (error) => {
           this.loaderService.hide();
           this.notificationService.showError(
-            'E-mail inválido por favor tente novamente.'
+            'Código inválido por favor tente novamente.'
           );
         }
       );

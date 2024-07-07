@@ -37,25 +37,3 @@
     background-color: #5a6268;
 }
 
-.small-text {
-    font-size: 11px;
-    line-height: 1.0;
-}
-
-.password-input {
-    position: relative;
-  }
-
-.password-toggle {
-    position: absolute;
-    right: 8px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #007bff;
-}
-
-.space {
-    padding-right: 10px;
-    padding-bottom: 5px;
-}

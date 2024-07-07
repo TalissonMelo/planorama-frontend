@@ -20,21 +20,3 @@
 .my-custom-ok-button:hover {
   opacity: 0.8;
 }
-
-.password-input {
-  position: relative;
-}
-
-.password-toggle {
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  color: #007bff;
-}
-
-.space {
-  padding-right: 20px;
-  padding-bottom: 10px;
-}
