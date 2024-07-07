@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
 import { UserLogin } from '../components/login/user/model/user_login';
+import { CodeResponse } from '../recover/domain/code_response';
 
 @Injectable()
 export class UseSession {
+  clear(): void {
+    localStorage.clear();
+  }
+
   setUser(user: UserLogin): void {
     localStorage.setItem('user', JSON.stringify(user));
   }
@@ -29,7 +34,20 @@ export class UseSession {
     const data = localStorage.getItem('data');
     if (data) {
       localStorage.removeItem('data');
-      return JSON.parse(data) as UserLogin;
+      return JSON.parse(data);
+    }
+    return null;
+  }
+
+  setCode(codeResponse: CodeResponse): void {
+    localStorage.setItem('codeResponse', JSON.stringify(codeResponse));
+  }
+
+  getCode(): any | null {
+    const codeResponse = localStorage.getItem('codeResponse');
+    if (codeResponse) {
+      localStorage.removeItem('codeResponse');
+      return JSON.parse(codeResponse);
     }
     return null;
   }

@@ -44,7 +44,7 @@ export class LoginComponent {
           this.notificationService.showSuccess(
             'Operação realizada com sucesso!'
           );
-          this.router.navigate(['home']);
+          this.router.navigate(['/']);
         },
         (error) => {
           this.loaderService.hide();

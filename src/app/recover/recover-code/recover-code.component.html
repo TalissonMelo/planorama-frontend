@@ -4,15 +4,17 @@
       <div class="card shadow-lg border-0 rounded-lg mt-5">
         <div class="card-header">
           <h2 class="text-center font-weight-light my-4">Verificação</h2>
-          <h4 class="text-center font-weight-light my-4">Insira o código que foi enviado para o número {{phoneNumber!.phone}}</h4>
+          <h4 class="text-center font-weight-light my-4">
+            Insira o código que foi enviado para o número {{ phoneNumber!.phone }}
+          </h4>
         </div>
         <div class="card-body">
-          <div class="form-group code-inputs">
-            <input type="text" maxlength="1" class="my-custom-form-control code-input">
-            <input type="text" maxlength="1" class="my-custom-form-control code-input">
-            <input type="text" maxlength="1" class="my-custom-form-control code-input">
-            <input type="text" maxlength="1" class="my-custom-form-control code-input">
-            <input type="text" maxlength="1" class="my-custom-form-control code-input">
+          <div class="form-group code-inputs" #codeInputs>
+            <input type="text" maxlength="1" class="my-custom-form-control code-input" (input)="onInputChange($event, 0)">
+            <input type="text" maxlength="1" class="my-custom-form-control code-input" (input)="onInputChange($event, 1)">
+            <input type="text" maxlength="1" class="my-custom-form-control code-input" (input)="onInputChange($event, 2)">
+            <input type="text" maxlength="1" class="my-custom-form-control code-input" (input)="onInputChange($event, 3)">
+            <input type="text" maxlength="1" class="my-custom-form-control code-input" (input)="onInputChange($event, 4)">
           </div>
           <button type="button" (click)="confirmCode()" class="my-custom-ok-button">Confirmar</button>
         </div>
