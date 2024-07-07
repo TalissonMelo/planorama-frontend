@@ -1,17 +1,17 @@
 <div class="container">
+    <div class="back-link" routerLink="/"> <mat-icon>arrow_back</mat-icon> Voltar</div>
     <div class="form-container">
         <h2>Legendas</h2>
-        <div class="form-group row">
-            <div class="col-1">
-                <label for="color">Cor:</label>
-                <input type="color" id="color" name="color" [(ngModel)]="novaLegenda.color">
+        <div class="form-group row center-inputs">
+            <div class="col-1 ">
+                <input class="input-cor" type="color" id="color" name="color" [(ngModel)]="legend.color">
             </div>
             <div class="col-11">
                 <label for="description">Descrição:</label>
-                <input type="text" id="description" name="description" class="my-custom-form-control form-control" [(ngModel)]="novaLegenda.description">
+                <input type="text" id="description" name="description" class="my-custom-form-control form-control"
+                    [(ngModel)]="legend.description">
             </div>
         </div>
-
         <button type="button" (click)="adicionarLegenda()" class="my-custom-ok-button">Adicionar Legenda</button>
     </div>
     <div class="list-container">
@@ -19,20 +19,21 @@
             <thead>
                 <tr>
                     <th class="col-1">Cor</th>
-                    <th class="col-8">Descrição</th>
-                    <th class="col-2"></th>
+                    <th class="col-10">Descrição</th>
+                    <th class="col-1"></th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let legenda of legendas">
-                    <td class="col-1" [style.background]="legenda.color"></td>
-                    <td class="col-5">{{ legenda.description }}</td>
-                    <td class="col-2 text-center align-middle">
-                        <button mat-icon-button color="primary" (click)="editarLegenda(legenda)">
-                            <mat-icon>edit</mat-icon>
-                        </button>
-                        <button mat-icon-button color="warn" (click)="deletarLegenda(legenda)">
-                            <mat-icon>delete</mat-icon>
+                <tr *ngFor="let legend of legends">
+                    <td *ngIf="legend.id == legendEditId" class="col-1"> <input class="cor" type="color" id="color" name="color" [(ngModel)]="legend.color">
+                    </td>
+                    <td *ngIf="legend.id != legendEditId" class="col-1" [style.background]="legend.color">
+                    </td>
+                    <td *ngIf="legend.id == legendEditId" class="col-10"><input type="text" id="description" name="description" class="my-custom-form-control form-control" [(ngModel)]="legend.description"></td>
+                    <td *ngIf="legend.id != legendEditId" class="col-10"> {{ legend.description }}</td>
+                    <td class="col-1 text-center align-middle">
+                        <button mat-icon-button color="primary" (click)="isEditing ? save(legend) : edit(legend)">
+                            <mat-icon>{{ legend.id != legendEditId ?  'edit' : 'save'  }}</mat-icon>
                         </button>
                     </td>
                 </tr>
