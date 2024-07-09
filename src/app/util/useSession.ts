@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UserLogin } from '../components/login/user/model/user_login';
 import { CodeResponse } from '../recover/domain/code_response';
+import { ScheduleResponse } from '../schedule/schedule-name/domain/schedule_response';
 
 @Injectable()
 export class UseSession {
@@ -52,12 +53,12 @@ export class UseSession {
     return null;
   }
 
-  setScheduleId(scheduleId: string): void {
-    localStorage.setItem('scheduleId', JSON.stringify(scheduleId));
+  setScheduleId(schedule: ScheduleResponse): void {
+    localStorage.setItem('schedule', JSON.stringify(schedule));
   }
 
-  getScheduleId(): string {
-    const scheduleId = localStorage.getItem('scheduleId');
-    return scheduleId ? JSON.parse(scheduleId) : '';
+  getScheduleId(): ScheduleResponse {
+    const schedule = localStorage.getItem('schedule');
+    return schedule ? JSON.parse(schedule) : '';
   }
 }

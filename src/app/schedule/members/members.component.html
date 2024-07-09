@@ -1,23 +1,23 @@
 <div class="container">
-    <div class="back-link" routerLink="/"> <mat-icon>arrow_back</mat-icon> Voltar</div>
+    <div class="back-link" routerLink="/schedule"> <mat-icon>arrow_back</mat-icon> Voltar</div>
     <div class="form-container">
-        <h2>Membros Agenda: Turma 3° III</h2>
+        <h2>{{ schedule.name}}</h2>
         <div class="form-group row">
             <div class="col-4">
                 <label for="nickname">Nome:</label>
-                <input type="text" id="nickname" name="nickname" class="my-custom-form-control form-control" required>
+                <input type="text" id="nickname" name="nickname"  [(ngModel)]="member.nickname" class="my-custom-form-control form-control" required>
             </div>
             <div class="col-4">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" class="my-custom-form-control form-control" required>
+                <input type="email" id="email" name="email" class="my-custom-form-control form-control" [(ngModel)]="member.email" required>
             </div>
             <div class="col-2">
                 <label for="phone">Telefone:</label>
-                <input type="text" id="phone" name="phone" class="my-custom-form-control form-control">
+                <input type="text" id="phone" name="phone"  [(ngModel)]="member.phone" class="my-custom-form-control form-control">
             </div>
             <div class="col-2">
                 <label for="type">Permissão:</label>
-                <select id="type" name="type" class="my-custom-form-control form-control" required>
+                <select id="type" name="type" class="my-custom-form-control form-control"  [(ngModel)]="member.type" required>
                     <option value="EDITOR">Editor</option>
                     <option value="VIEWER">Visualizador</option>
                 </select>
@@ -31,22 +31,27 @@
         <table class="table table-bordered schedule-table">
             <thead>
                 <tr>
-                    <th class="col-9">Nome</th>
+                    <th class="col-4">Nome</th>
+                    <th class="col-3">Email</th>
+                    <th class="col-2">Telefone</th>
                     <th class="col-2">Permissão</th>
                     <th class="col-1"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let member of members">
-                    <td class="col-9">{{ member.member.nickname }}</td>
+                    <td class="col-4">{{ member.member.nickname }}</td>
+                    <td class="col-3">{{ member.member.email }}</td>
+                    <td class="col-2">{{ member.member.phone }}</td>
                     <td class="col-2">
-                        <select id="type" name="type" class="my-custom-form-control form-control" [value]="member.member.type" disabled>
+                        <select id="type" name="type" class="my-custom-form-control form-control"
+                            [value]="member.member.type" disabled>
                             <option value="CREATOR">Criador</option>
                             <option value="EDITOR">Editor</option>
                             <option value="VIEWER">Visualizador</option>
                         </select>
                     </td>
-                    <td  class="col-1 text-center align-middle">
+                    <td class="col-1 text-center align-middle">
                         <button mat-icon-button color="warn" (click)="deletarMembro(member)">
                             <mat-icon>delete</mat-icon>
                         </button>

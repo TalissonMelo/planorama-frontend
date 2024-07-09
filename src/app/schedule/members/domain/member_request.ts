@@ -1,8 +1,8 @@
-export class Member {
-  public id!: string;
+export class MemberRequest {
+  public scheduleId!: string;
   public phone!: string;
   public email!: string;
-  public type!: MemberType;
+  public type: MemberType = MemberType.VIEWER;
   public nickname!: string;
 }
 

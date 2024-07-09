@@ -29,8 +29,7 @@ export class RegisterComponent {
       this.service.userCreate(this.user).subscribe(
         (res) => {
           this.loaderService.hide();
-          this.user = new UserRequest('', '', '', '');
-          this.passwordConfirm = '';
+          this.router.navigate(['/login']);
           this.notificationService.showSuccess(
             'Usuário registrado com sucesso!'
           );

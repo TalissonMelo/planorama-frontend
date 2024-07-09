@@ -102,7 +102,7 @@ export class ScheduleNameComponent implements OnInit {
   }
 
   listMembersByScheduleId(schedule: ScheduleResponse) {
-    this.useSession.setScheduleId(schedule.id);
+    this.useSession.setScheduleId(schedule);
     this.router.navigate(['/members']);
   }
 
