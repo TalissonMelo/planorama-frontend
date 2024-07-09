@@ -54,10 +54,6 @@
     margin-top: 20px;
 }
 
-.back-link:hover {
-    text-decoration: underline;
-}
-
 .back-link {
     display: inline-flex;
     align-items: center;
@@ -65,10 +61,10 @@
     color: #007bff;
 }
 
-.back-link mat-icon {
-    margin-right: 4px;
-}
-
 .back-link:hover {
     text-decoration: underline;
+}
+
+.back-link mat-icon {
+    margin-right: 4px;
 }

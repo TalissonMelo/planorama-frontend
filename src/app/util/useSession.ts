@@ -51,4 +51,13 @@ export class UseSession {
     }
     return null;
   }
+
+  setScheduleId(scheduleId: string): void {
+    localStorage.setItem('scheduleId', JSON.stringify(scheduleId));
+  }
+
+  getScheduleId(): string {
+    const scheduleId = localStorage.getItem('scheduleId');
+    return scheduleId ? JSON.parse(scheduleId) : '';
+  }
 }

@@ -1,25 +1,26 @@
 <div class="container">
+    <div class="back-link" routerLink="/"> <mat-icon>arrow_back</mat-icon> Voltar</div>
     <div class="form-container">
         <h2>Agendas</h2>
         <div class="form-group row">
             <div class="col-8">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" class="my-custom-form-control form-control">
-            </div>
-            <div class="col-2">
-                <label for="horario-inicial">Horário Inicial:</label>
-                <input type="time" id="horario-inicial" name="horario-inicial"
+                <label for="name">Nome:</label>
+                <input type="text" id="name" name="name" [(ngModel)]="schedule.name"
                     class="my-custom-form-control form-control">
             </div>
             <div class="col-2">
-                <label for="horario-final">Horário Final:</label>
-                <input type="time" id="horario-final" name="horario-final" class="my-custom-form-control form-control">
+                <label for="startTime">Horário Inicial:</label>
+                <input type="time" id="startTime" name="startTime" [(ngModel)]="schedule.startTime"
+                    class="my-custom-form-control form-control">
+            </div>
+            <div class="col-2">
+                <label for="endTime">Horário Final:</label>
+                <input type="time" id="endTime" name="endTime" [(ngModel)]="schedule.endTime"
+                    class="my-custom-form-control form-control">
             </div>
         </div>
-
-        <button type="button" (click)="adicionarHorario()" class="my-custom-ok-button">Adicionar Horário</button>
+        <button type="button" (click)="save()" class="my-custom-ok-button">Adicionar Horário</button>
     </div>
-
     <div class="list-container">
         <table class="table table-bordered schedule-table">
             <thead>
@@ -31,23 +32,37 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Aqui serão exibidos os dados da lista -->
-                <tr *ngFor="let horario of horarios">
-                    <td class="col-6">{{ horario.nome }}</td>
-                    <td class="col-2">{{ horario.horarioInicial }}</td>
-                    <td class="col-2">{{ horario.horarioFinal }}</td>
-                    <td class="col-3 text-center align-middle">
-                        <button mat-icon-button color="primary" (click)="visualizarHorario(horario)">
+                <tr *ngFor="let schedule of schedules">
+                    <td *ngIf="editSchedule != schedule.id" class="col-6">{{ schedule.name }}</td>
+                    <td *ngIf="editSchedule != schedule.id" class="col-2">{{ schedule.startTime }}</td>
+                    <td *ngIf="editSchedule != schedule.id" class="col-2">{{ schedule.endTime }}</td>
+                    <td *ngIf="editSchedule == schedule.id" class="col-6"> <input type="text" id="name" name="name"
+                            [(ngModel)]="schedule.name" class="my-custom-form-control form-control"></td>
+                    <td *ngIf="editSchedule == schedule.id" class="col-2"> <input type="time" id="startTime"
+                            name="startTime" [(ngModel)]="schedule.startTime"
+                            class="my-custom-form-control form-control"></td>
+                    <td *ngIf="editSchedule == schedule.id" class="col-2"><input type="time" id="endTime" name="endTime"
+                            [(ngModel)]="schedule.endTime" class="my-custom-form-control form-control"></td>
+                    <td *ngIf="editSchedule != schedule.id" class="col-3 text-center align-middle">
+                        <button mat-icon-button color="primary" (click)="listSessionsByScheduleId(schedule)">
                             <mat-icon>visibility</mat-icon>
                         </button>
-                        <button mat-icon-button color="accent" (click)="verParticipantes()">
+                        <button *ngIf="schedule.ownerId === userId" mat-icon-button color="accent"
+                            (click)="listMembersByScheduleId(schedule)">
                             <mat-icon>group</mat-icon>
                         </button>
-                        <button mat-icon-button color="primary" (click)="editarHorario(horario)">
+                        <button *ngIf="schedule.ownerId === userId" mat-icon-button color="primary"
+                            (click)="edit(schedule.id)">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-icon-button color="warn" (click)="deletarHorario(horario)">
+                        <button *ngIf="schedule.ownerId === userId" mat-icon-button color="warn"
+                            (click)="deleted(schedule)">
                             <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                    <td *ngIf="editSchedule == schedule.id" class="col-3 text-center align-middle">
+                        <button mat-icon-button color="warn" (click)="update(schedule)">
+                            <mat-icon>save</mat-icon>
                         </button>
                     </td>
                 </tr>
