@@ -61,4 +61,16 @@ export class UseSession {
     const schedule = localStorage.getItem('schedule');
     return schedule ? JSON.parse(schedule) : '';
   }
+
+  toNumber(timeString: string): number {
+    const parts: string[] = timeString.split(':');
+    const firstPart: number = parseInt(parts[0], 10);
+    return firstPart;
+  }
+
+  toNumberAddHour(timeString: string): number {
+    const parts: string[] = timeString.split(':');
+    const firstPart: number = parseInt(parts[0], 10);
+    return firstPart + 1;
+  }
 }

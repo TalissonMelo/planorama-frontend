@@ -48,6 +48,7 @@ export class MembersComponent implements OnInit {
       this.service.save(this.member).subscribe(
         (res) => {
           this.ngOnInit();
+          this.member = new MemberRequest();
           this.loaderService.hide();
           this.notificationService.showSuccess(
             'Membro adicionado com sucesso!'

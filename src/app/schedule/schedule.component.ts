@@ -1,13 +1,11 @@
-import { Component, LOCALE_ID } from '@angular/core';
+import { Component, LOCALE_ID, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import {
-  CalendarEvent,
-  CalendarEventTimesChangedEvent,
-  CalendarView,
-} from 'angular-calendar';
-import { addHours, isSameDay, isSameMonth, startOfDay } from 'date-fns';
+import { CalendarEvent, CalendarView } from 'angular-calendar';
+import { addHours, startOfDay } from 'date-fns';
 import { Subject } from 'rxjs';
 import { ModalComponent } from '../components/modal/modal.component';
+import { ScheduleResponse } from './schedule-name/domain/schedule_response';
+import { UseSession } from '../util/useSession';
 
 @Component({
   selector: 'app-schedule',
@@ -15,10 +13,15 @@ import { ModalComponent } from '../components/modal/modal.component';
   styleUrls: ['./schedule.component.css'],
   providers: [{ provide: LOCALE_ID, useValue: 'pt' }],
 })
-export class ScheduleComponent {
+export class ScheduleComponent implements OnInit {
   view: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
   viewDate: Date = new Date();
+
+  public schedule!: ScheduleResponse;
+  public start!: number;
+  public finish!: number;
+  public useSession: UseSession;
 
   to(date: Date, hours: number, minutes: number) {
     return new Date(
@@ -26,7 +29,7 @@ export class ScheduleComponent {
     );
   }
 
-  events: CalendarEvent[] = [
+  events: any[] = [
     {
       id: 1,
       start: this.to(startOfDay(new Date()), 9, 30),
@@ -62,18 +65,24 @@ export class ScheduleComponent {
       id: 4,
       start: addHours(startOfDay(new Date()), 18),
       end: addHours(startOfDay(new Date()), 19),
-      title: 'Encerramento do Dia',
-      color: { primary: '#0a7f42', secondary: '#a9dfbf' },
-      meta: {
-        description: 'Resumo do trabalho do dia e planejamento para amanhã.',
-      },
+      title: 'Talisson do Dia',
+      color: { primary: '#000', secondary: '#000' },
+      description: 'Resumo do trabalho do dia e planejamento para amanhã.',
     },
   ];
 
   refresh: Subject<void> = new Subject<void>();
   activeDayIsOpen: boolean = true;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog) {
+    this.useSession = new UseSession();
+  }
+
+  ngOnInit(): void {
+    this.schedule = this.useSession.getScheduleId();
+    this.start = this.useSession.toNumber(this.schedule.startTime);
+    this.finish = this.useSession.toNumberAddHour(this.schedule.endTime);
+  }
 
   setView(view: CalendarView) {
     this.view = view;

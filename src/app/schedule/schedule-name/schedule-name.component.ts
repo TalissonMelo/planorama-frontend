@@ -76,6 +76,7 @@ export class ScheduleNameComponent implements OnInit {
   }
 
   listSessionsByScheduleId(schedule: ScheduleResponse) {
+    this.useSession.setScheduleId(schedule);
     this.router.navigate(['session']);
   }
 
