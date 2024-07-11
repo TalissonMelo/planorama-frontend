@@ -23,6 +23,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
 
 //Components
 import { registerLocaleData } from '@angular/common';
@@ -79,6 +82,10 @@ registerLocaleData(localePt);
     MatButtonModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
 
     //Calendar
     CalendarModule.forRoot({

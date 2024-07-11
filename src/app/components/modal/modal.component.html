@@ -1,48 +1,93 @@
-<div class="my-custom-modal-header">
-    <div class="header-content">
-        <button type="button" class="my-custom-ok-button" (click)="addEvent()">Adicionar
-        </button>
-        <button type="button" class="my-custom-close-button" (click)="close()">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<div class="fixed-width-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="my-custom-modal-header">
+        <div class="header-content">
+            <button type="button" class="my-custom-close-button" (click)="close()">
+            </button>
+            <button type="button" class="my-custom-close-button" (click)="close()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     </div>
-</div>
-
-<div class="my-custom-modal-body">
-    <div class="my-custom-table-responsive">
-        <table class="my-custom-table">
+    <div class="container mb-2">
+        <div class="form-group row mt-2">
+            <div class="col-6">
+                <label for="name">Título:</label>
+                <input type="text" id="title" name="title" [(ngModel)]="sessionRequest.title"
+                    class="my-custom-form-control form-control">
+            </div>
+            <div class="col-3">
+                <label for="nome">Inicio</label>
+                <input type="datetime-local" class="form-control" [(ngModel)]="sessionRequest.startTime" id="startTime"
+                    name="startTime">
+            </div>
+            <div class="col-3">
+                <label for="nome">Fim</label>
+                <input type="datetime-local" class="form-control" [(ngModel)]="sessionRequest.endTime" id="endTime"
+                    name="endTime">
+            </div>
+        </div>
+        <div class="form-group row mt-2">
+            <div class="col-3">
+                <label for="nome">Legenda</label>
+                <select id="colorSelect" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="sessionRequest.legendId">
+                    <option *ngFor="let legend of legends" [ngValue]="legend.id"  [(ngModel)]="legend.id">{{ legend.description }}</option>
+                </select>
+            </div>
+            <div class="col-9">
+                <label for="nome">Descrição</label>
+                <input type="text" class="form-control" [(ngModel)]="sessionRequest.description" id="description"
+                    name="description" />
+            </div>
+        </div>
+        <div class="form-group row mt-2">
+            <div class="col-12">
+                <label for="days">Seleção de Dias (Segunda a Domingo):</label>
+                <div id="days" class="d-flex flex-wrap">
+                    <div *ngFor="let day of daysOfWeeks" class="form-check form-check-inline">
+                        <input type="checkbox" class="form-check-input" [id]="day.value" [value]="day.value"
+                            (change)="onDayChange($event)">
+                        <label class="form-check-label" [for]="day.value">{{ day.label }}</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="my-custom-ok-button" (click)="addEvent()">Registrar Horário</button>
+    </div>
+    <div class="container">
+        <table class="table table-bordered schedule-table">
             <thead>
                 <tr>
-                    <th>Título</th>
-                    <th>Inicio</th>
-                    <th>Fim</th>
-                    <th>Cor</th>
-                    <th>Descrição</th>
-                    <th>Deletar</th>
+                    <th class="col-2">Título</th>
+                    <th class="col-2">Inicio</th>
+                    <th class="col-2">Fim</th>
+                    <th class="col-2">Cor</th>
+                    <th class="col-2">Descrição</th>
+                    <th class="col-2"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let event of events">
-                    <td>
-                        <input type="text" class="form-control" [(ngModel)]="event.title" />
+                    <td class="col-2">{{event.title}}</td>
+                    <td class="col-2">
+                        {{event.startTime| date: 'dd/MM/yyyy HH:mm:ss'}}
                     </td>
-                    <td>
-                        <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.start" dateFormat="H:i"
-                            altFormat="H:i" placeholder="Not set" />
+                    <td class="col-2">
+                        {{event.endTime | date: 'dd/MM/yyyy HH:mm:ss' }}
                     </td>
-                    <td>
-                        <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.end" dateFormat="H:i"
-                            altFormat="H:i" placeholder="Not set" />
+                    <td class="col-2" [style.background]="event.color.primary">
                     </td>
-                    <td>
-                        <input type="color" [(ngModel)]="event.color" />
+                    <td class="col-2">
+                        {{event.description}}
                     </td>
-                    <td>
-                        <input type="text" class="form-control custom-width" [(ngModel)]="event.meta.description" />
-                    </td>
-                    <td>
-                        <button class="btn btn-danger" (click)="deleteEvent(event)">
-                            Delete
+                    <td class="col-2">
+                        <button mat-icon-button color="primary">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" (click)="deleted(event)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn">
+                            <mat-icon>save</mat-icon>
                         </button>
                     </td>
                 </tr>
@@ -50,9 +95,9 @@
 
         </table>
     </div>
-</div>
 
-<div class="my-custom-modal-footer">
-    <button type="button" class="my-custom-ok-button" (click)="close()">Salvar
-    </button>
+
+    <!-- <div class="my-custom-modal-footer">
+</div> -->
+
 </div>

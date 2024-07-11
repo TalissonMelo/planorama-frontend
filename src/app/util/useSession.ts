@@ -62,6 +62,15 @@ export class UseSession {
     return schedule ? JSON.parse(schedule) : '';
   }
 
+  setDate(date: { date: Date }): void {
+    localStorage.setItem('date', JSON.stringify(date));
+  }
+
+  getDate(): { date: Date } {
+    const date = localStorage.getItem('date');
+    return date ? JSON.parse(date) : '';
+  }
+
   toNumber(timeString: string): number {
     const parts: string[] = timeString.split(':');
     const firstPart: number = parseInt(parts[0], 10);

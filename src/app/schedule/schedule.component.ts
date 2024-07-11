@@ -36,10 +36,6 @@ export class ScheduleComponent implements OnInit {
       end: addHours(startOfDay(new Date()), 10),
       title: 'Reunião da Manhã',
       color: { primary: '#1e90ff', secondary: '#d1e8ff' },
-      meta: {
-        description:
-          'Discussão sobre atualizações e próximos passos do projeto.',
-      },
     },
     {
       id: 2,
@@ -47,19 +43,14 @@ export class ScheduleComponent implements OnInit {
       end: addHours(startOfDay(new Date()), 13),
       title: 'Intervalo para Almoço',
       color: { primary: '#e3bc08', secondary: '#fdf1ba' },
-      meta: {
-        description: 'Hora do almoço.',
-      },
     },
     {
       id: 3,
       start: addHours(startOfDay(new Date()), 15),
       end: addHours(startOfDay(new Date()), 16),
-      title: 'Chamada com Cliente',
+      title:
+        'Chamada com Cliente /n Chamada com cliente para discutir requisitos.',
       color: { primary: '#ad2121', secondary: '#fae3e3' },
-      meta: {
-        description: 'Chamada com cliente para discutir requisitos.',
-      },
     },
     {
       id: 4,
@@ -67,7 +58,6 @@ export class ScheduleComponent implements OnInit {
       end: addHours(startOfDay(new Date()), 19),
       title: 'Talisson do Dia',
       color: { primary: '#000', secondary: '#000' },
-      description: 'Resumo do trabalho do dia e planejamento para amanhã.',
     },
   ];
 
@@ -102,7 +92,8 @@ export class ScheduleComponent implements OnInit {
   }
 
   openModal(day: { date: Date }) {
-    console.log(day);
+    this.useSession.setDate(day);
+    this.useSession.setScheduleId(this.schedule);
     this.dialog.open(ModalComponent);
   }
 }
