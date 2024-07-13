@@ -52,7 +52,6 @@ export class LoginComponent {
       this.notificationService.showError('Preencha email e senha!');
       return false;
     }
-
     return true;
   }
 

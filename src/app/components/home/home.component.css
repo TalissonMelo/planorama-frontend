@@ -1,9 +1,3 @@
-/* Estilos para o container principal */
-.container {
-   padding-top: 20px;
- }
- 
- /* Estilos para os cards */
  .card {
    margin-bottom: 20px;
    border: 1px solid #ccc;
@@ -20,12 +14,6 @@
    margin-bottom: 10px;
  }
  
- /* Estilos para as listas de horários */
- .list-group {
-   max-height: 300px; /* Define uma altura máxima para a lista para scroll vertical */
-   overflow-y: auto; /* Adiciona scroll quando a lista excede a altura máxima */
- }
- 
  .list-group-item {
    border: none;
    border-bottom: 1px solid #eee;
@@ -36,10 +24,4 @@
    border-bottom: none;
  }
  
- /* Estilos para os botões de ação */
- .btn-action {
-   margin-right: 10px;
- }
- 
- /* Estilos adicionais conforme necessário */
- 
+

@@ -5,6 +5,7 @@ import { UseSession } from 'src/app/util/useSession';
 import { environment } from 'src/environments/environment';
 import { ScheduleRequest } from '../domain/schedule_request';
 import { ScheduleResponse } from '../domain/schedule_response';
+import { Home } from 'src/app/components/home/domain/home';
 
 @Injectable({
   providedIn: 'root',
@@ -41,5 +42,9 @@ export class ScheduleService {
 
   list(): Observable<ScheduleResponse[]> {
     return this.http.get<ScheduleResponse[]>(`${environment.uri}/v1/schedule`);
+  }
+
+  listed(): Observable<Home[]> {
+    return this.http.get<Home[]>(`${environment.uri}/v1/schedules`);
   }
 }

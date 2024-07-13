@@ -96,10 +96,11 @@ export class ModalComponent implements OnInit {
       this.sessionService.save(this.sessionRequest).subscribe(
         (res) => {
           this.loaderService.hide();
-          this.ngOnInit();
+          this.sessionRequest = new SessionRequest();
           this.notificationService.showSuccess(
             'Agendamento cadastrada com sucesso!'
           );
+          this.ngOnInit();
         },
         (error) => {
           this.loaderService.hide();
@@ -112,6 +113,35 @@ export class ModalComponent implements OnInit {
   }
 
   isValidSession(): boolean {
+    if (this.sessionRequest.endTime <= this.sessionRequest.startTime) {
+      this.notificationService.showError(
+        'A data de finalização deve ser maior que a data de início.'
+      );
+      return false;
+    }
+
+    // const msInDay = 24 * 60 * 60 * 1000;
+    // const dateDifference =
+    //   (this.sessionRequest.endTime.getTime() -
+    //     this.sessionRequest.startTime.getTime()) /
+    //   msInDay;
+    // if (dateDifference > 2 && this.daysOfWeeks.length === 0) {
+    //   this.notificationService.showError(
+    //     'Preencha os dias da semana para intervalos de datas maiores que 2 dias.'
+    //   );
+    //   return false;
+    // }
+
+    if (!this.sessionRequest.title) {
+      this.notificationService.showError('O título não pode ser nulo.');
+      return false;
+    }
+
+    if (!this.sessionRequest.legendId) {
+      this.notificationService.showError('A legenda não pode ser nula.');
+      return false;
+    }
+
     return true;
   }
 

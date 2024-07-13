@@ -1,7 +1,6 @@
 import { Component, LOCALE_ID, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CalendarEvent, CalendarView } from 'angular-calendar';
-import { addHours, startOfDay } from 'date-fns';
+import { CalendarView } from 'angular-calendar';
 import { Subject } from 'rxjs';
 import { LoaderService } from '../components/loader/loader.service';
 import { ModalComponent } from '../components/modal/modal.component';
@@ -78,11 +77,6 @@ export class ScheduleComponent implements OnInit {
 
   setView(view: CalendarView) {
     this.view = view;
-  }
-
-  handleDayClick(day: { date: Date }) {
-    this.viewDate = day.date;
-    this.setView(CalendarView.Day);
   }
 
   closeOpenMonthViewDay() {

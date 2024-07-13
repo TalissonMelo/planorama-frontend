@@ -2,11 +2,10 @@
     <div class="row">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Agenda para Hoje</h5>
+                <div  *ngFor="let busyHour of busyHours" class="card-body">
+                    <h5 class="card-title">{{ busyHour.name }} </h5>
                     <ul class="list-group">
-                        <li *ngFor="let horario of horariosOcupados" class="list-group-item">{{ horario.evento }} - {{
-                            horario.horarioInicial }} às {{ horario.horarioFinal }}</li>
+                        <li *ngFor="let session of busyHour.sessions" class="list-group-item">{{ session.title }} - {{ session.startTime | date: 'HH:mm:ss' }} às {{ session.endTime | date: 'HH:mm:ss'  }}</li>
                     </ul>
                 </div>
             </div>

@@ -30,7 +30,7 @@
                 <label for="nome">Legenda</label>
                 <select class="form-control" [ngModelOptions]="{standalone: true}"
                     [(ngModel)]="sessionRequest.legendId">
-                    <option *ngFor="let legend of legends" [ngValue]="legend">{{ legend.description }}</option>
+                    <option *ngFor="let legend of legends" [ngValue]="legend.id">{{ legend.description }}</option>
                 </select>
             </div>
             <div class="col-9">
