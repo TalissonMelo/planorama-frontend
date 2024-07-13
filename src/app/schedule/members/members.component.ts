@@ -99,7 +99,23 @@ export class MembersComponent implements OnInit {
     return false;
   }
 
-  deletarMembro(member: any): void {
-    console.log(member);
+  deletarMembro(member: MemberResponse): void {
+    if (confirm('Deseja deletar o membro: ' + member.member.nickname)) {
+      this.loaderService.show();
+      this.service.delete(member.id).subscribe(
+        (res) => {
+          const index = this.members.indexOf(member);
+          this.members.splice(index, 1);
+          this.loaderService.hide();
+          this.notificationService.showSuccess('Membro deletada com sucesso!');
+        },
+        (error) => {
+          this.loaderService.hide();
+          this.notificationService.showError(
+            'Membro não deletada por favor tente novamente.'
+          );
+        }
+      );
+    }
   }
 }

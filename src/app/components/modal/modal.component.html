@@ -28,8 +28,9 @@
         <div class="form-group row mt-2">
             <div class="col-3">
                 <label for="nome">Legenda</label>
-                <select id="colorSelect" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="sessionRequest.legendId">
-                    <option *ngFor="let legend of legends" [ngValue]="legend.id"  [(ngModel)]="legend.id">{{ legend.description }}</option>
+                <select class="form-control" [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="sessionRequest.legendId">
+                    <option *ngFor="let legend of legends" [ngValue]="legend">{{ legend.description }}</option>
                 </select>
             </div>
             <div class="col-9">
@@ -75,21 +76,23 @@
                     </td>
                     <td class="col-1" [style.background]="event.color.primary">
                     </td>
-                    <td *ngIf="!isEdit" class="col-5">
+                    <td *ngIf="sessionIdEdit != event.id" class="col-5">
                         {{event.description}}
                     </td>
-                    <td *ngIf="isEdit" class="col-5">
-                    <input type="text" class="form-control" [(ngModel)]="event.description" id="description"
-                    name="description" />
+                    <td *ngIf="sessionIdEdit == event.id" class="col-5">
+                        <input type="text" class="form-control" [(ngModel)]="event.description" id="description"
+                            name="description" />
                     </td>
                     <td class="col-1">
-                        <button *ngIf="memberSchedule.type != 'VIEWER'"  mat-icon-button color="primary" (click)="edit()">
+                        <button *ngIf="sessionIdEdit != event.id && memberSchedule.type != 'VIEWER'" mat-icon-button color="primary"
+                            (click)="edit(event)">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button *ngIf="isEdit == false && memberSchedule.type == 'CREATOR'"  mat-icon-button color="warn" (click)="deleted(event)">
+                        <button *ngIf="sessionIdEdit != event.id && memberSchedule.type == 'CREATOR'" mat-icon-button color="warn"
+                            (click)="deleted(event)">
                             <mat-icon>delete</mat-icon>
                         </button>
-                        <button *ngIf="isEdit" mat-icon-button color="warn" (click)="editDescription(event)">
+                        <button  *ngIf="sessionIdEdit == event.id" mat-icon-button color="warn" (click)="editDescription(event)">
                             <mat-icon>save</mat-icon>
                         </button>
                     </td>

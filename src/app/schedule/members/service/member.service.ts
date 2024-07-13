@@ -36,4 +36,8 @@ export class MemberService {
       `${environment.uri}/v1/schedule/${scheduleId}/members/${memberId}`
     );
   }
+
+  delete(memberId: string): Observable<any> {
+    return this.http.delete<any>(`${environment.uri}/v1/members/${memberId}`);
+  }
 }

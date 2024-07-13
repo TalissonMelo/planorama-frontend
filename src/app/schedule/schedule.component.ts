@@ -22,45 +22,12 @@ export class ScheduleComponent implements OnInit {
   CalendarView = CalendarView;
   viewDate: Date = new Date();
 
+  events: any[] = [];
   public start!: number;
   public finish!: number;
   public useSession: UseSession;
   public schedule!: ScheduleResponse;
   public legends: LegendResponse[] = [];
-
-  to(date: Date, hours: number, minutes: number) {
-    return new Date(
-      date.getTime() + hours * 60 * 60 * 1000 + minutes * 60 * 1000
-    );
-  }
-
-  events: any[] = [
-    {
-      start: this.to(startOfDay(new Date()), 9, 30),
-      end: addHours(startOfDay(new Date()), 10),
-      title: 'Reunião da Manhã',
-      color: { primary: '#1e90ff', secondary: '#1e90ff' },
-    },
-    {
-      start: addHours(startOfDay(new Date()), 12),
-      end: addHours(startOfDay(new Date()), 13),
-      title: 'Intervalo para Almoço',
-      color: { primary: '#e3bc08', secondary: '#e3bc08' },
-    },
-    {
-      start: addHours(startOfDay(new Date()), 15),
-      end: addHours(startOfDay(new Date()), 16),
-      title:
-        'Chamada com Cliente /n Chamada com cliente para discutir requisitos.',
-      color: { primary: '#ad2121', secondary: '#ad2121' },
-    },
-    {
-      start: addHours(startOfDay(new Date()), 18),
-      end: addHours(startOfDay(new Date()), 19),
-      title: 'Talisson do Dia',
-      color: { primary: '#000', secondary: '#000' },
-    },
-  ];
 
   refresh: Subject<void> = new Subject<void>();
   activeDayIsOpen: boolean = true;
@@ -136,10 +103,6 @@ export class ScheduleComponent implements OnInit {
           this.loaderService.hide();
         }
       );
-  }
-
-  deleteEvent(eventToDelete: CalendarEvent) {
-    this.events = this.events.filter((event) => event !== eventToDelete);
   }
 
   openModal(day: { date: Date }) {

@@ -20,7 +20,7 @@ import { SessionUpdate } from './domain/session_update';
 })
 export class ModalComponent implements OnInit {
   public date: Date;
-  public isEdit: boolean = false;
+  public sessionIdEdit: string = '';
   public legends: LegendResponse[] = [];
   public events: SessionResponse[] = [];
   public sessionRequest: SessionRequest;
@@ -41,11 +41,11 @@ export class ModalComponent implements OnInit {
 
   constructor(
     private notificationService: NotificationService,
+    private loaderService: LoaderService,
     private dialogRef: MatDialogRef<ModalComponent>,
     private memberService: MemberService,
-    private sessionService: SessionService,
     private legendService: LegendService,
-    private loaderService: LoaderService
+    private sessionService: SessionService
   ) {
     this.sessionRequest = new SessionRequest();
     this.useSession = new UseSession();
@@ -61,40 +61,26 @@ export class ModalComponent implements OnInit {
 
   listMember(): void {
     this.loaderService.show();
-    this.memberService.listMember(this.schedule.id).subscribe(
-      (res) => {
-        this.memberSchedule = res;
-        this.loaderService.hide();
-      },
-      (error) => {
-        this.loaderService.hide();
-      }
-    );
+    this.memberService.listMember(this.schedule.id).subscribe((res) => {
+      this.memberSchedule = res;
+      this.loaderService.hide();
+    });
   }
 
   listSessions(): void {
     this.loaderService.show();
-    this.sessionService.listSessions(this.schedule.id, this.date).subscribe(
-      (res) => {
+    this.sessionService
+      .listSessions(this.schedule.id, this.date)
+      .subscribe((res) => {
         this.events = res;
         this.loaderService.hide();
-      },
-      (error) => {
-        this.loaderService.hide();
-      }
-    );
+      });
   }
 
   listLegends(): void {
-    this.loaderService.show();
-    this.legendService.getLegends().subscribe(
-      (res) => {
-        this.legends = res;
-      },
-      (error) => {
-        this.loaderService.hide();
-      }
-    );
+    this.legendService.getLegends().subscribe((res) => {
+      this.legends = res;
+    });
   }
 
   close() {
@@ -130,23 +116,25 @@ export class ModalComponent implements OnInit {
   }
 
   deleted(eventToDelete: SessionResponse) {
-    this.loaderService.show();
-    this.sessionService.delete(eventToDelete.id).subscribe(
-      (res) => {
-        const index = this.events.indexOf(eventToDelete);
-        this.events.splice(index, 1);
-        this.loaderService.hide();
-        this.notificationService.showSuccess(
-          'Agendamento deletada com sucesso!'
-        );
-      },
-      (error) => {
-        this.loaderService.hide();
-        this.notificationService.showError(
-          'Agendamento não deletada por favor tente novamente.'
-        );
-      }
-    );
+    if (confirm('Deseja deletar o agendamento: ' + eventToDelete.title)) {
+      this.loaderService.show();
+      this.sessionService.delete(eventToDelete.id).subscribe(
+        (res) => {
+          const index = this.events.indexOf(eventToDelete);
+          this.events.splice(index, 1);
+          this.loaderService.hide();
+          this.notificationService.showSuccess(
+            'Agendamento deletada com sucesso!'
+          );
+        },
+        (error) => {
+          this.loaderService.hide();
+          this.notificationService.showError(
+            'Agendamento não deletada por favor tente novamente.'
+          );
+        }
+      );
+    }
   }
 
   onDayChange(event: any) {
@@ -158,8 +146,8 @@ export class ModalComponent implements OnInit {
     }
   }
 
-  edit(): void {
-    this.isEdit = this.isEdit == true ? false : true;
+  edit(session: SessionResponse): void {
+    this.sessionIdEdit = this.sessionIdEdit == '' ? session.id : '';
   }
 
   editDescription(event: any) {
@@ -168,8 +156,8 @@ export class ModalComponent implements OnInit {
     uploadSession.description = event.description;
     this.sessionService.edit(event.id, uploadSession).subscribe(
       (res) => {
+        this.sessionIdEdit = '';
         this.loaderService.hide();
-        this.isEdit = false;
         this.notificationService.showSuccess(
           'Agendamento atualizado com sucesso!'
         );

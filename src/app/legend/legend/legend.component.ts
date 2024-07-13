@@ -38,13 +38,14 @@ export class LegendComponent implements OnInit {
     );
   }
 
-  adicionarLegenda() {
+  saveLegend() {
     if (this.isValidLegend()) {
       this.loaderService.show();
       this.service.save(this.legend).subscribe(
         (res) => {
           this.loaderService.hide();
           this.legends.unshift(res);
+          this.legend = new LegendRequest();
           this.notificationService.showSuccess(
             'Legenda cadastrada com sucesso!'
           );

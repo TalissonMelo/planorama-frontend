@@ -85,21 +85,23 @@ export class ScheduleNameComponent implements OnInit {
   }
 
   deleted(schedule: ScheduleResponse) {
-    this.loaderService.show();
-    this.service.delete(schedule.id).subscribe(
-      (res) => {
-        const index = this.schedules.indexOf(schedule);
-        this.schedules.splice(index, 1);
-        this.loaderService.hide();
-        this.notificationService.showSuccess('Agenda deletada com sucesso!');
-      },
-      (error) => {
-        this.loaderService.hide();
-        this.notificationService.showError(
-          'Agenda não deletada por favor tente novamente.'
-        );
-      }
-    );
+    if (confirm('Deseja deletar a agenda: ' + schedule.name)) {
+      this.loaderService.show();
+      this.service.delete(schedule.id).subscribe(
+        (res) => {
+          const index = this.schedules.indexOf(schedule);
+          this.schedules.splice(index, 1);
+          this.loaderService.hide();
+          this.notificationService.showSuccess('Agenda deletada com sucesso!');
+        },
+        (error) => {
+          this.loaderService.hide();
+          this.notificationService.showError(
+            'Agenda não deletada por favor tente novamente.'
+          );
+        }
+      );
+    }
   }
 
   listMembersByScheduleId(schedule: ScheduleResponse) {
