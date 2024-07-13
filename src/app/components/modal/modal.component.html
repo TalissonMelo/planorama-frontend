@@ -1,14 +1,13 @@
 <div class="fixed-width-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="my-custom-modal-header">
         <div class="header-content">
-            <button type="button" class="my-custom-close-button" (click)="close()">
-            </button>
+            <h5 class="my-custom-modal-title">Agendamentos {{date| date: 'dd/MM/yyyy'}}</h5>
             <button type="button" class="my-custom-close-button" (click)="close()">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
     </div>
-    <div class="container mb-2">
+    <div *ngIf="memberSchedule?.type == 'CREATOR'" class="container mb-2">
         <div class="form-group row mt-2">
             <div class="col-6">
                 <label for="name">Título:</label>
@@ -58,35 +57,39 @@
             <thead>
                 <tr>
                     <th class="col-2">Título</th>
-                    <th class="col-2">Inicio</th>
-                    <th class="col-2">Fim</th>
-                    <th class="col-2">Cor</th>
-                    <th class="col-2">Descrição</th>
-                    <th class="col-2"></th>
+                    <th class="col-1">Inicio</th>
+                    <th class="col-1">Fim</th>
+                    <th class="col-1">Cor</th>
+                    <th class="col-5">Descrição</th>
+                    <th class="col-1"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let event of events">
                     <td class="col-2">{{event.title}}</td>
-                    <td class="col-2">
-                        {{event.startTime| date: 'dd/MM/yyyy HH:mm:ss'}}
+                    <td class="col-1">
+                        {{event.start| date: 'HH:mm:ss'}}
                     </td>
-                    <td class="col-2">
-                        {{event.endTime | date: 'dd/MM/yyyy HH:mm:ss' }}
+                    <td class="col-1">
+                        {{event.end | date: 'HH:mm:ss' }}
                     </td>
-                    <td class="col-2" [style.background]="event.color.primary">
+                    <td class="col-1" [style.background]="event.color.primary">
                     </td>
-                    <td class="col-2">
+                    <td *ngIf="!isEdit" class="col-5">
                         {{event.description}}
                     </td>
-                    <td class="col-2">
-                        <button mat-icon-button color="primary">
+                    <td *ngIf="isEdit" class="col-5">
+                    <input type="text" class="form-control" [(ngModel)]="event.description" id="description"
+                    name="description" />
+                    </td>
+                    <td class="col-1">
+                        <button *ngIf="memberSchedule.type != 'VIEWER'"  mat-icon-button color="primary" (click)="edit()">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-icon-button color="warn" (click)="deleted(event)">
+                        <button *ngIf="isEdit == false && memberSchedule.type == 'CREATOR'"  mat-icon-button color="warn" (click)="deleted(event)">
                             <mat-icon>delete</mat-icon>
                         </button>
-                        <button mat-icon-button color="warn">
+                        <button *ngIf="isEdit" mat-icon-button color="warn" (click)="editDescription(event)">
                             <mat-icon>save</mat-icon>
                         </button>
                     </td>

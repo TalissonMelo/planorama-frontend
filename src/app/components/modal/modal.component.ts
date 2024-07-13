@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { CalendarEvent } from 'angular-calendar';
 import { LegendResponse } from 'src/app/legend/domain/legend_response';
 import { LegendService } from 'src/app/legend/service/legend.service';
-import { LoaderService } from '../loader/loader.service';
-import { SessionRequest } from './domain/session_request';
-import { SessionService } from './service/session.service';
+import { MemberSchedule } from 'src/app/schedule/members/domain/member_schedule';
+import { MemberService } from 'src/app/schedule/members/service/member.service';
 import { ScheduleResponse } from 'src/app/schedule/schedule-name/domain/schedule_response';
 import { UseSession } from 'src/app/util/useSession';
+import { LoaderService } from '../loader/loader.service';
 import { NotificationService } from '../notification/notification.service';
+import { SessionRequest } from './domain/session_request';
 import { SessionResponse } from './domain/session_response';
+import { SessionService } from './service/session.service';
+import { SessionUpdate } from './domain/session_update';
 
 @Component({
   selector: 'app-modal',
@@ -17,14 +19,15 @@ import { SessionResponse } from './domain/session_response';
   styleUrls: ['./modal.component.css'],
 })
 export class ModalComponent implements OnInit {
-  public sessionRequest: SessionRequest;
-  public useSession: UseSession;
+  public date: Date;
+  public isEdit: boolean = false;
   public legends: LegendResponse[] = [];
   public events: SessionResponse[] = [];
-  public selectedDays: any[] = [];
-
-  public date: Date;
+  public sessionRequest: SessionRequest;
+  public memberSchedule!: MemberSchedule;
   public schedule: ScheduleResponse;
+  public selectedDays: any[] = [];
+  public useSession: UseSession;
 
   public daysOfWeeks = [
     { label: 'Segunda-feira', value: 'MONDAY' },
@@ -39,6 +42,7 @@ export class ModalComponent implements OnInit {
   constructor(
     private notificationService: NotificationService,
     private dialogRef: MatDialogRef<ModalComponent>,
+    private memberService: MemberService,
     private sessionService: SessionService,
     private legendService: LegendService,
     private loaderService: LoaderService
@@ -50,8 +54,22 @@ export class ModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.listMember();
     this.listLegends();
     this.listSessions();
+  }
+
+  listMember(): void {
+    this.loaderService.show();
+    this.memberService.listMember(this.schedule.id).subscribe(
+      (res) => {
+        this.memberSchedule = res;
+        this.loaderService.hide();
+      },
+      (error) => {
+        this.loaderService.hide();
+      }
+    );
   }
 
   listSessions(): void {
@@ -81,6 +99,7 @@ export class ModalComponent implements OnInit {
 
   close() {
     this.dialogRef.close();
+    this.ngOnInit();
   }
 
   addEvent(): void {
@@ -137,5 +156,30 @@ export class ModalComponent implements OnInit {
     } else {
       this.selectedDays = this.selectedDays.filter((day) => day !== dayValue);
     }
+  }
+
+  edit(): void {
+    this.isEdit = this.isEdit == true ? false : true;
+  }
+
+  editDescription(event: any) {
+    this.loaderService.show();
+    let uploadSession: SessionUpdate = new SessionUpdate();
+    uploadSession.description = event.description;
+    this.sessionService.edit(event.id, uploadSession).subscribe(
+      (res) => {
+        this.loaderService.hide();
+        this.isEdit = false;
+        this.notificationService.showSuccess(
+          'Agendamento atualizado com sucesso!'
+        );
+      },
+      (error) => {
+        this.loaderService.hide();
+        this.notificationService.showError(
+          'Agendamento não atualizado por favor tente novamente.'
+        );
+      }
+    );
   }
 }

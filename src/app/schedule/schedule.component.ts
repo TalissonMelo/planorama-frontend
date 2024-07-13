@@ -3,9 +3,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { CalendarEvent, CalendarView } from 'angular-calendar';
 import { addHours, startOfDay } from 'date-fns';
 import { Subject } from 'rxjs';
+import { LoaderService } from '../components/loader/loader.service';
 import { ModalComponent } from '../components/modal/modal.component';
-import { ScheduleResponse } from './schedule-name/domain/schedule_response';
+import { SessionService } from '../components/modal/service/session.service';
+import { LegendResponse } from '../legend/domain/legend_response';
+import { LegendService } from '../legend/service/legend.service';
 import { UseSession } from '../util/useSession';
+import { ScheduleResponse } from './schedule-name/domain/schedule_response';
 
 @Component({
   selector: 'app-schedule',
@@ -18,10 +22,11 @@ export class ScheduleComponent implements OnInit {
   CalendarView = CalendarView;
   viewDate: Date = new Date();
 
-  public schedule!: ScheduleResponse;
   public start!: number;
   public finish!: number;
   public useSession: UseSession;
+  public schedule!: ScheduleResponse;
+  public legends: LegendResponse[] = [];
 
   to(date: Date, hours: number, minutes: number) {
     return new Date(
@@ -31,29 +36,25 @@ export class ScheduleComponent implements OnInit {
 
   events: any[] = [
     {
-      id: 1,
       start: this.to(startOfDay(new Date()), 9, 30),
       end: addHours(startOfDay(new Date()), 10),
       title: 'Reunião da Manhã',
-      color: { primary: '#1e90ff', secondary: '#d1e8ff' },
+      color: { primary: '#1e90ff', secondary: '#1e90ff' },
     },
     {
-      id: 2,
       start: addHours(startOfDay(new Date()), 12),
       end: addHours(startOfDay(new Date()), 13),
       title: 'Intervalo para Almoço',
-      color: { primary: '#e3bc08', secondary: '#fdf1ba' },
+      color: { primary: '#e3bc08', secondary: '#e3bc08' },
     },
     {
-      id: 3,
       start: addHours(startOfDay(new Date()), 15),
       end: addHours(startOfDay(new Date()), 16),
       title:
         'Chamada com Cliente /n Chamada com cliente para discutir requisitos.',
-      color: { primary: '#ad2121', secondary: '#fae3e3' },
+      color: { primary: '#ad2121', secondary: '#ad2121' },
     },
     {
-      id: 4,
       start: addHours(startOfDay(new Date()), 18),
       end: addHours(startOfDay(new Date()), 19),
       title: 'Talisson do Dia',
@@ -64,14 +65,48 @@ export class ScheduleComponent implements OnInit {
   refresh: Subject<void> = new Subject<void>();
   activeDayIsOpen: boolean = true;
 
-  constructor(public dialog: MatDialog) {
+  constructor(
+    private sessionService: SessionService,
+    private legendService: LegendService,
+    private loaderService: LoaderService,
+    public dialog: MatDialog
+  ) {
     this.useSession = new UseSession();
+    this.schedule = this.useSession.getScheduleId();
   }
-
   ngOnInit(): void {
     this.schedule = this.useSession.getScheduleId();
+    const date: Date = new Date();
+    this.listSessions(date.getMonth() + 1, date.getFullYear());
     this.start = this.useSession.toNumber(this.schedule.startTime);
     this.finish = this.useSession.toNumberAddHour(this.schedule.endTime);
+    this.listLegends();
+  }
+
+  listLegends(): void {
+    this.loaderService.show();
+    this.legendService.legendBySchedule(this.schedule.id).subscribe(
+      (res) => {
+        this.legends = res;
+        this.loaderService.hide();
+      },
+      (error) => {
+        this.loaderService.hide();
+      }
+    );
+  }
+
+  listSessions(month: number, year: number): void {
+    this.loaderService.show();
+    this.sessionService.sessions(this.schedule.id, month, year).subscribe(
+      (res) => {
+        this.events = res;
+        this.loaderService.hide();
+      },
+      (error) => {
+        this.loaderService.hide();
+      }
+    );
   }
 
   setView(view: CalendarView) {
@@ -84,7 +119,23 @@ export class ScheduleComponent implements OnInit {
   }
 
   closeOpenMonthViewDay() {
-    this.activeDayIsOpen = false;
+    this.loaderService.show();
+    this.sessionService
+      .sessions(
+        this.schedule.id,
+        this.viewDate.getMonth() + 1,
+        this.viewDate.getFullYear()
+      )
+      .subscribe(
+        (res) => {
+          this.events = res;
+          this.activeDayIsOpen = false;
+          this.loaderService.hide();
+        },
+        (error) => {
+          this.loaderService.hide();
+        }
+      );
   }
 
   deleteEvent(eventToDelete: CalendarEvent) {

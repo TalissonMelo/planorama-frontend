@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { UseSession } from 'src/app/util/useSession';
-import { MemberService } from './service/member.service';
 import { LoaderService } from 'src/app/components/loader/loader.service';
-import { MemberResponse } from './domain/member_response';
-import { MemberRequest } from './domain/member_request';
-import { ScheduleResponse } from '../schedule-name/domain/schedule_response';
 import { NotificationService } from 'src/app/components/notification/notification.service';
+import { UseSession } from 'src/app/util/useSession';
+import { ScheduleResponse } from '../schedule-name/domain/schedule_response';
+import { MemberRequest } from './domain/member_request';
+import { MemberResponse } from './domain/member_response';
+import { MemberSchedule } from './domain/member_schedule';
+import { MemberService } from './service/member.service';
 
 @Component({
   selector: 'app-members',
@@ -13,9 +14,10 @@ import { NotificationService } from 'src/app/components/notification/notificatio
   styleUrls: ['./members.component.css'],
 })
 export class MembersComponent implements OnInit {
+  public members: MemberResponse[] = [];
+  public memberSchedule!: MemberSchedule;
   public schedule: ScheduleResponse;
   public useSession: UseSession;
-  public members: MemberResponse[] = [];
   public member: MemberRequest;
 
   constructor(
@@ -30,6 +32,24 @@ export class MembersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.listMember();
+    this.listAllMembers();
+  }
+
+  listMember(): void {
+    this.loaderService.show();
+    this.service.listMember(this.schedule.id).subscribe(
+      (res) => {
+        this.memberSchedule = res;
+        this.loaderService.hide();
+      },
+      (error) => {
+        this.loaderService.hide();
+      }
+    );
+  }
+
+  listAllMembers(): void {
     this.loaderService.show();
     this.service.list(this.schedule.id).subscribe(
       (res) => {

@@ -1,12 +1,12 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CalendarEvent } from 'angular-calendar';
+import { format } from 'date-fns';
 import { Observable } from 'rxjs';
 import { UseSession } from 'src/app/util/useSession';
 import { environment } from 'src/environments/environment';
 import { SessionRequest } from '../domain/session_request';
-import { format } from 'date-fns';
 import { SessionResponse } from '../domain/session_response';
+import { SessionUpdate } from '../domain/session_update';
 
 @Injectable({
   providedIn: 'root',
@@ -31,7 +31,26 @@ export class SessionService {
     );
   }
 
+  sessions(
+    scheduleId: string,
+    month: number,
+    year: number
+  ): Observable<SessionResponse[]> {
+    const params = new HttpParams().set('year', year).set('month', month);
+    return this.http.get<SessionResponse[]>(
+      `${environment.uri}/v1/schedule/${scheduleId}/sessions`,
+      { params }
+    );
+  }
+
   delete(sessionId: string): Observable<any> {
     return this.http.delete<any>(`${environment.uri}/v1/sessions/${sessionId}`);
+  }
+
+  edit(sessionId: string, session: SessionUpdate): Observable<void> {
+    return this.http.put<void>(
+      `${environment.uri}/v1/sessions/${sessionId}`,
+      session
+    );
   }
 }

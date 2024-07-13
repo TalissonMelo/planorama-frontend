@@ -1,14 +1,42 @@
 .back-link {
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-    color: #007bff;
-  }
-  
-  .back-link:hover {
-    text-decoration: underline;
-  }
-  
-  .back-link mat-icon {
-    margin-right: 4px;
-  }
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  color: #007bff;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.back-link mat-icon {
+  margin-right: 4px;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.legenda-container {
+  display: flex;
+  flex-direction: column;
+  width: 15%; 
+  padding: 10px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+}
+
+.color-box {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+
+
+.agenda-container {
+  width: 85%; 
+  padding: 10px;
+}

@@ -23,68 +23,6 @@
   cursor: pointer;
 }
 
-.my-custom-modal-body {
-  padding: 20px;
-}
-
-.my-custom-table-responsive {
-  overflow-x: auto;
-}
-
-.my-custom-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.my-custom-table th,
-.my-custom-table td {
-  padding: 10px;
-  border: 1px solid #ddd;
-}
-
-.my-custom-form-control {
-  width: 100%;
-  padding: 5px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.my-custom-delete-button {
-  background-color: #dc3545;
-  color: #fff;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.my-custom-delete-button:hover {
-  background-color: #c82333;
-}
-
-.my-custom-modal-footer {
-  text-align: right;
-  padding: 10px;
-  border-top: 1px solid #ccc;
-}
-
-.my-custom-ok-button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.my-custom-ok-button:hover {
-  background-color: #0056b3;
-}
-
-.custom-width {
-  width: 500px;
-}
-
 .my-custom-ok-button {
   width: calc(100% - 20px);
   padding: 10px 0;
@@ -101,5 +39,5 @@
 }
 
 .fixed-width-modal {
-  width: 1300px; 
+  width: 1400px; 
 }

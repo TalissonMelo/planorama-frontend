@@ -3,8 +3,8 @@ export class SessionResponse {
   public scheduleId!: string;
   public color!: Color;
   public title!: string;
-  public startTime!: Date;
-  public endTime!: Date;
+  public start!: Date;
+  public end!: Date;
   public description!: string;
 }
 
