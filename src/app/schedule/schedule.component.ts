@@ -1,6 +1,6 @@
 import { Component, LOCALE_ID, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { CalendarView } from 'angular-calendar';
+import { CalendarEvent, CalendarView } from 'angular-calendar';
 import { Subject } from 'rxjs';
 import { LoaderService } from '../components/loader/loader.service';
 import { ModalComponent } from '../components/modal/modal.component';
@@ -9,6 +9,7 @@ import { LegendResponse } from '../legend/domain/legend_response';
 import { LegendService } from '../legend/service/legend.service';
 import { UseSession } from '../util/useSession';
 import { ScheduleResponse } from './schedule-name/domain/schedule_response';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-schedule',
@@ -32,6 +33,7 @@ export class ScheduleComponent implements OnInit {
   activeDayIsOpen: boolean = true;
 
   constructor(
+    private router: Router,
     private sessionService: SessionService,
     private legendService: LegendService,
     private loaderService: LoaderService,
@@ -103,5 +105,14 @@ export class ScheduleComponent implements OnInit {
     this.useSession.setDate(day);
     this.useSession.setScheduleId(this.schedule);
     this.dialog.open(ModalComponent);
+  }
+
+  onEventClicked({ event }: { event: CalendarEvent }): void {
+    console.log('Evento clicado', event);
+    this.goChat();
+  }
+
+  goChat(): void {
+    this.router.navigate(['chat']);
   }
 }

@@ -3,10 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavComponent } from './components/nav/nav.component';
-import { ScheduleComponent } from './schedule/schedule.component';
-import { ScheduleNameComponent } from './schedule/schedule-name/schedule-name.component';
-import { MembersComponent } from './schedule/members/members.component';
 import { GuardRotasGuard } from './guard-rotas.guard';
+import { MembersComponent } from './schedule/members/members.component';
+import { ScheduleNameComponent } from './schedule/schedule-name/schedule-name.component';
+import { ScheduleComponent } from './schedule/schedule.component';
 
 const routes: Routes = [
   {
@@ -46,6 +46,11 @@ const routes: Routes = [
         path: 'legend',
         loadChildren: () =>
           import('./legend/legend.module').then((l) => l.LegendModule),
+      },
+      {
+        path: 'chat',
+        loadChildren: () =>
+          import('./chat/chat.module').then((c) => c.ChatModule),
       },
     ],
   },

@@ -56,7 +56,8 @@
           [dayStartHour]="start" [dayEndHour]="finish">
         </mwl-calendar-week-view>
         <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events"
-          [dayStartHour]="start" [dayEndHour]="finish">
+          [dayStartHour]="start" [dayEndHour]="finish" (eventClicked)="onEventClicked($event)"
+          (dayClicked)="goChat()">
         </mwl-calendar-day-view>
       </div>
     </div>
