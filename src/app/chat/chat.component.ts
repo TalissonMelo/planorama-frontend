@@ -2,6 +2,9 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MessageService } from './service/message.service';
 import { MessageResponse } from './domain/message_response';
 import { Message } from './domain/message';
+import { UseSession } from '../util/useSession';
+import { SessionResponse } from '../components/modal/domain/session_response';
+import { NotificationService } from '../components/notification/notification.service';
 
 @Component({
   selector: 'app-chat',
@@ -11,21 +14,40 @@ import { Message } from './domain/message';
 export class ChatComponent implements OnInit {
   @ViewChild('messageList') messageList!: ElementRef;
   public messages: MessageResponse[] = [];
-  public message: Message;
+  public newMessage: Message;
+  public useSession: UseSession;
+  public session!: SessionResponse;
 
-  constructor(private service: MessageService) {
-    this.message = new Message();
+  constructor(
+    private service: MessageService,
+    private notificationService: NotificationService
+  ) {
+    this.newMessage = new Message();
+    this.useSession = new UseSession();
+    this.session = this.useSession.getSession();
   }
 
   ngOnInit(): void {}
 
   sendMessage() {
-    this.messages.push(new MessageResponse(this.message.content, true));
-    this.service.save(this.message).subscribe((response) => {
-      this.messages.push(new MessageResponse(response.content, false));
-      this.scrollToBottom();
-    });
-    this.message = new Message();
+    if (this.isValidMessage()) {
+      this.messages.push(new MessageResponse(this.newMessage.content, true));
+      this.service.save(this.newMessage).subscribe((response) => {
+        this.messages.push(new MessageResponse(response.content, false));
+        this.scrollToBottom();
+      });
+      this.newMessage = new Message();
+    }
+  }
+
+  isValidMessage(): boolean {
+    if (this.newMessage.content != null) {
+      return true;
+    }
+    this.notificationService.showError(
+      'Mensagem inválido por favor tente novamente.'
+    );
+    return false;
   }
 
   scrollToBottom(): void {

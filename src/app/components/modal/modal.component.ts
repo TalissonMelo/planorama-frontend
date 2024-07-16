@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { LegendResponse } from 'src/app/legend/domain/legend_response';
 import { LegendService } from 'src/app/legend/service/legend.service';
@@ -12,6 +12,7 @@ import { SessionRequest } from './domain/session_request';
 import { SessionResponse } from './domain/session_response';
 import { SessionService } from './service/session.service';
 import { SessionUpdate } from './domain/session_update';
+import { NotificationEmitter } from '../notification/notification_emitter';
 
 @Component({
   selector: 'app-modal',
@@ -19,6 +20,7 @@ import { SessionUpdate } from './domain/session_update';
   styleUrls: ['./modal.component.css'],
 })
 export class ModalComponent implements OnInit {
+  public dateNow: Date = new Date();
   public date: Date;
   public sessionIdEdit: string = '';
   public legends: LegendResponse[] = [];
@@ -41,6 +43,7 @@ export class ModalComponent implements OnInit {
 
   constructor(
     private notificationService: NotificationService,
+    private notificationEmitter: NotificationEmitter,
     private loaderService: LoaderService,
     private dialogRef: MatDialogRef<ModalComponent>,
     private memberService: MemberService,
@@ -84,8 +87,8 @@ export class ModalComponent implements OnInit {
   }
 
   close() {
+    this.notificationEmitter.emitNotification('');
     this.dialogRef.close();
-    this.ngOnInit();
   }
 
   addEvent(): void {
@@ -119,18 +122,6 @@ export class ModalComponent implements OnInit {
       );
       return false;
     }
-
-    // const msInDay = 24 * 60 * 60 * 1000;
-    // const dateDifference =
-    //   (this.sessionRequest.endTime.getTime() -
-    //     this.sessionRequest.startTime.getTime()) /
-    //   msInDay;
-    // if (dateDifference > 2 && this.daysOfWeeks.length === 0) {
-    //   this.notificationService.showError(
-    //     'Preencha os dias da semana para intervalos de datas maiores que 2 dias.'
-    //   );
-    //   return false;
-    // }
 
     if (!this.sessionRequest.title) {
       this.notificationService.showError('O título não pode ser nulo.');

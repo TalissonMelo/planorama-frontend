@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UseSession } from 'src/app/util/useSession';
@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { ScheduleRequest } from '../domain/schedule_request';
 import { ScheduleResponse } from '../domain/schedule_response';
 import { Home } from 'src/app/components/home/domain/home';
+import { HomeFreeTimes } from 'src/app/components/home/domain/home_free_times';
 
 @Injectable({
   providedIn: 'root',
@@ -44,7 +45,18 @@ export class ScheduleService {
     return this.http.get<ScheduleResponse[]>(`${environment.uri}/v1/schedule`);
   }
 
-  listed(): Observable<Home[]> {
-    return this.http.get<Home[]>(`${environment.uri}/v1/schedules`);
+  listed(date: string): Observable<Home[]> {
+    let params = new HttpParams().set('date', date);
+    return this.http.get<Home[]>(`${environment.uri}/v1/schedules`, { params });
+  }
+
+  listedFree(date: string): Observable<HomeFreeTimes[]> {
+    let params = new HttpParams().set('date', date);
+    return this.http.get<HomeFreeTimes[]>(
+      `${environment.uri}/v1/schedules/free-times`,
+      {
+        params,
+      }
+    );
   }
 }

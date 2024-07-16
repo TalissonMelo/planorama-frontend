@@ -94,7 +94,7 @@ registerLocaleData(localePt);
     }),
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'pt' },
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
     UseSession,
     {
       provide: HTTP_INTERCEPTORS,

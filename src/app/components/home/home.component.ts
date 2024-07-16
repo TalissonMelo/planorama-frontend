@@ -3,6 +3,7 @@ import { ScheduleService } from 'src/app/schedule/schedule-name/service/schedule
 import { UseSession } from 'src/app/util/useSession';
 import { LoaderService } from '../loader/loader.service';
 import { Home } from './domain/home';
+import { HomeFreeTimes } from './domain/home_free_times';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,8 @@ import { Home } from './domain/home';
 export class HomeComponent implements OnInit {
   public useSession: UseSession;
   public busyHours: Home[] = [];
+  public selectedDate!: string;
+  public vacantTimes: HomeFreeTimes[] = [];
 
   constructor(
     private service: ScheduleService,
@@ -21,21 +24,31 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loaderService.show();
-    this.service.listed().subscribe((res) => {
-      this.busyHours = res;
-      this.loaderService.hide();
-    });
+    this.initialDate();
+    this.selectDay();
   }
 
-  horariosVagos = [
-    {
-      horarioInicial: '10:00',
-      horarioFinal: '14:00',
-    },
-    {
-      horarioInicial: '15:00',
-      horarioFinal: '17:00',
-    },
-  ];
+  public initialDate(): void {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = ('0' + (today.getMonth() + 1)).slice(-2);
+    const day = ('0' + today.getDate()).slice(-2);
+    this.selectedDate = `${year}-${month}-${day}`;
+  }
+
+  onDateChange(event: any) {
+    this.selectedDate = event.value.toISOString().split('T')[0];
+    this.selectDay();
+  }
+
+  selectDay(): void {
+    this.loaderService.show();
+    this.service.listed(this.selectedDate).subscribe((res) => {
+      this.busyHours = res;
+      this.service.listedFree(this.selectedDate).subscribe((response) => {
+        this.vacantTimes = response;
+        this.loaderService.hide();
+      });
+    });
+  }
 }

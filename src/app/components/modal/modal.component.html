@@ -84,26 +84,21 @@
                             name="description" />
                     </td>
                     <td class="col-1">
-                        <button *ngIf="sessionIdEdit != event.id && memberSchedule.type != 'VIEWER'" mat-icon-button color="primary"
-                            (click)="edit(event)">
+                        <button *ngIf="sessionIdEdit != event.id && memberSchedule.type != 'VIEWER'" mat-icon-button
+                            color="primary" (click)="edit(event)">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button *ngIf="sessionIdEdit != event.id && memberSchedule.type == 'CREATOR'" mat-icon-button color="warn"
-                            (click)="deleted(event)">
+                        <button *ngIf="sessionIdEdit != event.id && memberSchedule.type == 'CREATOR'" mat-icon-button
+                            color="warn" (click)="deleted(event)">
                             <mat-icon>delete</mat-icon>
                         </button>
-                        <button  *ngIf="sessionIdEdit == event.id" mat-icon-button color="warn" (click)="editDescription(event)">
+                        <button *ngIf="sessionIdEdit == event.id" mat-icon-button color="warn"
+                            (click)="editDescription(event)">
                             <mat-icon>save</mat-icon>
                         </button>
                     </td>
                 </tr>
             </tbody>
-
         </table>
     </div>
-
-
-    <!-- <div class="my-custom-modal-footer">
-</div> -->
-
 </div>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { UserLogin } from '../components/login/user/model/user_login';
 import { CodeResponse } from '../recover/domain/code_response';
 import { ScheduleResponse } from '../schedule/schedule-name/domain/schedule_response';
+import { SessionResponse } from '../components/modal/domain/session_response';
 
 @Injectable()
 export class UseSession {
@@ -81,5 +82,18 @@ export class UseSession {
     const parts: string[] = timeString.split(':');
     const firstPart: number = parseInt(parts[0], 10);
     return firstPart + 1;
+  }
+
+  setSession(session: SessionResponse): void {
+    localStorage.setItem('session', JSON.stringify(session));
+  }
+
+  getSession(): SessionResponse | any {
+    const session = localStorage.getItem('session');
+    if (session) {
+      localStorage.removeItem('session');
+      return JSON.parse(session);
+    }
+    return null;
   }
 }
