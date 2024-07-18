@@ -34,6 +34,13 @@
   display: inline-block;
 }
 
+.ellipsis {
+  width: 150px; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+}
+
 .agenda-container {
   width: 85%; 
   padding: 10px;

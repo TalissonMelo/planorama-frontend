@@ -10,7 +10,10 @@ import { Message } from '../domain/message';
 export class MessageService {
   constructor(private http: HttpClient) {}
 
-  save(message: Message): Observable<Message> {
-    return this.http.post<Message>(`${environment.uri}/v1/chat`, message);
+  save(sessionId: string, message: Message): Observable<Message> {
+    return this.http.post<Message>(
+      `${environment.uri}/v1/sessions/${sessionId}/chat`,
+      message
+    );
   }
 }

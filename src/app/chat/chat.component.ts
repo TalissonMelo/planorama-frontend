@@ -32,10 +32,12 @@ export class ChatComponent implements OnInit {
   sendMessage() {
     if (this.isValidMessage()) {
       this.messages.push(new MessageResponse(this.newMessage.content, true));
-      this.service.save(this.newMessage).subscribe((response) => {
-        this.messages.push(new MessageResponse(response.content, false));
-        this.scrollToBottom();
-      });
+      this.service
+        .save(this.session.id, this.newMessage)
+        .subscribe((response) => {
+          this.messages.push(new MessageResponse(response.content, false));
+          this.scrollToBottom();
+        });
       this.newMessage = new Message();
     }
   }

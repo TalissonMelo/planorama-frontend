@@ -5,7 +5,7 @@
       <div *ngFor="let legend of legends" class="row justify-content-center mb-2">
         <div class="col-auto d-flex align-items-center">
           <span class="color-box" [style.background-color]="legend.color"></span>
-          <span class="ms-2">{{ legend.description }}</span>
+          <span class="ms-2 ellipsis">{{ legend.description }}</span>
         </div>
       </div>
     </div>    
