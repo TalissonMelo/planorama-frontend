@@ -15,6 +15,13 @@ export class HomeComponent implements OnInit {
   public busyHours: Home[] = [];
   public selectedDate!: string;
   public vacantTimes: HomeFreeTimes[] = [];
+  public selectedDuration: number = 30;
+  public durations: any[] = [
+    { value: 30, label: '30 minutos' },
+    { value: 60, label: '1 hora' },
+    { value: 90, label: '1h 30m' },
+    { value: 120, label: '2 horas' },
+  ];
 
   constructor(
     private service: ScheduleService,
@@ -45,10 +52,20 @@ export class HomeComponent implements OnInit {
     this.loaderService.show();
     this.service.listed(this.selectedDate).subscribe((res) => {
       this.busyHours = res;
-      this.service.listedFree(this.selectedDate).subscribe((response) => {
+      this.listVacanTimes();
+    });
+  }
+
+  listVacanTimes(): void {
+    this.service
+      .listedFree(this.selectedDate, this.selectedDuration)
+      .subscribe((response) => {
         this.vacantTimes = response;
         this.loaderService.hide();
       });
-    });
+  }
+
+  onDurationChange(event: any) {
+    this.listVacanTimes();
   }
 }

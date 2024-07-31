@@ -26,6 +26,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 //Components
 import { registerLocaleData } from '@angular/common';
@@ -82,6 +84,8 @@ registerLocaleData(localePt);
     MatButtonModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatSelectModule,
 
     MatDatepickerModule,
     MatInputModule,

@@ -50,8 +50,13 @@ export class ScheduleService {
     return this.http.get<Home[]>(`${environment.uri}/v1/schedules`, { params });
   }
 
-  listedFree(date: string): Observable<HomeFreeTimes[]> {
-    let params = new HttpParams().set('date', date);
+  listedFree(
+    date: string,
+    selectedDuration: number
+  ): Observable<HomeFreeTimes[]> {
+    let params = new HttpParams()
+      .set('date', date)
+      .set('minutes', selectedDuration);
     return this.http.get<HomeFreeTimes[]>(
       `${environment.uri}/v1/schedules/free-times`,
       {
