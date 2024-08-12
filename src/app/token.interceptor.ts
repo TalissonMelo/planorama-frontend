@@ -4,15 +4,17 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
+  HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { UseSession } from './util/useSession';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
   public useSession!: UseSession;
 
-  constructor() {
+  constructor(private router: Router) {
     this.useSession = new UseSession();
   }
 
@@ -34,6 +36,14 @@ export class TokenInterceptor implements HttpInterceptor {
       });
     }
 
-    return next.handle(request);
+    return next.handle(request).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 403) {
+          this.useSession.clear();
+          this.router.navigate(['/login']);
+        }
+        return throwError(() => error);
+      })
+    );
   }
 }
