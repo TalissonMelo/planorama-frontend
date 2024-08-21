@@ -27,7 +27,7 @@ export class LegendComponent implements OnInit {
 
   ngOnInit(): void {
     this.loaderService.show();
-    this.service.getLegends().subscribe(
+    this.service.legends().subscribe(
       (res) => {
         this.legends = res;
         this.loaderService.hide();

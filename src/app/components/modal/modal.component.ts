@@ -81,7 +81,7 @@ export class ModalComponent implements OnInit {
   }
 
   listLegends(): void {
-    this.legendService.getLegends().subscribe((res) => {
+    this.legendService.legends().subscribe((res) => {
       this.legends = res;
     });
   }

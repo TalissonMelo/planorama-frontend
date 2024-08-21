@@ -34,16 +34,16 @@ export class LegendService {
     );
   }
 
-  getLegends(): Observable<LegendResponse[]> {
+  legends(): Observable<LegendResponse[]> {
     const userId: string = this.useSession.getUser().id;
     return this.http.get<LegendResponse[]>(
-      `${environment.uri}/v1/user/${userId}/legend`
+      `${environment.uri}/v1/users/${userId}/legends`
     );
   }
 
   legendBySchedule(scheduleId: string): Observable<LegendResponse[]> {
     return this.http.get<LegendResponse[]>(
-      `${environment.uri}/v1/schedule/${scheduleId}/legend`
+      `${environment.uri}/v1/schedules/${scheduleId}/legends`
     );
   }
 }

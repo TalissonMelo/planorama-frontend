@@ -22,7 +22,7 @@ export class ProfileService {
         btoa(changePassword.newPassword)
       );
     return this.http.put<void>(
-      `${environment.uri}/v1/users/${this.useSession.getUser().id}/password`,
+      `${environment.uri}/v1/users/${this.useSession.getUser().id}/passwords`,
       changePasswordRequest
     );
   }

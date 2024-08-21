@@ -29,7 +29,7 @@ export class RecoverChangePasswordComponent {
 
   validPassword(): boolean {
     const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/;
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,50}$/;
     const isPasswordValid = passwordRegex.test(this.changePassword.newPassword);
 
     if (
