@@ -8,6 +8,7 @@ import { PasswordModule } from '../components/password/password.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UseSession } from '../util/useSession';
 import { TokenInterceptor } from '../token.interceptor';
+import { PhoneModule } from '../components/phone/phone.module';
 
 @NgModule({
   declarations: [ProfileComponent],
@@ -18,6 +19,7 @@ import { TokenInterceptor } from '../token.interceptor';
     ReactiveFormsModule,
     PasswordModule,
     HttpClientModule,
+    PhoneModule,
   ],
   providers: [
     UseSession,

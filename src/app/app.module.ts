@@ -18,16 +18,16 @@ import { NavComponent } from './components/nav/nav.component';
 //Material
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatInputModule } from '@angular/material/input';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
 
 //Components
 import { registerLocaleData } from '@angular/common';
@@ -39,11 +39,12 @@ import { ScheduleComponent } from './schedule/schedule.component';
 
 import localePt from '@angular/common/locales/pt';
 import { LoaderComponent } from './components/loader/loader/loader.component';
+import { PasswordModule } from './components/password/password.module';
 import { MembersComponent } from './schedule/members/members.component';
 import { ScheduleNameComponent } from './schedule/schedule-name/schedule-name.component';
-import { PasswordModule } from './components/password/password.module';
-import { UseSession } from './util/useSession';
 import { TokenInterceptor } from './token.interceptor';
+import { UseSession } from './util/useSession';
+import { PhoneModule } from './components/phone/phone.module';
 
 registerLocaleData(localePt);
 
@@ -67,6 +68,7 @@ registerLocaleData(localePt);
 
     //CREATE MODULES
     PasswordModule,
+    PhoneModule,
 
     //HTTP
     HttpClientModule,

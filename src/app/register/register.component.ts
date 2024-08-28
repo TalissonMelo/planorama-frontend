@@ -49,7 +49,7 @@ export class RegisterComponent {
       this.user.email != '' &&
       this.user.nickname != '' &&
       this.user.phone != '' &&
-      this.user.phone.length == 11 &&
+      this.user.phone.length == 16 &&
       this.validPassword()
     ) {
       return true;

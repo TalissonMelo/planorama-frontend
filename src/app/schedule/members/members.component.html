@@ -12,8 +12,7 @@
                 <input type="email" id="email" name="email" class="my-custom-form-control form-control" [(ngModel)]="member.email" required>
             </div>
             <div class="col-2">
-                <label for="phone">Telefone:</label>
-                <input type="text" id="phone" name="phone"  [(ngModel)]="member.phone" class="my-custom-form-control form-control">
+                <app-phone [id]="'phone'" [changePhone]="member.phone" (phoneChange)="member.phone = $event" required></app-phone>
             </div>
             <div class="col-2">
                 <label for="type">Permissão:</label>

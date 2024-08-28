@@ -16,4 +16,20 @@ export class NavComponent {
     this.useSession.clear();
     this.router.navigate(['/login']);
   }
+
+  profile() {
+    this.router.navigate(['/profile']);
+  }
+
+  schedule() {
+    this.router.navigate(['/schedule']);
+  }
+
+  legend() {
+    this.router.navigate(['/legend']);
+  }
+
+  home() {
+    this.router.navigate(['/']);
+  }
 }
