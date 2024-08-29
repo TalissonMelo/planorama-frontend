@@ -6,6 +6,8 @@ import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register.component';
 import { NgModule } from '@angular/core';
 import { PhoneModule } from '../components/phone/phone.module';
+import { TermsModule } from '../components/terms/terms.module';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [RegisterComponent],
@@ -14,8 +16,10 @@ import { PhoneModule } from '../components/phone/phone.module';
     RegisterRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    MatCheckboxModule,
     PasswordModule,
     PhoneModule,
+    TermsModule,
   ],
 })
 export class RegisterModule {}

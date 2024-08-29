@@ -6,6 +6,7 @@ import { LoaderService } from 'src/app/components/loader/loader.service';
 import { NotificationService } from 'src/app/components/notification/notification.service';
 import { ScheduleRequest } from './domain/schedule_request';
 import { UseSession } from 'src/app/util/useSession';
+import { UserPermissions } from './domain/user_permissions';
 
 @Component({
   selector: 'app-schedule-name',
@@ -13,6 +14,7 @@ import { UseSession } from 'src/app/util/useSession';
   styleUrls: ['./schedule-name.component.css'],
 })
 export class ScheduleNameComponent implements OnInit {
+  public userPermissions: UserPermissions = new UserPermissions();
   public schedules: ScheduleResponse[] = [];
   public editSchedule: string = '';
   public schedule: ScheduleRequest;
@@ -32,15 +34,23 @@ export class ScheduleNameComponent implements OnInit {
 
   ngOnInit(): void {
     this.loaderService.show();
-    this.service.list().subscribe(
-      (res) => {
-        this.schedules = res;
-        this.loaderService.hide();
-      },
-      (error) => {
-        this.loaderService.hide();
-      }
-    );
+    this.listPermissions();
+    this.listSchedules();
+    this.loaderService.hide();
+  }
+
+  listPermissions(): void {
+    this.service.permissions().subscribe((res) => {
+      this.userPermissions = new UserPermissions();
+      this.userPermissions.id = res.id;
+      this.userPermissions.profiles = res.profiles || [];
+    });
+  }
+
+  listSchedules(): void {
+    this.service.list().subscribe((res) => {
+      this.schedules = res;
+    });
   }
 
   save(): void {

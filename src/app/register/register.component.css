@@ -37,3 +37,22 @@
     background-color: #5a6268;
 }
 
+.terms-button {
+    background: none;
+    border: none;
+    color: #007bff; 
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+    font-size: inherit; 
+    font-family: inherit; 
+  }
+  
+  .terms-button:hover {
+    text-decoration: none;
+  }
+  
+  .terms-button:focus {
+    outline: none; 
+  }
+  

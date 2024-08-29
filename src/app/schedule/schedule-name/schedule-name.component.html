@@ -1,7 +1,7 @@
 <div class="container">
     <div class="back-link" routerLink="/"> <mat-icon>arrow_back</mat-icon> Voltar</div>
-    <div class="form-container">
-        <h2>Agendas</h2>
+    <h2>Agendas</h2>
+    <div *ngIf="userPermissions && userPermissions.isValid()" class="form-container">
         <div class="form-group row">
             <div class="col-8">
                 <label for="name">Nome:</label>
@@ -19,7 +19,7 @@
                     class="my-custom-form-control form-control">
             </div>
         </div>
-        <button type="button" (click)="save()" class="my-custom-ok-button">Adicionar Horário</button>
+        <button type="button" (click)="save()" class="my-custom-ok-button">Adicionar Agenda</button>
     </div>
     <div class="list-container">
         <table class="table table-bordered schedule-table">

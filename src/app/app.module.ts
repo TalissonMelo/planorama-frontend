@@ -28,6 +28,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 //Components
 import { registerLocaleData } from '@angular/common';
@@ -45,6 +46,7 @@ import { ScheduleNameComponent } from './schedule/schedule-name/schedule-name.co
 import { TokenInterceptor } from './token.interceptor';
 import { UseSession } from './util/useSession';
 import { PhoneModule } from './components/phone/phone.module';
+import { TermsModule } from './components/terms/terms.module';
 
 registerLocaleData(localePt);
 
@@ -69,6 +71,7 @@ registerLocaleData(localePt);
     //CREATE MODULES
     PasswordModule,
     PhoneModule,
+    TermsModule,
 
     //HTTP
     HttpClientModule,
@@ -88,6 +91,7 @@ registerLocaleData(localePt);
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatCheckboxModule,
 
     MatDatepickerModule,
     MatInputModule,

@@ -14,11 +14,16 @@
             </div>
             <app-password [title]="'Senha:'" [id]="'password'"  [placeholder]="'Digite sua senha'"
               (passwordChange)="login.password = $event"></app-password>
-            <button type="button" (click)="enter()"
-              class="full-width mat-elevation-z4 my-custom-ok-button">Entrar</button>
-            <button type="button" (click)="register()" class="full-width mat-elevation-z4 my-custom-ok-button">Não
-              possui usuário. Cadastre-se!</button>
           </form>
+          <div class="row">
+            <div class="form-group">
+              <mat-checkbox class="mat-primary" [(ngModel)]="acceptedTerms" required>Eu aceito os 
+                <button type="button" class="terms-button" (click)="openTermsModal()">termos de uso</button>.
+              </mat-checkbox>
+            </div>
+          </div>
+          <button type="button" (click)="enter()" [disabled]="!acceptedTerms" class="full-width mat-elevation-z4 my-custom-ok-button">Entrar</button>
+          <button type="button" (click)="register()" class="full-width mat-elevation-z4 my-custom-ok-button">Não possui usuário. Cadastre-se!</button>
         </div>
         <div class="card-footer text-center">
           <div class="small">

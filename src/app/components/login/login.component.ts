@@ -5,6 +5,8 @@ import { LoaderService } from '../loader/loader.service';
 import { NotificationService } from '../notification/notification.service';
 import { Login } from './user/model/login';
 import { UserService } from './user/service/user.service';
+import { TermsComponent } from '../terms/terms.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -13,10 +15,12 @@ import { UserService } from './user/service/user.service';
 })
 export class LoginComponent {
   public useSession: UseSession = new UseSession();
+  public acceptedTerms: boolean = false;
   public login: Login;
 
   constructor(
     private router: Router,
+    public dialog: MatDialog,
     private service: UserService,
     private notificationService: NotificationService,
     private loaderService: LoaderService
@@ -57,5 +61,11 @@ export class LoginComponent {
 
   register(): void {
     this.router.navigate(['register']);
+  }
+
+  openTermsModal(): void {
+    this.dialog.open(TermsComponent, {
+      width: '600px',
+    });
   }
 }

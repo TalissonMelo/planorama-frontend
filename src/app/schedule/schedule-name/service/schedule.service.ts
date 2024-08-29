@@ -7,6 +7,7 @@ import { ScheduleRequest } from '../domain/schedule_request';
 import { ScheduleResponse } from '../domain/schedule_response';
 import { Home } from 'src/app/components/home/domain/home';
 import { HomeFreeTimes } from 'src/app/components/home/domain/home_free_times';
+import { UserPermissions } from '../domain/user_permissions';
 
 @Injectable({
   providedIn: 'root',
@@ -62,6 +63,12 @@ export class ScheduleService {
       {
         params,
       }
+    );
+  }
+
+  permissions(): Observable<UserPermissions> {
+    return this.http.get<UserPermissions>(
+      `${environment.uri}/v1/users/profiles`
     );
   }
 }

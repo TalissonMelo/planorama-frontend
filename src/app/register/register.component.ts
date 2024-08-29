@@ -4,6 +4,8 @@ import { UserRequest } from './model/user_request';
 import { NotificationService } from '../components/notification/notification.service';
 import { UserService } from './service/user.service';
 import { LoaderService } from '../components/loader/loader.service';
+import { MatDialog } from '@angular/material/dialog';
+import { TermsComponent } from '../components/terms/terms.component';
 
 @Component({
   selector: 'app-register',
@@ -12,10 +14,12 @@ import { LoaderService } from '../components/loader/loader.service';
 })
 export class RegisterComponent {
   public user: UserRequest;
+  public acceptedTerms: boolean = false;
   public passwordConfirm: string = '';
 
   constructor(
     private router: Router,
+    public dialog: MatDialog,
     private service: UserService,
     private loaderService: LoaderService,
     private notificationService: NotificationService
@@ -77,5 +81,11 @@ export class RegisterComponent {
 
   toGoBack(): void {
     this.router.navigate(['/login']);
+  }
+
+  openTermsModal(): void {
+    this.dialog.open(TermsComponent, {
+      width: '600px',
+    });
   }
 }
