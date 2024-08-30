@@ -9,12 +9,13 @@ import {
 import { catchError, Observable, throwError } from 'rxjs';
 import { UseSession } from './util/useSession';
 import { Router } from '@angular/router';
+import { LoaderService } from './components/loader/loader.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
   public useSession!: UseSession;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private loader: LoaderService) {
     this.useSession = new UseSession();
   }
 
@@ -41,6 +42,7 @@ export class TokenInterceptor implements HttpInterceptor {
         if (error.status === 403) {
           this.useSession.clear();
           this.router.navigate(['/login']);
+          this.loader.hide();
         }
         return throwError(() => error);
       })
