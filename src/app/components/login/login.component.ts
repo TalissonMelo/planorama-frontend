@@ -36,9 +36,6 @@ export class LoginComponent {
           this.useSession.setToken(res.authorization);
           this.useSession.setUser(res);
           this.loaderService.hide();
-          this.notificationService.showSuccess(
-            'Operação realizada com sucesso!'
-          );
           this.router.navigate(['/']);
         },
         (error) => {
@@ -52,6 +49,13 @@ export class LoginComponent {
   }
 
   isValid(): boolean {
+    if (!this.acceptedTerms) {
+      this.notificationService.showError(
+        'Para Utilizar o sistema e necessário aceitar os termos de uso!.'
+      );
+      return false;
+    }
+
     if (this.login.email == '' || this.login.password == '') {
       this.notificationService.showError('Preencha email e senha!');
       return false;

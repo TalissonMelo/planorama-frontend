@@ -47,6 +47,7 @@ import { TokenInterceptor } from './token.interceptor';
 import { UseSession } from './util/useSession';
 import { PhoneModule } from './components/phone/phone.module';
 import { TermsModule } from './components/terms/terms.module';
+import { ToastComponent } from './components/toast/toast.component';
 
 registerLocaleData(localePt);
 
@@ -62,6 +63,7 @@ registerLocaleData(localePt);
     ScheduleNameComponent,
     MembersComponent,
     LoaderComponent,
+    ToastComponent,
   ],
   imports: [
     BrowserModule,
