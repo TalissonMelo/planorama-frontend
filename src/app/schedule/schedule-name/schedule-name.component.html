@@ -3,25 +3,27 @@
     <h2>Agendas</h2>
     <div *ngIf="userPermissions && userPermissions.isValid()" class="form-container">
         <div class="form-group row">
-            <div class="col-8">
+            <div class="row">
+            <div class="col-sm-8">
                 <label for="name">Nome:</label>
                 <input type="text" id="name" name="name" [(ngModel)]="schedule.name"
                     class="my-custom-form-control form-control">
             </div>
-            <div class="col-2">
+            <div class="col-sm-2">
                 <label for="startTime">Horário Inicial:</label>
                 <input type="time" id="startTime" name="startTime" [(ngModel)]="schedule.startTime"
                     class="my-custom-form-control form-control">
             </div>
-            <div class="col-2">
+            <div class="col-sm-2">
                 <label for="endTime">Horário Final:</label>
                 <input type="time" id="endTime" name="endTime" [(ngModel)]="schedule.endTime"
                     class="my-custom-form-control form-control">
             </div>
         </div>
+        </div>
         <button type="button" (click)="save()" class="my-custom-ok-button">Adicionar Agenda</button>
     </div>
-    <div class="list-container">
+    <div class="table-responsive pt-3">
         <table class="table table-bordered schedule-table">
             <thead>
                 <tr>
@@ -43,7 +45,7 @@
                             class="my-custom-form-control form-control"></td>
                     <td *ngIf="editSchedule == schedule.id" class="col-2"><input type="time" id="endTime" name="endTime"
                             [(ngModel)]="schedule.endTime" class="my-custom-form-control form-control"></td>
-                    <td *ngIf="editSchedule != schedule.id" class="col-3 text-center align-middle">
+                    <td *ngIf="editSchedule != schedule.id" class="col-2 text-center  action-icons align-middle">
                         <button mat-icon-button color="primary" (click)="listSessionsByScheduleId(schedule)">
                             <mat-icon>visibility</mat-icon>
                         </button>
@@ -60,7 +62,7 @@
                             <mat-icon>delete</mat-icon>
                         </button>
                     </td>
-                    <td *ngIf="editSchedule == schedule.id" class="col-3 text-center align-middle">
+                    <td *ngIf="editSchedule == schedule.id" class="col-3 text-center  action-icons align-middle">
                         <button mat-icon-button color="warn" (click)="update(schedule)">
                             <mat-icon>save</mat-icon>
                         </button>

@@ -1,47 +1,22 @@
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
-  color: #007bff;
-}
-
-.back-link:hover {
-  text-decoration: underline;
-}
-
-.back-link mat-icon {
-  margin-right: 4px;
-}
-
-.main-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.legenda-container {
-  display: flex;
-  flex-direction: column;
-  width: 15%; 
-  padding: 10px;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-}
-
 .color-box {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
+  width: 10px;
+  height: 10px;
   display: inline-block;
+  border-radius: 50%; 
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
 }
 
 .ellipsis {
-  width: 150px; 
-  white-space: nowrap; 
-  overflow: hidden; 
-  text-overflow: ellipsis; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px; 
 }
 
-.agenda-container {
-  width: 85%; 
-  padding: 10px;
+.d-flex.flex-wrap {
+  gap: 10px; 
 }

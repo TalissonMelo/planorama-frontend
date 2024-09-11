@@ -3,18 +3,18 @@
     <div class="form-container">
         <h2>{{ schedule.name}}</h2>
         <div class="form-group row">
-            <div class="col-4">
+            <div class="col-sm-4">
                 <label for="nickname">Nome:</label>
                 <input type="text" id="nickname" name="nickname"  [(ngModel)]="member.nickname" class="my-custom-form-control form-control" required>
             </div>
-            <div class="col-4">
+            <div class="col-sm-4">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" class="my-custom-form-control form-control" [(ngModel)]="member.email" required>
             </div>
-            <div class="col-2">
+            <div class="col-sm-2">
                 <app-phone [id]="'phone'" [changePhone]="member.phone" (phoneChange)="member.phone = $event" required></app-phone>
             </div>
-            <div class="col-2">
+            <div class="col-sm-2">
                 <label for="type">Permissão:</label>
                 <select id="type" name="type" class="my-custom-form-control form-control"  [(ngModel)]="member.type" required>
                     <option value="EDITOR">Editor</option>
@@ -26,8 +26,8 @@
     </div>
 </div>
 <div class="container">
-    <div class="search-container">
-        <table class="table table-bordered schedule-table">
+    <div class="table-responsive">
+        <table class="table schedule-table">
             <thead>
                 <tr>
                     <th class="col-4">Nome</th>
@@ -39,18 +39,18 @@
             </thead>
             <tbody>
                 <tr *ngFor="let member of members">
-                    <td class="col-4">{{ member.member.nickname }}</td>
-                    <td class="col-3">{{ member.member.email }}</td>
-                    <td class="col-2">{{ member.member.phone }}</td>
-                    <td class="col-2">
-                        <select id="type" name="type" class="my-custom-form-control form-control"
+                    <td class="col-4 action-icons">{{ member.member.nickname }}</td>
+                    <td class="col-3 action-icons">{{ member.member.email }}</td>
+                    <td class="col-2 action-icons">{{ member.member.phone }}</td>
+                    <td class="col-2 action-icons">
+                        <select id="type" name="type" class="my-custom-form-control form-control action-icons"
                             [value]="member.member.type" disabled>
                             <option value="CREATOR">Criador</option>
                             <option value="EDITOR">Editor</option>
                             <option value="VIEWER">Visualizador</option>
                         </select>
                     </td>
-                    <td class="col-1 text-center align-middle">
+                    <td class="col-1 text-center action-icons align-middle">
                         <button *ngIf="memberSchedule.type !== 'VIEWER'" mat-icon-button color="warn" (click)="deletarMembro(member)">
                             <mat-icon>delete</mat-icon>
                           </button>

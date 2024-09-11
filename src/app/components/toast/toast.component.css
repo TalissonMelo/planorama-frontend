@@ -16,7 +16,7 @@
     opacity: 0.95;
     font-size: 0.9rem;
     min-width: 300px;
-    animation: slide-out 5s forwards; /* Aplica a animação */
+    animation: slide-out 15s forwards; 
 }
 
 .toast-body {
@@ -25,8 +25,8 @@
 }
 
 .bg-success {
-    background-color: #41d162 !important; 
-    color: #000 !important; 
+    background-color: #06b32e !important; 
+    color: #fff !important; 
 }
 
 .bg-error {
@@ -46,10 +46,10 @@
     }
     80% {
         opacity: 1;
-        transform: translateX(300px);
+        transform: translateX(100vw); 
     }
     100% {
         opacity: 0;
-        transform: translateX(500px); 
+        transform: translateX(100vw); 
     }
 }

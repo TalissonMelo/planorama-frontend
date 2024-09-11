@@ -1,14 +1,5 @@
 <div class="container">
-  <div class="main-container">
-    <div class="container mt-4 legenda-container text-center">
-      <h3>LEGENDA</h3>
-      <div *ngFor="let legend of legends" class="row justify-content-center mb-2">
-        <div class="col-auto d-flex align-items-center">
-          <span class="color-box" [style.background-color]="legend.color"></span>
-          <span class="ms-2 ellipsis">{{ legend.description }}</span>
-        </div>
-      </div>
-    </div>    
+  <div class="row">
     <div class="agenda-container">
       <div class="back-link" routerLink="/schedule"> <mat-icon>arrow_back</mat-icon> Voltar</div>
       <h2 class="text-center">{{schedule.name}}</h2>
@@ -48,6 +39,16 @@
         </div>
       </div>
       <br />
+      <div class="container mt-1 legenda-container">
+        <div class="row justify-content-center">
+          <div class="d-flex flex-wrap justify-content-center">
+            <div *ngFor="let legend of legends" class="legend-item d-flex align-items-center mb-2 me-3">
+              <span class="color-box" [style.background-color]="legend.color"></span>
+              <span class="ms-2 ellipsis">{{ legend.description }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
       <div [ngSwitch]="view">
         <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events" (dayClicked)="openModal($event.day)">
         </mwl-calendar-month-view>

@@ -96,4 +96,24 @@ export class LegendComponent implements OnInit {
     );
     return false;
   }
+
+  deleted(legend: LegendResponse) {
+    if (confirm('Deseja deletar a agenda: ' + legend.description)) {
+      this.loaderService.show();
+      this.service.delete(legend.id).subscribe(
+        (res) => {
+          const index = this.legends.indexOf(legend);
+          this.legends.splice(index, 1);
+          this.loaderService.hide();
+          this.notificationService.showSuccess('Legenda deletada com sucesso!');
+        },
+        (error) => {
+          this.loaderService.hide();
+          this.notificationService.showError(
+            'Legenda não deletada por favor tente novamente.'
+          );
+        }
+      );
+    }
+  }
 }

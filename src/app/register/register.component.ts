@@ -49,6 +49,13 @@ export class RegisterComponent {
   }
 
   isValid(): boolean {
+    if (!this.acceptedTerms) {
+      this.notificationService.showError(
+        'Para Utilizar o sistema e necessário aceitar os termos de uso!.'
+      );
+      return false;
+    }
+
     if (
       this.user.email != '' &&
       this.user.nickname != '' &&

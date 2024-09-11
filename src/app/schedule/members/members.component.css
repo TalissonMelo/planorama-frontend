@@ -68,3 +68,16 @@
 .back-link mat-icon {
     margin-right: 4px;
 }
+
+.action-icons {
+    white-space: nowrap;
+}
+
+.action-icons button {
+    display: inline-flex;
+    margin-right: 5px;
+}
+
+.mat-icon {
+    font-size: 20px;
+}

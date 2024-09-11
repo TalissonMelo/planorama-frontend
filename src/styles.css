@@ -2,5 +2,47 @@
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+td {
+    white-space: nowrap;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    color: #007bff;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.back-link mat-icon {
+    margin-right: 4px;
+}
+
+
+.my-custom-ok-button {
+    width: calc(100% - 20px);
+    padding: 10px 0;
+    margin-top: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+  }
+  
+  .my-custom-ok-button:hover {
+    opacity: 0.8;
+  }

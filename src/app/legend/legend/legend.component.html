@@ -3,10 +3,10 @@
     <div class="form-container">
         <h2>Legendas</h2>
         <div class="form-group row center-inputs">
-            <div class="col-1 ">
+            <div class="col-sm-1 ">
                 <input class="input-cor" type="color" id="color" name="color" [(ngModel)]="legend.color">
             </div>
-            <div class="col-11">
+            <div class="col-sm-11">
                 <label for="description">Descrição:</label>
                 <input type="text" id="description" name="description" class="my-custom-form-control form-control"
                     [(ngModel)]="legend.description">
@@ -14,13 +14,13 @@
         </div>
         <button type="button" (click)="saveLegend()" class="my-custom-ok-button">Adicionar Legenda</button>
     </div>
-    <div class="list-container">
-        <table class="table table-bordered legend-table">
+    <div class="table-responsive pt-3">
+        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th class="col-1">Cor</th>
-                    <th class="col-10">Descrição</th>
-                    <th class="col-1"></th>
+                    <th class="col-9">Descrição</th>
+                    <th class="col-2"></th>
                 </tr>
             </thead>
             <tbody>
@@ -29,11 +29,15 @@
                     </td>
                     <td *ngIf="legend.id != legendEditId" class="col-1" [style.background]="legend.color">
                     </td>
-                    <td *ngIf="legend.id == legendEditId" class="col-10"><input type="text" id="description" name="description" class="my-custom-form-control form-control" [(ngModel)]="legend.description"></td>
-                    <td *ngIf="legend.id != legendEditId" class="col-10"> {{ legend.description }}</td>
-                    <td class="col-1 text-center align-middle">
+                    <td *ngIf="legend.id == legendEditId" class="col-9"><input type="text" id="description" name="description" class="my-custom-form-control form-control" [(ngModel)]="legend.description"></td>
+                    <td *ngIf="legend.id != legendEditId" class="col-9"> {{ legend.description }}</td>
+                    <td class="col-2 text-center align-middle action-icons">
                         <button mat-icon-button color="primary" (click)="isEditing ? save(legend) : edit(legend)">
                             <mat-icon>{{ legend.id != legendEditId ?  'edit' : 'save'  }}</mat-icon>
+                        </button>
+                        <button *ngIf="legend.id != legendEditId" mat-icon-button color="warn"
+                            (click)="deleted(legend)">
+                            <mat-icon>delete</mat-icon>
                         </button>
                     </td>
                 </tr>

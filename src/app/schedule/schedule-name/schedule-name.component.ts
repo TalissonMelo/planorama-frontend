@@ -11,7 +11,6 @@ import { UserPermissions } from './domain/user_permissions';
 @Component({
   selector: 'app-schedule-name',
   templateUrl: './schedule-name.component.html',
-  styleUrls: ['./schedule-name.component.css'],
 })
 export class ScheduleNameComponent implements OnInit {
   public userPermissions: UserPermissions = new UserPermissions();
