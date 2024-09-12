@@ -6,7 +6,7 @@
 .chat-container {
   display: flex;
   flex-direction: column;
-  height: 500px;
+  height: 800px;
   width: 100%;
   max-width: 800px;
   margin: auto;
@@ -18,9 +18,11 @@
 
 h2 {
   margin: 0;
-  padding: 0;
+  padding: 10px;
   font-size: 1.5em;
   text-align: center;
+  background-color:  #0080FF;
+  color: white;
 }
 
 p {
@@ -30,38 +32,46 @@ p {
   text-align: center;
 }
 
-
 .message-list {
   flex: 1;
   padding: 10px;
   overflow-y: auto;
-  margin-bottom: 50px;
-  background-color: #f9f9f9;
+  background-color: #e5ddd5;
+  display: flex;
+  flex-direction: column;
 }
 
 .message-list div {
   margin: 5px 0;
   padding: 10px;
   border-radius: 8px;
-
+  max-width: 80%;
 }
 
 .user-message {
-  align-self: flex-end;
+  align-self: flex-end; /* Alinha o balão à direita */
   background-color: #dcf8c6;
+  color: #333;
+  border-radius: 8px 8px 0 8px;
+  text-align: right;
+  display: inline-block; /* Garante que o balão se ajuste ao conteúdo */
 }
 
 .api-message {
   align-self: flex-start;
-  background-color: #fff;
+  background-color: #ffffff;
+  color: #333;
   border: 1px solid #ccc;
+  border-radius: 8px 8px 8px 0;
+  text-align: left;
+  display: inline-block; /* Garante que o balão se ajuste ao conteúdo */
 }
 
 .message-input {
   display: flex;
   padding: 10px;
   border-top: 1px solid #ccc;
-  background-color: #fff;
+  background-color: #ffffff;
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -72,19 +82,33 @@ p {
   flex: 1;
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 20px;
+  outline: none;
+}
+
+.message-input input:focus {
+  border-color:#4199f0;
 }
 
 .message-input button {
   margin-left: 10px;
-  padding: 10px;
+  padding: 10px 15px;
   border: none;
-  border-radius: 4px;
-  background-color: #007bff;
-  color: #fff;
+  border-radius: 20px;
+  background-color: #0080FF;
+  color: white;
   cursor: pointer;
 }
 
 .message-input button:hover {
-  background-color: #0056b3;
+  background-color: #064b48;
+}
+
+.message-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.message-list::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
 }

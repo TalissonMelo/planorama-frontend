@@ -1,6 +1,6 @@
 <div class="chat-container">
   <h2>{{session.title}}</h2>
-  <p>{{session.description}}</p>
+  <p class="pt-2">{{session.description}}</p>
   <div class="message-list" #messageList>
     <div *ngFor="let message of messages; let i = index" [attr.id]="'message-' + i">
       <div [ngClass]="{'user-message': message.user, 'api-message': !message.user}">
