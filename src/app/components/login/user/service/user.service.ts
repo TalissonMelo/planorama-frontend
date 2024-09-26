@@ -5,6 +5,7 @@ import { UseSession } from 'src/app/util/useSession';
 import { environment } from 'src/environments/environment';
 import { Login } from '../model/login';
 import { UserLogin } from '../model/user_login';
+import { UserToken } from '../model/user_token';
 
 @Injectable({
   providedIn: 'root',
@@ -29,5 +30,10 @@ export class UserService {
       return true;
     }
     return false;
+  }
+
+  setToken(token: string): Observable<void> {
+    const userToken: UserToken = new UserToken(token);
+    return this.http.put<void>(`${environment.uri}/v1/users/token`, userToken);
   }
 }

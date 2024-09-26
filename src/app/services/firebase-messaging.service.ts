@@ -1,11 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
 import { getMessaging, getToken } from 'firebase/messaging';
+import { UserService } from '../components/login/user/service/user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FirebaseMessagingService {
+  constructor(private http: HttpClient, private service: UserService) {}
+
   private firebaseConfig = {
     apiKey: 'AIzaSyDh2q-EDmVTvKNsiAcIkx4hdrgUFb56ctQ',
     authDomain: 'planorama-firebase.firebaseapp.com',
@@ -54,6 +58,13 @@ export class FirebaseMessagingService {
   }
 
   private sendTokenToServer(token: string) {
-    console.log(token);
+    this.service.setToken(token).subscribe(
+      () => {
+        console.log('ok'); // Função de sucesso
+      },
+      (error) => {
+        console.error('Erro ao enviar o token:', error); // Função de erro
+      }
+    );
   }
 }
