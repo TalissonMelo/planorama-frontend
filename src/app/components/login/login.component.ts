@@ -7,6 +7,7 @@ import { Login } from './user/model/login';
 import { UserService } from './user/service/user.service';
 import { TermsComponent } from '../terms/terms.component';
 import { MatDialog } from '@angular/material/dialog';
+import { FirebaseMessagingService } from 'src/app/services/firebase-messaging.service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent {
     public dialog: MatDialog,
     private service: UserService,
     private notificationService: NotificationService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private firebaseMessagingService: FirebaseMessagingService
   ) {
     this.login = new Login('', '');
   }
@@ -36,6 +38,7 @@ export class LoginComponent {
           this.useSession.setToken(res.authorization);
           this.useSession.setUser(res);
           this.loaderService.hide();
+          this.firebaseMessagingService.initFirebase();
           this.router.navigate(['/']);
         },
         (error) => {
