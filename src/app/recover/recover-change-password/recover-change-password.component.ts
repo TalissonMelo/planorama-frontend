@@ -10,7 +10,6 @@ import { ChangePasswordService } from '../service/change_password.service';
 @Component({
   selector: 'app-recover-change-password',
   templateUrl: './recover-change-password.component.html',
-  styleUrls: ['./recover-change-password.component.css'],
 })
 export class RecoverChangePasswordComponent {
   public passwordConfirm: string = '';

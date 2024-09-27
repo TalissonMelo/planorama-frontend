@@ -9,7 +9,6 @@ import { RecoverService } from './service/recover.service';
 @Component({
   selector: 'app-recover-password',
   templateUrl: './recover-password.component.html',
-  styleUrls: ['./recover-password.component.css'],
 })
 export class RecoverPasswordComponent {
   public recover: RecoverEmail;

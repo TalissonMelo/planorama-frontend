@@ -10,7 +10,6 @@ import { Email } from '../domain/email';
 @Component({
   selector: 'app-recover-code',
   templateUrl: './recover-code.component.html',
-  styleUrls: ['./recover-code.component.css'],
 })
 export class RecoverCodeComponent {
   public email!: Email;
@@ -50,7 +49,7 @@ export class RecoverCodeComponent {
 
   confirmCode() {
     this.createCode();
-    if (this.codeRequest.code.length == 5) {
+    if (this.codeRequest.code.length === 5) {
       this.loaderService.show();
       this.service.sendCode(this.codeRequest).subscribe(
         (res) => {
@@ -61,9 +60,13 @@ export class RecoverCodeComponent {
         (error) => {
           this.loaderService.hide();
           this.notificationService.showError(
-            'Código inválido por favor tente novamente.'
+            'Código inválido, por favor tente novamente.'
           );
         }
+      );
+    } else {
+      this.notificationService.showError(
+        'Por favor, preencha todos os campos.'
       );
     }
   }

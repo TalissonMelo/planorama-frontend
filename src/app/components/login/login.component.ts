@@ -11,7 +11,6 @@ import { UserService } from './user/service/user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   public useSession: UseSession = new UseSession();
