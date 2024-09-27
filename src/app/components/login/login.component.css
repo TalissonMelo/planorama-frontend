@@ -1,41 +1,40 @@
-.my-custom-form-control {
-  width: calc(100% - 20px);
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+.bg-primary {
+  background-color: #0D469B !important; 
 }
 
-.my-custom-ok-button {
-  width: calc(100% - 20px);
-  padding: 10px 0;
-  margin-top: 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
+.text-primary {
+  color: #0D469B !important; 
 }
 
-.my-custom-ok-button:hover {
-  opacity: 0.8;
+.heading-h1 {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 57.6px;
+  text-align: left;
 }
 
-.terms-button {
-  background: none;
-  border: none;
-  color: #007bff; 
-  text-decoration: underline;
-  cursor: pointer;
-  padding: 0;
-  font-size: inherit; 
-  font-family: inherit; 
+.subtitle {
+  font-family: 'Rubik', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  text-align: left;
 }
 
-.terms-button:hover {
-  text-decoration: none;
+.body-16-regular {
+  font-family: 'Rubik', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
 }
 
-.terms-button:focus {
-  outline: none; 
+.body-16-medium {
+  font-family: 'Rubik', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  color: #0D469B !important; 
 }

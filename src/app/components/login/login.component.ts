@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { FirebaseMessagingService } from 'src/app/services/firebase-messaging.service';
 import { UseSession } from 'src/app/util/useSession';
 import { LoaderService } from '../loader/loader.service';
 import { NotificationService } from '../notification/notification.service';
 import { Login } from './user/model/login';
 import { UserService } from './user/service/user.service';
-import { TermsComponent } from '../terms/terms.component';
-import { MatDialog } from '@angular/material/dialog';
-import { FirebaseMessagingService } from 'src/app/services/firebase-messaging.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +15,6 @@ import { FirebaseMessagingService } from 'src/app/services/firebase-messaging.se
 })
 export class LoginComponent {
   public useSession: UseSession = new UseSession();
-  public acceptedTerms: boolean = false;
   public login: Login;
 
   constructor(
@@ -52,27 +50,10 @@ export class LoginComponent {
   }
 
   isValid(): boolean {
-    if (!this.acceptedTerms) {
-      this.notificationService.showError(
-        'Para Utilizar o sistema e necessário aceitar os termos de uso!.'
-      );
-      return false;
-    }
-
     if (this.login.email == '' || this.login.password == '') {
       this.notificationService.showError('Preencha email e senha!');
       return false;
     }
     return true;
-  }
-
-  register(): void {
-    this.router.navigate(['register']);
-  }
-
-  openTermsModal(): void {
-    this.dialog.open(TermsComponent, {
-      width: '600px',
-    });
   }
 }

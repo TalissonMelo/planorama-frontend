@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { PhoneNumber } from '../domain/phone_number';
+import { Email } from '../domain/email';
 import { RecoverEmail } from '../domain/recover_email';
 @Injectable({
   providedIn: 'root',
@@ -10,10 +10,7 @@ import { RecoverEmail } from '../domain/recover_email';
 export class RecoverService {
   constructor(private http: HttpClient) {}
 
-  sendCode(email: RecoverEmail): Observable<PhoneNumber> {
-    return this.http.put<PhoneNumber>(
-      `${environment.uri}/v1/users/passwords`,
-      email
-    );
+  sendCode(email: RecoverEmail): Observable<Email> {
+    return this.http.put<Email>(`${environment.uri}/v1/users/passwords`, email);
   }
 }

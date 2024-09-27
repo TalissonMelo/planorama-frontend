@@ -60,10 +60,10 @@ export class FirebaseMessagingService {
   private sendTokenToServer(token: string) {
     this.service.setToken(token).subscribe(
       () => {
-        console.log('ok'); // Função de sucesso
+        console.log('ok');
       },
       (error) => {
-        console.error('Erro ao enviar o token:', error); // Função de erro
+        console.error('Erro ao enviar o token:', error);
       }
     );
   }

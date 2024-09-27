@@ -1,11 +1,11 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UseSession } from 'src/app/util/useSession';
-import { PhoneNumber } from '../domain/phone_number';
 import { CodeService } from '../service/code.service';
 import { LoaderService } from 'src/app/components/loader/loader.service';
 import { NotificationService } from 'src/app/components/notification/notification.service';
 import { CodeRequest } from '../domain/code_request';
+import { Email } from '../domain/email';
 
 @Component({
   selector: 'app-recover-code',
@@ -13,7 +13,7 @@ import { CodeRequest } from '../domain/code_request';
   styleUrls: ['./recover-code.component.css'],
 })
 export class RecoverCodeComponent {
-  public phoneNumber!: PhoneNumber;
+  public email!: Email;
   public codeRequest: CodeRequest = new CodeRequest();
   public useSession: UseSession = new UseSession();
 
@@ -25,7 +25,7 @@ export class RecoverCodeComponent {
     private loaderService: LoaderService,
     private notificationService: NotificationService
   ) {
-    this.phoneNumber = this.useSession.getData();
+    this.email = this.useSession.getData();
   }
 
   onInputChange(event: any, index: number) {
