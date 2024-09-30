@@ -10,7 +10,6 @@ import { TermsComponent } from '../components/terms/terms.component';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
   public user: UserRequest;

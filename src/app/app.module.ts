@@ -18,6 +18,7 @@ import { NavComponent } from './components/nav/nav.component';
 //Material
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -25,10 +26,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 
 //Components
 import { registerLocaleData } from '@angular/common';
@@ -41,13 +42,13 @@ import { ScheduleComponent } from './schedule/schedule.component';
 import localePt from '@angular/common/locales/pt';
 import { LoaderComponent } from './components/loader/loader/loader.component';
 import { PasswordModule } from './components/password/password.module';
+import { PhoneModule } from './components/phone/phone.module';
+import { TermsModule } from './components/terms/terms.module';
+import { ToastComponent } from './components/toast/toast.component';
 import { MembersComponent } from './schedule/members/members.component';
 import { ScheduleNameComponent } from './schedule/schedule-name/schedule-name.component';
 import { TokenInterceptor } from './token.interceptor';
 import { UseSession } from './util/useSession';
-import { PhoneModule } from './components/phone/phone.module';
-import { TermsModule } from './components/terms/terms.module';
-import { ToastComponent } from './components/toast/toast.component';
 
 registerLocaleData(localePt);
 
@@ -94,6 +95,7 @@ registerLocaleData(localePt);
     MatFormFieldModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatMenuModule,
 
     MatDatepickerModule,
     MatInputModule,

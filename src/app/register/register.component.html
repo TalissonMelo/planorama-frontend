@@ -1,38 +1,69 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-lg-5">
-      <div class="card shadow-lg border-0 rounded-lg mt-5">
-        <div class="card-header">
-          <h3 class="text-center font-weight-light my-4">Cadastro</h3>
-        </div>
-        <div class="card-body">
-          <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" class="my-custom-form-control" [(ngModel)]="user.email"
-              required />
-          </div>
-          <div class="form-group">
-            <label for="nickname">Nome:</label>
-            <input type="text" id="nickname" name="nickname" class="my-custom-form-control" [(ngModel)]="user.nickname"
-              required />
-          </div>
-          <app-phone [id]="'phone'" [changePhone]="user.phone" (phoneChange)="user.phone = $event" required></app-phone>
-          <app-password [title]="'Senha:'" [id]="'password'"  (passwordChange)="user.password = $event"></app-password>
-          <app-password [title]="'Confirme sua senha:'" [id]="'password'"  (passwordChange)="passwordConfirm = $event"></app-password>
-          <div class="row">
-            <div class="form-group">
-              <mat-checkbox class="mat-primary mb-3" [(ngModel)]="acceptedTerms" name="acceptedTerms" required>
-                Eu aceito os 
-                <button type="button" class="terms-button" (click)="openTermsModal()">termos de uso</button>.
-              </mat-checkbox>
-            </div>            
-          </div>
-          <div class="form-group buttons-container">
-            <button type="button" class="my-custom-back-button" (click)="toGoBack()">Voltar</button>
-            <button type="submit" class="my-custom-ok-button" (click)="onSubmit()">Cadastrar</button>
-          </div>
+<div class="container-fluid vh-100 d-flex p-0">
+  <div class="col-md-1"></div>
+
+  <div class="col-md-4 d-flex flex-column justify-content-center bg-white p-5">
+    <img src="./assets/planorama.png" alt="Logo" class="mb-4" style="width: 80px; height: 80px;">
+    <h1 class="heading-h1">Crie sua conta</h1>
+    <p class="subtitle">Já tem uma conta? 
+      <a [routerLink]="['/login']" class="font-weight-bold body-16-medium">Entrar agora</a>
+    </p>
+
+    <form class="w-75">
+      <div class="form-group mt-3">
+        <label for="email">E-mail</label>
+        <input id="email" type="email" name="email" class="form-control" placeholder="Digite seu email"
+          [(ngModel)]="user.email" required />
+      </div>
+
+      <div class="form-group mt-3">
+        <label for="nickname">Nome</label>
+        <input type="text" id="nickname" name="nickname" class="form-control" placeholder="Digite seu nome" [(ngModel)]="user.nickname" required />
+      </div>
+
+      <div class="form-group mt-3">
+        <app-phone [id]="'phone'" [changePhone]="user.phone" (phoneChange)="user.phone = $event"  required></app-phone>
+      </div>
+
+        <app-password [title]="'Senha:'" [id]="'password'" (passwordChange)="user.password = $event" ></app-password>
+
+
+        <app-password [title]="'Confirme sua senha:'" [id]="'passwordConfirm'" (passwordChange)="passwordConfirm = $event"></app-password>
+
+
+      <div class="form-group mt-3">
+        <div class="form-check">
+          <input 
+            class="form-check-input" 
+            type="checkbox" 
+            id="acceptedTerms" 
+            [(ngModel)]="acceptedTerms" 
+            name="acceptedTerms" 
+            required>
+            
+          <label class="form-check-label" for="acceptedTerms">
+            Eu aceito os 
+            <button type="button" class="btn btn-link p-0 terms-button" (click)="openTermsModal()">
+              termos de uso
+            </button>.
+          </label>
         </div>
       </div>
-    </div>
+      
+
+      
+      <div class="form-group d-flex justify-content-between mt-3">
+        <button type="button" (click)="onSubmit()" class="btn btn-primary btn-block w-100 text-center">Entrar agora</button>
+      </div>
+
+      <div class="d-flex justify-content-end mt-3">
+        <a routerLink="/login" class="body-16-medium">Cancelar</a>
+      </div>
+    </form>
+  </div>
+
+  <div class="col-md-1"></div>
+
+  <div class="col-md-6 d-none d-md-block bg-primary d-flex justify-content-end align-items-center">
+    <img src="./assets/home.png" alt="Imagem" style="max-width: 100%; max-height: 100%;" class="ml-auto">
   </div>
 </div>

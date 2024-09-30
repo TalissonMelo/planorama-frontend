@@ -5,27 +5,65 @@
 .sidenav {
    width: 13rem;
    color: white;
-   background: linear-gradient(180deg, rgba(0, 128, 255, 1) 0%, rgba(0, 102, 255, 1) 50%, rgba(0, 76, 204, 1) 100%);
-}
-
-img {
-   width: 100%;
-   height: 7rem;
-   margin: .8rem auto 1rem auto;
+   background: #084FC5
 }
 
 .menu {
    margin: 1rem 0 0 1rem;
    color: white;
-   background: linear-gradient(180deg, rgba(0, 128, 255, 1) 0%, rgba(0, 102, 255, 1) 50%, rgba(0, 76, 204, 1) 100%);
-} 
+   background: #084FC5
+}
 
 .sidenav-content {
    display: grid;
-   grid-template-columns: auto 1fr; 
-   align-items: center; 
+   grid-template-columns: auto 1fr;
+   align-items: center;
    gap: 20px;
+}
+
+.logo {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   padding: 20px 0;
+}
+
+.logo-img {
+   width: 60px;
+   height: 60px;
+   margin-bottom: 10px;
+}
+
+.app-name {
+   font-family: 'Baloo 2', sans-serif;
+   font-size: 28.75px;
+   font-weight: 500;
+   line-height: 46.06px;
+   letter-spacing: -0.02em;
+   text-align: center;
+   color: #ffffff;
+   margin: 0;
+}
+
+.menu-item {
+   display: flex;
+   align-items: center;
+   justify-content: start;
+   width: 100%;
+   color: #CBD5E1 !important;
+   font-weight: 500;
  }
-
-
+ 
+ .menu-item mat-icon {
+   margin-right: 10px;
+   color: #CBD5E1 !important; 
+ }
+ 
+ .logout {
+   position: absolute;
+   bottom: 20px;
+   width: 100%;
+   color: #ffffff !important;
+ }
  

@@ -17,10 +17,6 @@ export class NavComponent {
     this.router.navigate(['/login']);
   }
 
-  profile() {
-    this.router.navigate(['/profile']);
-  }
-
   schedule() {
     this.router.navigate(['/schedule']);
   }

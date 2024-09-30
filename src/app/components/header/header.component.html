@@ -1,6 +1,42 @@
-<div class="container">    
-    <div class="flex" style="cursor: pointer;" routerLink="/home">
-        <span class="greeting">Olá, </span>
-        <span class="username">{{name}}</span>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container-fluid">
+        <div class="d-flex align-items-center ms-auto">
+            <button mat-icon-button aria-label="Notificações" (click)="toggleNotifications()">
+                <mat-icon>notifications</mat-icon>
+            </button>
+            <div *ngIf="showNotifications" class="notification-dropdown">
+                <div class="notification-header">
+                    <button class="tab-button" [class.active]="activeTab === 'read'" (click)="setActiveTab('read')">Lidas</button>
+                    <button class="tab-button" [class.active]="activeTab === 'unread'" (click)="setActiveTab('unread')">Não lidas</button>
+                </div>
+                <div class="notification-list">
+                    <div *ngFor="let notification of getNotifications()" class="notification-item">
+                        <div class="notification-icon">
+                            <img src="assets/planorama.png" alt="Notificações" class="notification-icon-img" />
+                        </div>
+                        <div class="notification-content">
+                            <h4>{{ notification.title }}</h4>
+                            <p>{{ notification.message }}</p>
+                            <span class="notification-time">{{ notification.time }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button mat-button [matMenuTriggerFor]="userMenu">
+                <span class="greeting me-1">Olá,</span>
+                <span class="username">{{ name }}</span>
+                <mat-icon>expand_more</mat-icon>
+            </button>
+            <mat-menu #userMenu="matMenu">
+                <button mat-menu-item (click)="profile()">
+                    <mat-icon>person</mat-icon> 
+                    <span class="me-2">Meus dados</span>
+                </button>
+                <button mat-menu-item (click)="logout()">
+                    <mat-icon>logout</mat-icon> 
+                    <span class="me-2">Sair</span>
+                </button>
+            </mat-menu>
+        </div>
     </div>
-</div>
+</nav>

@@ -24,18 +24,25 @@
             "main": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets", {
-              "glob": "firebase-messaging-sw.js",
-              "input": "src/",
-              "output": "/"
-            }],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "firebase-messaging-sw.js",
+                "input": "src/",
+                "output": "/"
+              }
+            ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -81,11 +88,15 @@
           "options": {
             "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "tsconfig.spec.json",
-            "assets": ["src/favicon.ico", "src/assets",  {
-              "glob": "firebase-messaging-sw.js",
-              "input": "src/",
-              "output": "/"
-            } ],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets",
+              {
+                "glob": "firebase-messaging-sw.js",
+                "input": "src/",
+                "output": "/"
+              }
+            ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
