@@ -49,7 +49,7 @@
 .menu-item {
    display: flex;
    align-items: center;
-   justify-content: start;
+   justify-content: flex-start;
    width: 100%;
    color: #CBD5E1 !important;
    font-weight: 500;
