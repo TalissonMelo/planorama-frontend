@@ -27,7 +27,6 @@ export class HeaderComponent {
       time: '12h',
       isRead: false,
     },
-    // Adicione mais notificações conforme necessário
   ];
 
   constructor(private router: Router) {

@@ -31,8 +31,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initialDate();
-    this.selectDay();
+    // this.initialDate();
+    // this.selectDay();
   }
 
   public initialDate(): void {
@@ -45,7 +45,7 @@ export class HomeComponent implements OnInit {
 
   onDateChange(event: any) {
     this.selectedDate = event.value.toISOString().split('T')[0];
-    this.selectDay();
+    //this.selectDay();
   }
 
   selectDay(): void {

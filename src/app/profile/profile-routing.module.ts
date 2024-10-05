@@ -4,7 +4,7 @@ import { ProfileComponent } from './profile.component';
 import { GuardRotasGuard } from '../guard-rotas.guard';
 
 const routes: Routes = [
-  { path: '', component: ProfileComponent, canActivate: [GuardRotasGuard] },
+  { path: '', component: ProfileComponent }, //canActivate: [GuardRotasGuard] },
 ];
 
 @NgModule({

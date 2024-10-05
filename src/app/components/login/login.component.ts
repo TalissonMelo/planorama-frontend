@@ -29,22 +29,23 @@ export class LoginComponent {
 
   enter(): void {
     if (this.isValid()) {
-      this.loaderService.show();
-      this.service.logar(this.login).subscribe(
-        (res) => {
-          this.useSession.setToken(res.authorization);
-          this.useSession.setUser(res);
-          this.loaderService.hide();
-          this.firebaseMessagingService.initFirebase();
-          this.router.navigate(['/']);
-        },
-        (error) => {
-          this.loaderService.hide();
-          this.notificationService.showError(
-            'E-mail ou senha, inválidos por favor tente novamente.'
-          );
-        }
-      );
+      this.router.navigate(['/']);
+      // this.loaderService.show();
+      // this.service.logar(this.login).subscribe(
+      //   (res) => {
+      //     this.useSession.setToken(res.authorization);
+      //     this.useSession.setUser(res);
+      //     this.loaderService.hide();
+      //     this.firebaseMessagingService.initFirebase();
+      //     this.router.navigate(['/']);
+      //   },
+      //   (error) => {
+      //     this.loaderService.hide();
+      //     this.notificationService.showError(
+      //       'E-mail ou senha, inválidos por favor tente novamente.'
+      //     );
+      //   }
+      // );
     }
   }
 

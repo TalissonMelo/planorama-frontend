@@ -50,23 +50,28 @@ export class RecoverCodeComponent {
   confirmCode() {
     this.createCode();
     if (this.codeRequest.code.length === 5) {
-      this.loaderService.show();
-      this.service.sendCode(this.codeRequest).subscribe(
-        (res) => {
-          this.useSession.setCode(res);
-          this.router.navigate(['/recover-password/password']);
-          this.loaderService.hide();
-        },
-        (error) => {
-          this.loaderService.hide();
-          this.notificationService.showError(
-            'Código inválido, por favor tente novamente.'
-          );
-        }
-      );
+      this.router.navigate(['/recover-password/password']);
+      //   this.loaderService.show();
+      //   this.service.sendCode(this.codeRequest).subscribe(
+      //     (res) => {
+      //       this.useSession.setCode(res);
+      //       this.router.navigate(['/recover-password/password']);
+      //       this.loaderService.hide();
+      //     },
+      //     (error) => {
+      //       this.loaderService.hide();
+      //       this.notificationService.showError(
+      //         'Código inválido, por favor tente novamente.'
+      //       );
+      //     }
+      //   );
+      // } else {
+      //   this.notificationService.showError(
+      //     'Por favor, preencha todos os campos.'
+      //   );
     } else {
       this.notificationService.showError(
-        'Por favor, preencha todos os campos.'
+        'Código inválido, por favor tente novamente.'
       );
     }
   }

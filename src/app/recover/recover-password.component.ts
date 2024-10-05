@@ -25,21 +25,22 @@ export class RecoverPasswordComponent {
 
   recoverPassword(): void {
     if (this.isValidEmail()) {
-      this.loaderService.show();
-      this.service.sendCode(this.recover).subscribe(
-        (res) => {
-          this.useSession.setData(res);
-          this.router.navigate(['/recover-password/code']);
-          this.loaderService.hide();
-          this.notificationService.showSuccess('Código enviado com sucesso!');
-        },
-        (error) => {
-          this.loaderService.hide();
-          this.notificationService.showError(
-            'E-mail inválido por favor tente novamente.'
-          );
-        }
-      );
+      this.router.navigate(['/recover-password/code']);
+      //   this.loaderService.show();
+      //   this.service.sendCode(this.recover).subscribe(
+      //     (res) => {
+      //       this.useSession.setData(res);
+      //       this.router.navigate(['/recover-password/code']);
+      //       this.loaderService.hide();
+      //       this.notificationService.showSuccess('Código enviado com sucesso!');
+      //     },
+      //     (error) => {
+      //       this.loaderService.hide();
+      //       this.notificationService.showError(
+      //         'E-mail inválido por favor tente novamente.'
+      //       );
+      //     }
+      //   );
     }
   }
 

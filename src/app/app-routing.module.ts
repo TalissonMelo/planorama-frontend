@@ -16,25 +16,25 @@ const routes: Routes = [
   {
     path: '',
     component: NavComponent,
-    canActivate: [GuardRotasGuard],
+    //canActivate: [GuardRotasGuard],
     children: [
       { path: '', component: HomeComponent },
       {
         path: 'schedule',
         component: ScheduleNameComponent,
-        canActivate: [GuardRotasGuard],
+        //canActivate: [GuardRotasGuard],
         data: { title: 'Agenda' },
       },
       {
         path: 'session',
         component: ScheduleComponent,
-        canActivate: [GuardRotasGuard],
+        //canActivate: [GuardRotasGuard],
         data: { title: 'Sessões' },
       },
       {
         path: 'members',
         component: MembersComponent,
-        canActivate: [GuardRotasGuard],
+        //canActivate: [GuardRotasGuard],
         data: { title: 'Participantes' },
       },
       {

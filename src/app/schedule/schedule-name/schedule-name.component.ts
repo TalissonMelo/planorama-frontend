@@ -14,11 +14,35 @@ import { UserPermissions } from './domain/user_permissions';
 })
 export class ScheduleNameComponent implements OnInit {
   public userPermissions: UserPermissions = new UserPermissions();
-  public schedules: ScheduleResponse[] = [];
+  // public schedules: ScheduleResponse[] = [];
   public editSchedule: string = '';
   public schedule: ScheduleRequest;
   public useSession: UseSession;
   public userId: string;
+
+  schedules: ScheduleResponse[] = [
+    {
+      id: '1a2b3c',
+      name: 'Morning Meeting',
+      ownerId: 'owner123',
+      endTime: '07:00',
+      startTime: '10:00',
+    },
+    {
+      id: '4d5e6f',
+      name: 'Project Planning',
+      ownerId: 'owner456',
+      endTime: '12:30',
+      startTime: '19:00',
+    },
+    {
+      id: '7g8h9i',
+      name: 'Lunch Break',
+      ownerId: 'owner789',
+      endTime: '19:00',
+      startTime: '22:30',
+    },
+  ];
 
   constructor(
     private router: Router,
@@ -32,10 +56,10 @@ export class ScheduleNameComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loaderService.show();
-    this.listPermissions();
-    this.listSchedules();
-    this.loaderService.hide();
+    // this.loaderService.show();
+    // this.listPermissions();
+    // this.listSchedules();
+    // this.loaderService.hide();
   }
 
   listPermissions(): void {

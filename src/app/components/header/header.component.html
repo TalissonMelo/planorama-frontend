@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="d-flex align-items-center ms-auto">
             <button mat-icon-button aria-label="Notificações" (click)="toggleNotifications()">
-                <mat-icon>notifications</mat-icon>
+                <mat-icon>notifications_outline</mat-icon>
             </button>
             <div *ngIf="showNotifications" class="notification-dropdown">
                 <div class="notification-header">
@@ -24,8 +24,8 @@
             </div>
             <button mat-button [matMenuTriggerFor]="userMenu">
                 <span class="greeting me-1">Olá,</span>
-                <span class="username">{{ name }}</span>
-                <mat-icon>expand_more</mat-icon>
+           <span class="username">Talisson De Melo Rodrigues</span>       <!--{{ name }} -->
+                <mat-icon>|</mat-icon>
             </button>
             <mat-menu #userMenu="matMenu">
                 <button mat-menu-item (click)="profile()">

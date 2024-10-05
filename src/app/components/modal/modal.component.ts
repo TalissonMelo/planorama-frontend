@@ -57,9 +57,9 @@ export class ModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.listMember();
-    this.listLegends();
-    this.listSessions();
+    // this.listMember();
+    // this.listLegends();
+    // this.listSessions();
   }
 
   listMember(): void {

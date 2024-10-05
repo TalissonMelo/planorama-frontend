@@ -48,8 +48,22 @@ body {
 }
 
 .notification-dialog .mat-dialog-container {
-    background-color: white; 
-    border-radius: 8px; 
+    background-color: white;
+    border-radius: 8px;
     overflow: hidden;
-  }
-  
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    color: #007bff;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+.back-link mat-icon {
+    margin-right: 4px;
+}

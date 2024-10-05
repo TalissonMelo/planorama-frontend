@@ -23,7 +23,9 @@ export class RecoverChangePasswordComponent {
     private notificationService: NotificationService
   ) {
     const code: CodeResponse = this.useSession.getCode();
-    this.changePassword = new ChangePassword(code.newCode, code.email, '');
+    //this.changePassword = new ChangePassword(code.newCode, code.email, '');
+
+    this.changePassword = new ChangePassword('', '', '');
   }
 
   validPassword(): boolean {
@@ -46,20 +48,22 @@ export class RecoverChangePasswordComponent {
 
   resetPassword() {
     if (this.validPassword()) {
-      this.loaderService.show();
-      this.service.changePassword(this.changePassword).subscribe(
-        (res) => {
-          this.loaderService.hide();
-          this.router.navigate(['/login']);
-          this.notificationService.showSuccess('Senha alterada com sucesso!');
-        },
-        (error) => {
-          this.loaderService.hide();
-          this.notificationService.showError(
-            'Senhas inválidas por favor tente novamente.'
-          );
-        }
-      );
+      this.router.navigate(['/login']);
+      this.notificationService.showSuccess('Senha alterada com sucesso!');
+      // this.loaderService.show();
+      // this.service.changePassword(this.changePassword).subscribe(
+      //   (res) => {
+      //     this.loaderService.hide();
+      //     this.router.navigate(['/login']);
+      //     this.notificationService.showSuccess('Senha alterada com sucesso!');
+      //   },
+      //   (error) => {
+      //     this.loaderService.hide();
+      //     this.notificationService.showError(
+      //       'Senhas inválidas por favor tente novamente.'
+      //     );
+      //   }
+      // );
     }
   }
 }

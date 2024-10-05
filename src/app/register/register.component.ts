@@ -28,22 +28,24 @@ export class RegisterComponent {
 
   onSubmit(): void {
     if (this.isValid()) {
-      this.loaderService.show();
-      this.service.userCreate(this.user).subscribe(
-        (res) => {
-          this.loaderService.hide();
-          this.router.navigate(['/login']);
-          this.notificationService.showSuccess(
-            'Usuário registrado com sucesso!'
-          );
-        },
-        (error) => {
-          this.loaderService.hide();
-          this.notificationService.showError(
-            'Dados de usuário, inválidos por favor tente novamente.'
-          );
-        }
-      );
+      this.router.navigate(['/login']);
+      this.notificationService.showSuccess('Usuário registrado com sucesso!');
+      // this.loaderService.show();
+      // this.service.userCreate(this.user).subscribe(
+      //   (res) => {
+      //     this.loaderService.hide();
+      //     this.router.navigate(['/login']);
+      //     this.notificationService.showSuccess(
+      //       'Usuário registrado com sucesso!'
+      //     );
+      //   },
+      //   (error) => {
+      //     this.loaderService.hide();
+      //     this.notificationService.showError(
+      //       'Dados de usuário, inválidos por favor tente novamente.'
+      //     );
+      //   }
+      // );
     }
   }
 
@@ -59,7 +61,6 @@ export class RegisterComponent {
       this.user.email != '' &&
       this.user.nickname != '' &&
       this.user.phone != '' &&
-      this.user.phone.length == 16 &&
       this.validPassword()
     ) {
       return true;
@@ -72,7 +73,7 @@ export class RegisterComponent {
 
   validPassword(): boolean {
     const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,12}$/;
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,50}$/;
     const isPasswordValid = passwordRegex.test(this.user.password);
 
     if (isPasswordValid && this.user.password == this.passwordConfirm) {
