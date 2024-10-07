@@ -12,15 +12,93 @@ import { HomeFreeTimes } from './domain/home_free_times';
 })
 export class HomeComponent implements OnInit {
   public useSession: UseSession;
-  public busyHours: Home[] = [];
+  // public busyHours: Home[] = [];
   public selectedDate!: string;
-  public vacantTimes: HomeFreeTimes[] = [];
+  // public vacantTimes: HomeFreeTimes[] = [];
   public selectedDuration: number = 30;
   public durations: any[] = [
     { value: 30, label: '30 minutos' },
     { value: 60, label: '1 hora' },
     { value: 90, label: '1h 30m' },
     { value: 120, label: '2 horas' },
+  ];
+
+  vacantTimes: HomeFreeTimes[] = [
+    {
+      id: '1',
+      title: 'Morning Availability',
+      times: [
+        {
+          startTime: '08:00',
+          endTime: '08:30',
+        },
+        {
+          startTime: '10:00',
+          endTime: '10:30',
+        },
+      ],
+    },
+    {
+      id: '2',
+      title: 'Afternoon Availability',
+      times: [
+        {
+          startTime: '13:00',
+          endTime: '13:30',
+        },
+        {
+          startTime: '15:00',
+          endTime: '15:30',
+        },
+      ],
+    },
+  ];
+
+  busyHours: Home[] = [
+    {
+      id: '1',
+      name: 'Meeting with Team',
+      startTime: '2024-10-07T09:00:00',
+      endTime: '2024-10-07T10:00:00',
+      sessions: [
+        {
+          id: '101',
+          title: 'Introduction Session',
+          startTime: '2024-10-07T09:00:00',
+          endTime: '2024-10-07T09:30:00',
+          description: 'Initial meeting to discuss project scope and roles.',
+        },
+        {
+          id: '102',
+          title: 'Project Planning',
+          startTime: '2024-10-07T09:30:00',
+          endTime: '2024-10-07T10:00:00',
+          description: 'Planning tasks and timelines for the project.',
+        },
+      ],
+    },
+    {
+      id: '2',
+      name: 'Client Presentation',
+      startTime: '2024-10-07T11:00:00',
+      endTime: '2024-10-07T12:00:00',
+      sessions: [
+        {
+          id: '201',
+          title: 'Presentation Review',
+          startTime: '2024-10-07T11:00:00',
+          endTime: '2024-10-07T11:30:00',
+          description: 'Review presentation slides and flow.',
+        },
+        {
+          id: '202',
+          title: 'Client Q&A',
+          startTime: '2024-10-07T11:30:00',
+          endTime: '2024-10-07T12:00:00',
+          description: 'Addressing client questions and feedback.',
+        },
+      ],
+    },
   ];
 
   constructor(

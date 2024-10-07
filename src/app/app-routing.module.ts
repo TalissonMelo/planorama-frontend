@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavComponent } from './components/nav/nav.component';
-import { GuardRotasGuard } from './guard-rotas.guard';
 import { MembersComponent } from './schedule/members/members.component';
 import { ScheduleNameComponent } from './schedule/schedule-name/schedule-name.component';
 import { ScheduleComponent } from './schedule/schedule.component';
@@ -51,6 +50,11 @@ const routes: Routes = [
         path: 'chat',
         loadChildren: () =>
           import('./chat/chat.module').then((c) => c.ChatModule),
+      },
+      {
+        path: 'configure',
+        loadChildren: () =>
+          import('./configure/configure.module').then((c) => c.ConfigureModule),
       },
     ],
   },

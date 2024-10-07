@@ -1,43 +1,49 @@
 <mat-drawer-container class="ls" autosize>
-    <mat-drawer #drawer class="sidenav" mode="side">
-        <div class="logo" (click)="home()">
-            <img src="assets/planorama.png" alt="Logo" class="logo-img" />
-            <span class="app-name">Planorama</span>
-          </div>          
-      <mat-nav-list class="nav-list">
-        <mat-list-item (click)="home()">
-          <button mat-button class="menu-item">
-            <mat-icon>home</mat-icon>
-            <span>Dashboard</span>
-          </button>
-        </mat-list-item>
-        <mat-list-item (click)="schedule()">
-          <button mat-button class="menu-item">
-            <mat-icon>event</mat-icon>
-            <span>Agenda</span>
-          </button>
-        </mat-list-item>
-        <mat-list-item (click)="legend()">
-          <button mat-button class="menu-item">
-            <mat-icon>brush</mat-icon>
-            <span>Legenda</span>
-          </button>
-        </mat-list-item>
-        <mat-list-item (click)="logout()">
-          <button mat-button class="menu-item">
-            <mat-icon>exit_to_app</mat-icon>
-            <span>Sair</span>
-          </button>
-        </mat-list-item>
-      </mat-nav-list>
-    </mat-drawer>
-  
-    <div class="sidenav-content">
-      <button class="menu" (click)="drawer.toggle()" mat-icon-button>
-        <mat-icon>menu</mat-icon>
-      </button>
-      <app-header></app-header>
-      <router-outlet></router-outlet>
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <div class="logo" (click)="home()">
+      <img src="assets/planorama.png" alt="Logo" class="logo-img" />
+      <span class="app-name">Planorama</span>
     </div>
-  </mat-drawer-container>
-  
+    <mat-nav-list class="nav-list">
+      <mat-list-item (click)="home()">
+        <button mat-button class="menu-item">
+          <mat-icon>home</mat-icon>
+          <span>Dashboard</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item (click)="schedule()">
+        <button mat-button class="menu-item">
+          <mat-icon>event</mat-icon>
+          <span>{{ label.agenda | translate}}</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item (click)="legend()">
+        <button mat-button class="menu-item">
+          <mat-icon>brush</mat-icon>
+          <span>{{ label.legenda | translate}}</span>
+        </button>
+      </mat-list-item>
+      <mat-list-item (click)="configure()">
+        <button mat-button class="menu-item">
+          <mat-icon>settings</mat-icon>
+          <span>{{ label.configuracao| translate}}</span>
+        </button>
+      </mat-list-item>
+
+      <mat-list-item (click)="logout()">
+        <button mat-button class="menu-item">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>{{ label.sair | translate}}</span>
+        </button>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <div class="sidenav-content">
+    <button class="menu" (click)="drawer.toggle()" mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>

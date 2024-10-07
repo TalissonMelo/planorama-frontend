@@ -11,7 +11,11 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Para realizar requisições HTTP
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule,
+} from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/nav/nav.component';
 
@@ -49,7 +53,12 @@ import { MembersComponent } from './schedule/members/members.component';
 import { ScheduleNameComponent } from './schedule/schedule-name/schedule-name.component';
 import { TokenInterceptor } from './token.interceptor';
 import { UseSession } from './util/useSession';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 registerLocaleData(localePt);
 
 @NgModule({
@@ -105,6 +114,15 @@ registerLocaleData(localePt);
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
+    }),
+
+    // Configuração do TranslateModule
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
     }),
   ],
   providers: [

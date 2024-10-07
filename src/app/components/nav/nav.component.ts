@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { UseSession } from 'src/app/util/useSession';
+import label from 'src/assets/i18n/label';
 
 @Component({
   selector: 'app-nav',
@@ -9,8 +11,9 @@ import { UseSession } from 'src/app/util/useSession';
 })
 export class NavComponent {
   public useSession: UseSession = new UseSession();
+  label = label;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public translate: TranslateService) {}
 
   logout() {
     this.useSession.clear();
@@ -23,6 +26,10 @@ export class NavComponent {
 
   legend() {
     this.router.navigate(['/legend']);
+  }
+
+  configure() {
+    this.router.navigate(['/configure']);
   }
 
   home() {

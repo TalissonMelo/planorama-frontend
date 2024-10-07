@@ -51,7 +51,8 @@
                         </select>
                     </td>
                     <td class="col-1 text-center action-icons align-middle">
-                        <button *ngIf="memberSchedule.type !== 'VIEWER'" mat-icon-button color="warn" (click)="deletarMembro(member)">
+                        <!-- *ngIf="memberSchedule.type !== 'VIEWER'" -->
+                        <button  mat-icon-button color="warn" (click)="deletarMembro(member)">
                             <mat-icon>delete</mat-icon>
                           </button>
                     </td>

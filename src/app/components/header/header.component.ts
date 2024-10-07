@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { UseSession } from 'src/app/util/useSession';
+import label from 'src/assets/i18n/label';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +10,7 @@ import { UseSession } from 'src/app/util/useSession';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
+  public label = label;
   public name: string;
   public showNotifications: boolean = false;
   public activeTab: 'read' | 'unread' = 'read';
@@ -29,7 +32,7 @@ export class HeaderComponent {
     },
   ];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, public translate: TranslateService) {
     this.useSession = new UseSession();
     this.name = this.useSession.getUser().nickname;
   }

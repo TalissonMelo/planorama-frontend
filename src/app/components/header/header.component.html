@@ -6,8 +6,8 @@
             </button>
             <div *ngIf="showNotifications" class="notification-dropdown">
                 <div class="notification-header">
-                    <button class="tab-button" [class.active]="activeTab === 'read'" (click)="setActiveTab('read')">Lidas</button>
-                    <button class="tab-button" [class.active]="activeTab === 'unread'" (click)="setActiveTab('unread')">Não lidas</button>
+                    <button class="tab-button" [class.active]="activeTab === 'read'" (click)="setActiveTab('read')">{{ label.lidas | translate}}</button>
+                    <button class="tab-button" [class.active]="activeTab === 'unread'" (click)="setActiveTab('unread')">{{ label.nao_lidas | translate}}</button>
                 </div>
                 <div class="notification-list">
                     <div *ngFor="let notification of getNotifications()" class="notification-item">
@@ -23,18 +23,18 @@
                 </div>
             </div>
             <button mat-button [matMenuTriggerFor]="userMenu">
-                <span class="greeting me-1">Olá,</span>
+                <span class="greeting me-1">{{label.ola | translate }},</span>
            <span class="username">Talisson De Melo Rodrigues</span>       <!--{{ name }} -->
                 <mat-icon>|</mat-icon>
             </button>
             <mat-menu #userMenu="matMenu">
                 <button mat-menu-item (click)="profile()">
                     <mat-icon>person</mat-icon> 
-                    <span class="me-2">Meus dados</span>
+                    <span class="me-2">{{label.meus_dados | translate }}</span>
                 </button>
                 <button mat-menu-item (click)="logout()">
                     <mat-icon>logout</mat-icon> 
-                    <span class="me-2">Sair</span>
+                    <span class="me-2">{{ label.sair | translate}}</span>
                 </button>
             </mat-menu>
         </div>

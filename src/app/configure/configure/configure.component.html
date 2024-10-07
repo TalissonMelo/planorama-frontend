@@ -1,0 +1,25 @@
+<div class="container mt-4">
+
+    <div class="mb-3">
+        <a href="/" class="text-decoration-none d-flex align-items-center">
+            <i class="bi bi-arrow-left me-2"></i> Voltar
+        </a>
+    </div>
+
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold">{{ label.configuracao | translate}}</h2>
+    </div>
+
+
+    <h1 class="display-5">{{ 'TITLE' | translate }}</h1>
+
+    <p class="lead">{{ 'DESCRIPTION' | translate }}</p>
+
+    <div class="row mt-3">
+        <div class="col">
+            <button class="btn btn-outline-primary me-2" (click)="switchLanguage('en')">English</button>
+            <button class="btn btn-outline-secondary" (click)="switchLanguage('pt')">Português</button>
+        </div>
+    </div>
+</div>

@@ -7,6 +7,8 @@ import { LoaderService } from '../loader/loader.service';
 import { NotificationService } from '../notification/notification.service';
 import { Login } from './user/model/login';
 import { UserService } from './user/service/user.service';
+import { TranslateService } from '@ngx-translate/core';
+import label from 'src/assets/i18n/label';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +17,7 @@ import { UserService } from './user/service/user.service';
 export class LoginComponent {
   public useSession: UseSession = new UseSession();
   public login: Login;
+  label = label;
 
   constructor(
     private router: Router,
@@ -22,7 +25,8 @@ export class LoginComponent {
     private service: UserService,
     private notificationService: NotificationService,
     private loaderService: LoaderService,
-    private firebaseMessagingService: FirebaseMessagingService
+    private firebaseMessagingService: FirebaseMessagingService,
+    private translate: TranslateService
   ) {
     this.login = new Login('', '');
   }

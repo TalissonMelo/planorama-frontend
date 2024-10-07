@@ -1,0 +1,15 @@
+{
+    "TITLE": "Welcome",
+    "DESCRIPTION": "Select the language you prefer to use.",
+    "configuracao" : "Settings",
+    "agenda" : "Schedule",
+    "legenda": "Legend",
+    "sair": "Logout",
+    "lidas": "Read",
+    "nao_lidas": "Unread",
+    "ola": "Hello",
+    "meus_dados" : "My data",
+    "login_title" : "A new way to plan your appointments",
+      "login_sub_title" : "Don't have an account yet?"
+  }
+  

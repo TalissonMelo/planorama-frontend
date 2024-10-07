@@ -3,8 +3,8 @@
   <div class="col-md-4 d-flex flex-column  justify-content-center bg-white p-5">
     <img src="./assets/planorama.png" alt="Logo" class="mb-4" style="width: 80px; height: 80px;"> 
     <h1 class="heading-h1">Planorama</h1>
-    <p class="subtitle">Um novo jeito de planejar seus compromissos</p>
-    <p class="body-16-regular">Ainda não tem uma conta? 
+    <p class="subtitle">{{ label.login_title | translate }}</p>
+    <p class="body-16-regular">{{ label.login_sub_title | translate }}
       <a [routerLink]="['/register']" class="font-weight-bold body-16-medium">Criar agora</a>
     </p>
     <form class="w-75">

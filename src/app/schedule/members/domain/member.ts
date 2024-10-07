@@ -6,7 +6,7 @@ export class Member {
   public nickname!: string;
 }
 
-enum MemberType {
+export enum MemberType {
   CREATOR,
   EDITOR,
   VIEWER,
