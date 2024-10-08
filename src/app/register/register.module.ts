@@ -8,6 +8,7 @@ import { NgModule } from '@angular/core';
 import { PhoneModule } from '../components/phone/phone.module';
 import { TermsModule } from '../components/terms/terms.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [RegisterComponent],
@@ -20,6 +21,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     PasswordModule,
     PhoneModule,
     TermsModule,
+    TranslateModule,
   ],
 })
 export class RegisterModule {}

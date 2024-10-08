@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import label from 'src/assets/i18n/label';
 
 @Component({
   selector: 'app-phone',
@@ -6,6 +8,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./phone.component.css'],
 })
 export class PhoneComponent {
+  public label = label;
+
+  constructor(public translate: TranslateService) {}
+
   @Input() id: string = '';
   @Input() placeholder: string = '';
 

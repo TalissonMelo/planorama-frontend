@@ -1,54 +1,47 @@
 <div class="container mt-4">
     <div class="back-link" routerLink="/">
-        <mat-icon>arrow_back</mat-icon> Voltar
+        <mat-icon>arrow_back</mat-icon> {{ label.voltar | translate}}
     </div>
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Legendas</h2>
-        <button type="button" class="btn btn-primary" (click)="openLegendDialog()">
-            Nova legenda
+        <h2>{{ label.legenda | translate }}</h2>
+        <button type="button" class="btn btn-primary" (click)="openLegendDialog()">{{label.nova_legenda | translate}}
         </button>
     </div>
 
-    <div class="table-responsive">
-        <table class="table table-bordered">
-            <thead class="thead-light">
-                <tr>
-                    <th class="col-1">Cor</th>
-                    <th class="col-9">Descrição</th>
-                    <th class="col-2 text-center">Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let legend of legends">
-                    <td class="col-1" [style.background]="legend.color"></td>
-                    <td class="col-9">{{ legend.description }}</td>
-                    <td class="col-2 text-center">
-                        <button mat-icon-button color="warn" (click)="deleted(legend)">
-                            <mat-icon>delete</mat-icon>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="row">
+        <div *ngFor="let legend of legends" class="col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="legend-card">
+                <div class="legend-header" [style.background]="legend.color">
+                    <span class="legend-title">{{ legend.description }}</span>
+                </div>
+                <div class="legend-content" >
+                    <button mat-icon-button class="delete-button" (click)="deleted(legend)" title="Deletar">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+
+
 
 <ng-template #legendDialog>
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header p-3">
-                <h5 class="modal-title">{{ 'Criar Legenda' }}</h5>
+                <h5 class="modal-title">{{ label.nova_legenda | translate }}</h5>
             </div>
             <div class="modal-body">
                 <form [formGroup]="legendForm">
                     <div class="form-group">
-                        <label for="description">Legenda</label>
-                        <input id="description" formControlName="description" class="form-control"
-                            placeholder="Digite o nome da legenda">
+                        <label for="description">{{ label.legenda | translate}} </label>
+                        <input id="description" formControlName="description" class="form-control">
                     </div>
                     <div class="row">
                         <div class="col-sm-12 mt-3">
-                            <label for="description">Selecione uma cor para corresponder a sua legenda</label>
+                            <label for="description">{{ label.selecionar_cor | translate  }} </label>
                         </div>
                     </div>
                     <div class="row">
@@ -63,7 +56,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" (click)="saveLegend()" class="btn btn-primary mt-3">Salvar legenda</button>
+                    <button type="button" (click)="saveLegend()" class="btn btn-primary mt-3">{{ label.salvar_legenda | translate  }}</button>
                 </form>
             </div>
         </div>

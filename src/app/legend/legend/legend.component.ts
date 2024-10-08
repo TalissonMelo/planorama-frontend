@@ -6,6 +6,8 @@ import { LegendResponse } from '../domain/legend_response';
 import { LegendService } from '../service/legend.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import label from 'src/assets/i18n/label';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-legend',
@@ -13,6 +15,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./legend.component.css'],
 })
 export class LegendComponent implements OnInit {
+  public label = label;
   @ViewChild('legendDialog') legendDialog!: TemplateRef<any>;
   public legends: LegendResponse[] = [];
   public legend: LegendRequest;
@@ -39,6 +42,7 @@ export class LegendComponent implements OnInit {
   constructor(
     private service: LegendService,
     private loaderService: LoaderService,
+    public translate: TranslateService,
     private notificationService: NotificationService,
     private dialog: MatDialog,
     private fb: FormBuilder
@@ -65,21 +69,39 @@ export class LegendComponent implements OnInit {
     this.legends = [
       {
         id: '1',
-        color: '#FF5733',
+        color: '#90EE90',
         ownerId: 'owner123',
         description: 'A legend item for the first chart',
       },
       {
         id: '2',
-        color: '#33FF57',
+        color: '#ADD8E6',
         ownerId: 'owner456',
-        description: 'A legend item for the second chart',
+        description: 'A legend second chart',
       },
       {
         id: '3',
         color: '#3357FF',
         ownerId: 'owner789',
-        description: 'A legend item for the third chart',
+        description: 'A legend  third chart',
+      },
+      {
+        id: '3',
+        color: '#FFD700',
+        ownerId: 'owner789',
+        description: 'A legend  third chart',
+      },
+      {
+        id: '3',
+        color: '#DA70D6',
+        ownerId: 'owner789',
+        description: 'A legend  third chart',
+      },
+      {
+        id: '3',
+        color: '#E6E6FA',
+        ownerId: 'owner789',
+        description: 'A legend  third chart',
       },
     ];
   }
@@ -161,5 +183,20 @@ export class LegendComponent implements OnInit {
   openLegendDialog(legend = null): void {
     this.legendForm.reset();
     this.dialog.open(this.legendDialog);
+  }
+
+  clearColor(color: string, amount: number = 30): string {
+    let r = parseInt(color.slice(1, 3), 16);
+    let g = parseInt(color.slice(3, 5), 16);
+    let b = parseInt(color.slice(5, 7), 16);
+
+    r = Math.min(255, r + amount);
+    g = Math.min(255, g + amount);
+    b = Math.min(255, b + amount);
+
+    return `#${((1 << 24) + (r << 16) + (g << 8) + b)
+      .toString(16)
+      .slice(1)
+      .padStart(6, '0')}`;
   }
 }

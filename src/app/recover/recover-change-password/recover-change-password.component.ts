@@ -6,12 +6,15 @@ import { UseSession } from 'src/app/util/useSession';
 import { ChangePassword } from '../domain/change_password';
 import { CodeResponse } from '../domain/code_response';
 import { ChangePasswordService } from '../service/change_password.service';
+import label from 'src/assets/i18n/label';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-recover-change-password',
   templateUrl: './recover-change-password.component.html',
 })
 export class RecoverChangePasswordComponent {
+  public label = label;
   public passwordConfirm: string = '';
   public changePassword: ChangePassword;
   public useSession: UseSession = new UseSession();
@@ -20,7 +23,8 @@ export class RecoverChangePasswordComponent {
     private router: Router,
     private loaderService: LoaderService,
     private service: ChangePasswordService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    public translate: TranslateService
   ) {
     const code: CodeResponse = this.useSession.getCode();
     //this.changePassword = new ChangePassword(code.newCode, code.email, '');

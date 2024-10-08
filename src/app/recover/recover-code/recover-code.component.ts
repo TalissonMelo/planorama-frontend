@@ -6,12 +6,15 @@ import { LoaderService } from 'src/app/components/loader/loader.service';
 import { NotificationService } from 'src/app/components/notification/notification.service';
 import { CodeRequest } from '../domain/code_request';
 import { Email } from '../domain/email';
+import { TranslateService } from '@ngx-translate/core';
+import label from 'src/assets/i18n/label';
 
 @Component({
   selector: 'app-recover-code',
   templateUrl: './recover-code.component.html',
 })
 export class RecoverCodeComponent {
+  public label = label;
   public email!: Email;
   public codeRequest: CodeRequest = new CodeRequest();
   public useSession: UseSession = new UseSession();
@@ -22,7 +25,8 @@ export class RecoverCodeComponent {
     private router: Router,
     private service: CodeService,
     private loaderService: LoaderService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    public translate: TranslateService
   ) {
     this.email = this.useSession.getData();
   }

@@ -5,12 +5,15 @@ import { NotificationService } from '../components/notification/notification.ser
 import { UseSession } from '../util/useSession';
 import { RecoverEmail } from './domain/recover_email';
 import { RecoverService } from './service/recover.service';
+import { TranslateService } from '@ngx-translate/core';
+import label from 'src/assets/i18n/label';
 
 @Component({
   selector: 'app-recover-password',
   templateUrl: './recover-password.component.html',
 })
 export class RecoverPasswordComponent {
+  label = label;
   public recover: RecoverEmail;
   public useSession: UseSession = new UseSession();
 
@@ -18,7 +21,8 @@ export class RecoverPasswordComponent {
     private router: Router,
     private service: RecoverService,
     private loaderService: LoaderService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    public translate: TranslateService
   ) {
     this.recover = new RecoverEmail();
   }

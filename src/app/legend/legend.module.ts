@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [LegendComponent],
@@ -30,6 +31,7 @@ import { MatCardModule } from '@angular/material/card';
     MatRadioModule,
     MatIconModule,
     MatCardModule,
+    TranslateModule,
   ],
 })
 export class LegendModule {}

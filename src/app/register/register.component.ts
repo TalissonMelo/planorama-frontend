@@ -6,12 +6,15 @@ import { UserService } from './service/user.service';
 import { LoaderService } from '../components/loader/loader.service';
 import { MatDialog } from '@angular/material/dialog';
 import { TermsComponent } from '../components/terms/terms.component';
+import label from 'src/assets/i18n/label';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
 })
 export class RegisterComponent {
+  public label = label;
   public user: UserRequest;
   public acceptedTerms: boolean = false;
   public passwordConfirm: string = '';
@@ -20,6 +23,7 @@ export class RegisterComponent {
     private router: Router,
     public dialog: MatDialog,
     private service: UserService,
+    public translate: TranslateService,
     private loaderService: LoaderService,
     private notificationService: NotificationService
   ) {

@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import label from 'src/assets/i18n/label';
 
 @Component({
   selector: 'app-password',
@@ -6,6 +8,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./password.component.css'],
 })
 export class PasswordComponent {
+  constructor(public translate: TranslateService) {}
+
+  public label = label;
   private _changePassword: string = '';
 
   @Input() id: string = '';

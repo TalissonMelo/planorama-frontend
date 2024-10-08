@@ -3,9 +3,9 @@
   <div class="col-md-4 d-flex flex-column justify-content-center bg-white p-5">
     <img src="./assets/planorama.png" alt="Logo" class="mb-4" style="width: 80px; height: 80px;">
     <h1 class="heading-h1">Planorama</h1>
-    <p class="subtitle">Verificação</p>
+    <p class="subtitle">{{ label.verificacao | translate }}</p>
     <p class="body-16-regular">
-        Insira o código que foi enviado para o email talissonmelo@gmail.com       <!-- {{ email!.email }} -->
+         {{ label.insira_codigo | translate }} talissonmelo@gmail.com       <!-- {{ email!.email }} -->
     </p>
     <div class="w-75 mt-4">
       <div class="form-group d-flex justify-content-center code-inputs" #codeInputs>
@@ -20,10 +20,10 @@
         <input type="text" maxlength="1" class="form-control code-input mx-2 text-center" 
                (input)="onInputChange($event, 4)" style="width: 60px; height: 60px; font-size: 24px;">
       </div>
-      <button  (click)="confirmCode()" class="btn btn-primary btn-block w-100 text-center mt-4">Confirmar</button>
+      <button  (click)="confirmCode()" class="btn btn-primary btn-block w-100 text-center mt-4">{{ label.continuar | translate }}</button>
     </div>
     <div class="d-flex justify-content-center mt-4">
-      <a routerLink="/login" class="body-16-medium">Voltar para o menu inicial</a>
+      <a routerLink="/login" class="body-16-medium">{{ label.voltar_inicio | translate }}</a>
     </div>
   </div>
   <div class="col-md-1"></div>

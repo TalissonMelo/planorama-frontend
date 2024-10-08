@@ -4,14 +4,15 @@ import { NgModule } from '@angular/core';
 import { RecoverPasswordRoutingModule } from './recover-password-routing.module';
 import { RecoverPasswordComponent } from './recover-password.component';
 
-import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { RecoverCodeComponent } from './recover-code/recover-code.component';
-import { RecoverChangePasswordComponent } from './recover-change-password/recover-change-password.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { TranslateModule } from '@ngx-translate/core';
 import { PasswordModule } from '../components/password/password.module';
+import { RecoverChangePasswordComponent } from './recover-change-password/recover-change-password.component';
+import { RecoverCodeComponent } from './recover-code/recover-code.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { PasswordModule } from '../components/password/password.module';
     FormsModule,
     ReactiveFormsModule,
     PasswordModule,
+    TranslateModule,
   ],
 })
 export class RecoverPasswordModule {}

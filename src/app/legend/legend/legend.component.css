@@ -32,13 +32,58 @@
 }
 
 .color-circle {
-  width: 24px;
+  width: 50px;
   height: 24px;
-  border-radius: 50%;
+  border-radius: 20%;
   border: 1px solid #ccc;
   margin-right: 5px; 
 }
 
 .modal-body {
   padding: 20px; 
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.legend-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 100%;
+}
+
+.legend-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.legend-header {
+  padding: 16px;
+  color: black;
+  font-size: 1.1rem;
+  text-align: center;
+
+}
+
+.legend-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  background-color: #fafafa;
+  height: 100%;
+}
+
+.delete-button {
+  transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+  background-color: rgba(255, 0, 0, 0.1);
 }
