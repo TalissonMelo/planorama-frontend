@@ -1,15 +1,17 @@
 <div class="chat-container">
-  <h2>{{session.title}}</h2>
-  <p class="pt-2">{{session.description}}</p>
-  <div class="message-list" #messageList>
-    <div *ngFor="let message of messages; let i = index" [attr.id]="'message-' + i">
-      <div [ngClass]="{'user-message': message.user, 'api-message': !message.user}">
-        {{ message.content }}
+  <div class="chat-modal">
+    <h2>{{ session.title }}</h2>
+    <p class="pt-2">{{ session.description }}</p>
+    <div class="message-list" #messageList>
+      <div *ngFor="let message of messages; let i = index" [attr.id]="'message-' + i">
+        <div [ngClass]="{ 'user-message': message.user, 'api-message': !message.user }">
+          {{ message.content }}
+        </div>
       </div>
     </div>
-  </div>
-  <div class="message-input">
-    <input [(ngModel)]="newMessage.content" (keyup.enter)="sendMessage()" placeholder="Digite sua mensagem..." />
-    <button (click)="sendMessage()">Enviar</button>
+    <div class="message-input">
+      <input [(ngModel)]="newMessage.content" (keyup.enter)="sendMessage()" placeholder="Digite sua mensagem..." />
+      <button (click)="sendMessage()">Enviar</button>
+    </div>
   </div>
 </div>

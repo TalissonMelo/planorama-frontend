@@ -1,10 +1,17 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MessageService } from './service/message.service';
 import { MessageResponse } from './domain/message_response';
 import { Message } from './domain/message';
 import { UseSession } from '../util/useSession';
 import { SessionResponse } from '../components/modal/domain/session_response';
 import { NotificationService } from '../components/notification/notification.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-chat',
@@ -20,7 +27,9 @@ export class ChatComponent implements OnInit {
 
   constructor(
     private service: MessageService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    public dialogRef: MatDialogRef<ChatComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.newMessage = new Message();
     this.useSession = new UseSession();
@@ -65,5 +74,9 @@ export class ChatComponent implements OnInit {
     } catch (err) {
       console.error('Scroll to bottom error:', err);
     }
+  }
+
+  onClose(): void {
+    this.dialogRef.close();
   }
 }

@@ -6,6 +6,7 @@ import { ChangePasswordRequest } from './model/change_password_request';
 import { UserUpdateRequest } from './model/user_update_request';
 import { ProfileService } from './service/profile.service';
 import { Router } from '@angular/router';
+import label from 'src/assets/i18n/label';
 
 @Component({
   selector: 'app-profile',
@@ -13,6 +14,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent {
+  public label = label;
   public email: string;
   public passwordConfirm: string = '';
   public userUpdate: UserUpdateRequest;

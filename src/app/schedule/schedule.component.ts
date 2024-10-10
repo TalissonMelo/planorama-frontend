@@ -13,6 +13,8 @@ import { MemberSchedule } from './members/domain/member_schedule';
 import { MemberService } from './members/service/member.service';
 import { ScheduleResponse } from './schedule-name/domain/schedule_response';
 import { NotificationEmitter } from '../components/notification/notification_emitter';
+import { addHours, startOfDay } from 'date-fns';
+import { ChatComponent } from '../chat/chat.component';
 
 @Component({
   selector: 'app-schedule',
@@ -28,42 +30,41 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
   // events: any[] = [];
 
+  to(date: Date, hours: number, minutes: number) {
+    return new Date(
+      date.getTime() + hours * 60 * 60 * 1000 + minutes * 60 * 1000
+    );
+  }
+
   events: any[] = [
     {
-      id: 'session1',
-      scheduleId: '1a2b3c',
-      color: { primary: '#FF5733', secondary: '#FFC300' },
-      title: 'Kick-off Meeting',
-      start: new Date('2024-10-05T09:00:00Z'),
-      end: new Date('2024-10-05T10:00:00Z'),
-      description: 'Initial meeting to discuss project goals.',
+      id: 1,
+      start: this.to(startOfDay(new Date()), 9, 30),
+      end: addHours(startOfDay(new Date()), 10),
+      title: 'Reunião da Manhã',
+      color: { primary: '#1e90ff', secondary: '#d1e8ff' },
     },
     {
-      id: 'session2',
-      scheduleId: '4d5e6f',
-      color: { primary: '#33FF57', secondary: '#A1FFCE' },
-      title: 'Planning Session',
-      start: new Date('2024-10-05T11:00:00Z'),
-      end: new Date('2024-10-05T12:30:00Z'),
-      description: 'Detailed planning for the upcoming sprint.',
+      id: 2,
+      start: addHours(startOfDay(new Date()), 12),
+      end: addHours(startOfDay(new Date()), 13),
+      title: 'Intervalo para Almoço',
+      color: { primary: '#e3bc08', secondary: '#fdf1ba' },
     },
     {
-      id: 'session3',
-      scheduleId: '7g8h9i',
-      color: { primary: '#FFD700', secondary: '#FFEF96' },
-      title: 'Lunch Break',
-      start: new Date('2024-10-05T13:00:00Z'),
-      end: new Date('2024-10-05T14:00:00Z'),
-      description: 'Time to relax and recharge.',
+      id: 3,
+      start: addHours(startOfDay(new Date()), 15),
+      end: addHours(startOfDay(new Date()), 16),
+      title:
+        'Chamada com Cliente /n Chamada com cliente para discutir requisitos.',
+      color: { primary: '#ad2121', secondary: '#fae3e3' },
     },
     {
-      id: 'session4',
-      scheduleId: '10j11k',
-      color: { primary: '#3357FF', secondary: '#A0C4FF' },
-      title: 'Team Sync-up',
-      start: new Date('2024-10-05T15:00:00Z'),
-      end: new Date('2024-10-05T16:00:00Z'),
-      description: 'Daily sync-up to discuss team progress.',
+      id: 4,
+      start: addHours(startOfDay(new Date()), 18),
+      end: addHours(startOfDay(new Date()), 19),
+      title: 'Talisson do Dia',
+      color: { primary: '#000', secondary: '#000' },
     },
   ];
 
@@ -206,10 +207,14 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   }
 
   onEventClicked(event: any): void {
-    if (event.event.description) {
-      this.useSession.setSession(event.event);
-      this.router.navigate(['chat']);
-    }
+    this.useSession.setSession(event.event);
+    this.dialog.open(ChatComponent, {
+      width: '400px',
+      height: '100vh',
+      position: { right: '0px', top: '0px' },
+      data: { event: event.event },
+      panelClass: 'custom-modal-class',
+    });
   }
 
   ngOnDestroy(): void {

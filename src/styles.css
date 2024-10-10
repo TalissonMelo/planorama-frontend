@@ -67,3 +67,11 @@ body {
 .back-link mat-icon {
     margin-right: 4px;
 }
+
+.custom-modal-class .mat-dialog-container {
+    padding: 0;
+    border-radius: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+  

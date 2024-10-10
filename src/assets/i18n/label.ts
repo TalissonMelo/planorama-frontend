@@ -54,5 +54,8 @@ const label = {
   nova_legenda: 'nova_legenda',
   salvar_legenda: 'salvar_legenda',
   selecionar_cor: 'selecionar_cor',
+  senha_atual: 'senha_atual',
+  alterar_senha: 'alterar_senha',
+  alterar_dados: 'alterar_dados',
 };
 export default label;

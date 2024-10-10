@@ -52,9 +52,9 @@
       <div [ngSwitch]="view">
         <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events" (dayClicked)="openModal($event.day)">
         </mwl-calendar-month-view>
-        <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events" [dayStartHour]="start" [dayEndHour]="finish">
+        <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events" > <!-- [dayStartHour]="start" [dayEndHour]="finish" -->
         </mwl-calendar-week-view>
-        <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events" [dayStartHour]="start" [dayEndHour]="finish" (eventClicked)="onEventClicked($event)">
+        <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events"  (eventClicked)="onEventClicked($event)"> <!-- [dayStartHour]="start" [dayEndHour]="finish" -->
         </mwl-calendar-day-view>
       </div>
     </div>

@@ -9,6 +9,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UseSession } from '../util/useSession';
 import { TokenInterceptor } from '../token.interceptor';
 import { PhoneModule } from '../components/phone/phone.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [ProfileComponent],
@@ -20,6 +21,7 @@ import { PhoneModule } from '../components/phone/phone.module';
     PasswordModule,
     HttpClientModule,
     PhoneModule,
+    TranslateModule,
   ],
   providers: [
     UseSession,

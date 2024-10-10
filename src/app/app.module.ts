@@ -2,15 +2,11 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-// Para trabalhar com formulários no Angular 12
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-// Para realizar requisições HTTP
 import {
   HTTP_INTERCEPTORS,
   HttpClient,
@@ -18,8 +14,6 @@ import {
 } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { NavComponent } from './components/nav/nav.component';
-
-//Material
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -35,7 +29,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-//Components
 import { registerLocaleData } from '@angular/common';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HeaderComponent } from './components/header/header.component';
@@ -55,6 +48,7 @@ import { TokenInterceptor } from './token.interceptor';
 import { UseSession } from './util/useSession';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { ChatModule } from './chat/chat.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -79,20 +73,13 @@ registerLocaleData(localePt);
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-
-    //CREATE MODULES
     PasswordModule,
     PhoneModule,
     TermsModule,
-
-    //HTTP
     HttpClientModule,
-
-    // FORMS
     FormsModule,
     ReactiveFormsModule,
-
-    //Material
+    ChatModule,
     MatCardModule,
     MatDialogModule,
     MatSidenavModule,
@@ -105,18 +92,13 @@ registerLocaleData(localePt);
     MatSelectModule,
     MatCheckboxModule,
     MatMenuModule,
-
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
-
-    //Calendar
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,
     }),
-
-    // Configuração do TranslateModule
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -54,5 +54,8 @@
   "voltar": "Back",
   "nova_legenda": "New legend",
   "selecionar_cor": "Select a color to match your label",
-  "salvar_legenda" : "Save legend"
+  "salvar_legenda": "Save legend",
+  "senha_atual": "Current password",
+  "alterar_senha" : "Change password",
+  "alterar_dados": "Change data"
 }

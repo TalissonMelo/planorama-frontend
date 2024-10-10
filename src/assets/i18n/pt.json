@@ -54,5 +54,8 @@
   "voltar": "Voltar",
   "nova_legenda" : "Nova legenda",
   "selecionar_cor" : "Selecione uma cor para corresponder a sua legenda",
-  "salvar_legenda" : "Salvar legenda"
+  "salvar_legenda" : "Salvar legenda",
+  "senha_atual" : "Senha atual",
+  "alterar_senha" : "Alterar senha",
+  "alterar_dados": "Alterar dados"
 }

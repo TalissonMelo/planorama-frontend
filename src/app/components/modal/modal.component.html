@@ -11,40 +11,58 @@
     <div class="container mb-2">
 
         <div class="form-group row mt-2">
-            <div class="col-6">
+            <div class="col-sm-3">
+                <label for="startDate">Data de Início</label>
+                <input type="date" class="form-control" [(ngModel)]="sessionRequest.startDate" id="startDate"
+                    name="startDate">
+            </div>
+            <div class="col-sm-3">
+                <label for="startTime">Horário de Início</label>
+                <input type="time" class="form-control" [(ngModel)]="sessionRequest.startTime" id="startTime"
+                    name="startTime">
+            </div>
+            <div class="col-sm-3">
+                <label for="endDate">Data de Fim</label>
+                <input type="date" class="form-control" [(ngModel)]="sessionRequest.endDate" id="endDate"
+                    name="endDate">
+            </div>
+            <div class="col-sm-3">
+                <label for="endTime">Horário de Fim</label>
+                <input type="time" class="form-control" [(ngModel)]="sessionRequest.endTime" id="endTime"
+                    name="endTime">
+            </div>
+            <div class="col-sm-6">
                 <label for="name">Título:</label>
                 <input type="text" id="title" name="title" [(ngModel)]="sessionRequest.title"
                     class="my-custom-form-control form-control">
             </div>
-            <div class="col-3">
-                <label for="nome">Inicio</label>
-                <input type="datetime-local" class="form-control" [(ngModel)]="sessionRequest.startTime" id="startTime"
-                    name="startTime">
-            </div>
-            <div class="col-3">
-                <label for="nome">Fim</label>
-                <input type="datetime-local" class="form-control" [(ngModel)]="sessionRequest.endTime" id="endTime"
-                    name="endTime">
-            </div>
-        </div>
-        <div class="form-group row mt-2">
-            <div class="col-3">
+            <div class="col-sm-6">
                 <label for="nome">Legenda</label>
-                <select class="form-control" [ngModelOptions]="{standalone: true}"
-                    [(ngModel)]="sessionRequest.legendId">
-                    <option *ngFor="let legend of legends" [ngValue]="legend.id">{{ legend.description }}</option>
-                </select>
+                <div class="dropdown w-100" (click)="toggleDropdown()" [class.show]="dropdownOpen">
+                    <button class="btn btn-light dropdown-toggle w-100 text-start" type="button">
+                        <span class="color-circle me-2" [style.background]="getSelectedLegendColor()"></span>
+                        <span class="legend-description">{{ getSelectedLegendDescription() }}</span>
+                    </button>
+                    <ul class="dropdown-menu w-100" [class.show]="dropdownOpen">
+                        <li *ngFor="let legend of legends" (click)="selectLegend(legend)" class="dropdown-item">
+                            <span class="color-circle me-2" [style.background]="legend.color"></span>
+                            <span class="legend-description">{{ legend.description }}</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-9">
-                <label for="nome">Descrição</label>
-                <input type="text" class="form-control" [(ngModel)]="sessionRequest.description" id="description"
-                    name="description" />
+            <div class="form-group row mt-2">
+                <div class="col-sm-12">
+                    <label for="nome">Descrição</label>
+                    <input type="text" class="form-control" [(ngModel)]="sessionRequest.description" id="description"
+                        name="description" />
+                </div>
             </div>
         </div>
         <div class="form-group row mt-2">
-            <div class="col-12">
-                <label for="days">Seleção de Dias (Segunda a Domingo):</label>
-                <div id="days" class="d-flex flex-wrap">
+            <div class="col-sm-12">
+                <label for="days">Repetir</label>
+                <div id="days" class="d-flex flex-wrap pt-2">
                     <div *ngFor="let day of daysOfWeeks" class="form-check form-check-inline">
                         <input type="checkbox" class="form-check-input" [id]="day.value" [value]="day.value"
                             (change)="onDayChange($event)">

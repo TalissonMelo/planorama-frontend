@@ -20,10 +20,11 @@ import { NotificationEmitter } from '../notification/notification_emitter';
   styleUrls: ['./modal.component.css'],
 })
 export class ModalComponent implements OnInit {
+  dropdownOpen = false;
   public dateNow: Date = new Date();
   public date: Date;
   public sessionIdEdit: string = '';
-  public legends: LegendResponse[] = [];
+  // public legends: LegendResponse[] = [];
   public events: SessionResponse[] = [];
   public sessionRequest: SessionRequest;
   public memberSchedule!: MemberSchedule;
@@ -39,6 +40,34 @@ export class ModalComponent implements OnInit {
     { label: 'Sexta-feira', value: 'FRIDAY' },
     { label: 'Sábado', value: 'SATURDAY' },
     { label: 'Domingo', value: 'SUNDAY' },
+  ];
+
+  legends: LegendResponse[] = [
+    {
+      id: 'legend1',
+      color: '#FF5733',
+      ownerId: 'owner123',
+      description:
+        'Geografia descrição e explicação de relevo e dados. Geografia descrição e explicação de relevo e dados',
+    },
+    {
+      id: 'legend2',
+      color: '#33FF57',
+      ownerId: 'owner456',
+      description: 'Team ups',
+    },
+    {
+      id: 'legend3',
+      color: '#3357FF',
+      ownerId: 'owner789',
+      description: 'Project',
+    },
+    {
+      id: 'legend4',
+      color: '#FFD700',
+      ownerId: 'owner1011',
+      description: 'Personal time',
+    },
   ];
 
   constructor(
@@ -190,5 +219,28 @@ export class ModalComponent implements OnInit {
         );
       }
     );
+  }
+
+  toggleDropdown() {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  selectLegend(legend: any) {
+    this.sessionRequest.legendId = legend.id;
+    this.dropdownOpen = true;
+  }
+
+  getSelectedLegendDescription() {
+    const selected = this.legends.find(
+      (legend) => legend.id === this.sessionRequest.legendId
+    );
+    return selected ? selected.description : 'Selecione uma legenda';
+  }
+
+  getSelectedLegendColor() {
+    const selected = this.legends.find(
+      (legend) => legend.id === this.sessionRequest.legendId
+    );
+    return selected ? selected.color : 'transparent';
   }
 }
