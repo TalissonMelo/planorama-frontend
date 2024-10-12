@@ -1,15 +1,14 @@
 <div class="form-group">
-    <label for="telefone">{{ label.telefone | translate }}</label>
-    <input
-    [id]="id"
-    type="text"
-    [name]="id"
-    [placeholder]="placeholder || '(00) 0 0000-0000'"
-    class="my-custom-form-control"
-    [(ngModel)]="changePhone"
-    (ngModelChange)="onPhoneChange($event)"
-    mask="(00) 0 0000-0000"
-    [specialCharacters]="['(', ')', ' ', '-']"
-    [dropSpecialCharacters]="false"
-  />
+  <label for="telefone">{{ label.telefone | translate }}</label>
+  <div class="input-group custom-input-group">
+    <select class="form-control" [(ngModel)]="selectedCountryCode" (ngModelChange)="onCountryCodeChange($event)">
+      <option *ngFor="let country of countryCodes" [value]="country.code">
+        {{ country.name }} ({{ country.code }})
+      </option>
+    </select>
+
+    <input [id]="id" type="text" [name]="id" [placeholder]="placeholder || '(00) 0 0000-0000'"
+    class="form-control" [(ngModel)]="changePhone" (ngModelChange)="onPhoneChange($event)"
+      mask="(00) 0 0000-0000" [specialCharacters]="['(', ')', ' ', '-']" [dropSpecialCharacters]="false" />
   </div>
+</div>

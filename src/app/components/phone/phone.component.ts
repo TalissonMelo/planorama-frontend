@@ -9,8 +9,14 @@ import label from 'src/assets/i18n/label';
 })
 export class PhoneComponent {
   public label = label;
+  selectedCountryCode: string = '+55'; // Código de país padrão (Brasil)
 
   constructor(public translate: TranslateService) {}
+
+  countryCodes: Array<{ name: string; code: string }> = [
+    { name: 'Brazil', code: '+55' },
+    { name: 'United States', code: '+1' },
+  ];
 
   @Input() id: string = '';
   @Input() placeholder: string = '';
@@ -18,8 +24,14 @@ export class PhoneComponent {
   @Input() changePhone: string = '';
   @Output() phoneChange = new EventEmitter<string>();
 
-  onPhoneChange(value: string) {
-    this.changePhone = value;
-    this.phoneChange.emit(this.changePhone);
+  formattedNumber: string = '';
+
+  onPhoneChange(event: any) {
+    const fullPhoneNumber = this.selectedCountryCode + ' ' + event;
+    console.log(fullPhoneNumber);
+  }
+
+  onCountryCodeChange(event: any) {
+    this.selectedCountryCode = event;
   }
 }

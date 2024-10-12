@@ -5,24 +5,29 @@
     <div class="form-container">
         <div class="form-group row">
             <div class="row">
-            <div class="col-sm-8">
-                <label for="name">Nome:</label>
-                <input type="text" id="name" name="name" [(ngModel)]="schedule.name"
-                    class="my-custom-form-control form-control">
-            </div>
-            <div class="col-sm-2">
-                <label for="startTime">Horário Inicial:</label>
-                <input type="time" id="startTime" name="startTime" [(ngModel)]="schedule.startTime"
-                    class="my-custom-form-control form-control">
-            </div>
-            <div class="col-sm-2">
-                <label for="endTime">Horário Final:</label>
-                <input type="time" id="endTime" name="endTime" [(ngModel)]="schedule.endTime"
-                    class="my-custom-form-control form-control">
+                <div class="col-sm-8">
+                    <label for="name">Nome:</label>
+                    <input type="text" id="name" name="name" [(ngModel)]="schedule.name"
+                        class="my-custom-form-control form-control">
+                </div>
+                <div class="col-sm-2">
+                    <label for="startTime">Horário Inicial:</label>
+                    <input type="time" id="startTime" name="startTime" [(ngModel)]="schedule.startTime"
+                        class="my-custom-form-control form-control">
+                </div>
+                <div class="col-sm-2">
+                    <label for="endTime">Horário Final:</label>
+                    <input type="time" id="endTime" name="endTime" [(ngModel)]="schedule.endTime"
+                        class="my-custom-form-control form-control">
+                </div>
             </div>
         </div>
+        <div class="row pt-3">
+            <div class="col-sm-12">
+                <button type="button" (click)="save()" class="btn btn-primary btn-block w-100 text-center">Adicionar
+                    Agenda</button>
+            </div>
         </div>
-        <button type="button" (click)="save()" class="my-custom-ok-button">Adicionar Agenda</button>
     </div>
     <div class="table-responsive pt-3">
         <table class="table table-bordered schedule-table">
@@ -51,18 +56,15 @@
                             <mat-icon>visibility</mat-icon>
                         </button>
                         <!-- *ngIf="schedule.ownerId === userId" -->
-                        <button  mat-icon-button color="accent"
-                            (click)="listMembersByScheduleId(schedule)">
+                        <button mat-icon-button color="accent" (click)="listMembersByScheduleId(schedule)">
                             <mat-icon>group</mat-icon>
                         </button>
                         <!-- *ngIf="schedule.ownerId === userId" -->
-                        <button  mat-icon-button color="primary"
-                            (click)="edit(schedule.id)">
+                        <button mat-icon-button color="primary" (click)="edit(schedule.id)">
                             <mat-icon>edit</mat-icon>
                         </button>
                         <!-- *ngIf="schedule.ownerId === userId"  -->
-                        <button mat-icon-button color="warn"
-                            (click)="deleted(schedule)">
+                        <button mat-icon-button color="warn" (click)="deleted(schedule)">
                             <mat-icon>delete</mat-icon>
                         </button>
                     </td>

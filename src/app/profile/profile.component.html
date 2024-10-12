@@ -15,7 +15,7 @@
       </div>
       <app-phone [id]="'phone'" [changePhone]="userUpdate.phone" (phoneChange)="userUpdate.phone = $event"
         required></app-phone>
-      <button type="submit" class="my-custom-ok-button" (click)="onSubmit()">{{ label.alterar_dados | translate }}</button>
+      <button type="submit" class="my-custom-ok-button mt-3" (click)="onSubmit()">{{ label.alterar_dados | translate }}</button>
       <h2 class="mt-5">{{ label.alterar_senha | translate }} </h2>
       <app-password [title]="label.senha_atual | translate" [id]="'password'"
         (passwordChange)="chancePassword.oldPassword = $event"></app-password>
