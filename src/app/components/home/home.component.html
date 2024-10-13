@@ -19,7 +19,7 @@
                         <ul class="list-group">
                             <li *ngFor="let session of busyHour.sessions" class="list-group-item d-flex justify-content-between align-items-center">
                                 {{ session.title }} - {{ session.startTime | date: 'HH:mm' }} às {{ session.endTime | date: 'HH:mm' }}
-                                <button mat-button>
+                                <button mat-button (click)="openVideo(session)">
                                     <i class="fas fa-video"></i>
                                 </button>
                             </li>

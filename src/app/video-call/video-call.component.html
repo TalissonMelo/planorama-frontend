@@ -1,0 +1,28 @@
+<div class="video-call-container">
+  <!-- Grade de Vídeos -->
+  <div class="video-grid">
+    <div class="local-video">
+      <video id="localVideo" autoplay muted></video>
+      <span class="video-label">Você</span>
+    </div>
+
+    <div class="remote-videos">
+      <div *ngFor="let participant of participants" class="remote-video">
+        <video [id]="'remoteVideo-' + participant.id" autoplay></video>
+        <span class="video-label">{{ participant.name }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controles de Chamada -->
+  <div class="controls">
+    <button (click)="toggleMute()" class="control-btn">
+      <span *ngIf="isMuted">🔇</span><span *ngIf="!isMuted">🎙️</span>
+      <span>{{ isMuted ? 'Desmutar' : 'Mutar' }}</span>
+    </button>
+
+    <button (click)="endCall()" class="control-btn end-call-btn">
+      ❌ Encerrar Chamada
+    </button>
+  </div>
+</div>

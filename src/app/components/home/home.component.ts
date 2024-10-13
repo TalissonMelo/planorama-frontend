@@ -7,6 +7,7 @@ import { HomeFreeTimes } from './domain/home_free_times';
 import label from 'src/assets/i18n/label';
 import { MatDialog } from '@angular/material/dialog';
 import { AddSessionModalComponent } from 'src/app/components/add-session-modal/add-session-modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -107,6 +108,7 @@ export class HomeComponent implements OnInit {
   ];
 
   constructor(
+    private router: Router,
     private dialog: MatDialog,
     private service: ScheduleService,
     private loaderService: LoaderService,
@@ -155,7 +157,13 @@ export class HomeComponent implements OnInit {
 
   openAddModal(time: any) {
     const dialogRef = this.dialog.open(AddSessionModalComponent, {
-        data: { time: time }
+      data: { time: time }
     });
-}
+  }
+
+  openVideo(session: any): void {
+    const url = this.router.serializeUrl(this.router.createUrlTree(['/video']));
+    window.open(url, '_blank'); 
+  }
+  
 }
