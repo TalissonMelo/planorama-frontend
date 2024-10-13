@@ -61,5 +61,10 @@
   "acoes": "Actions",
   "horario_inicial": "Start time",
   "horario_final": "End time",
-  "adicionar_agenda": "Add schedule"
+  "adicionar_agenda": "Add schedule",
+  "permissoes": "Permissions",
+  "editar": "Editor",
+  "visualizar": "Viewer",
+  "criador": "Creator",
+  "adicionar_membro": "Add member"
 }

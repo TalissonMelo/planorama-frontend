@@ -60,7 +60,12 @@ const label = {
   acoes: 'acoes',
   horario_inicial: "horario_inicial",
   horario_final: "horario_final",
-  adicionar_agenda: "adicionar_agenda"
+  adicionar_agenda: "adicionar_agenda",
+  permissoes: "permissoes",
+  editar: "editar",
+  visualizar: "visualizar",
+  criador: "criador",
+  adicionar_membro: "adicionar_membro"
 };
 
 export default label;

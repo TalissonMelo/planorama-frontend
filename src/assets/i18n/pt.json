@@ -61,5 +61,10 @@
   "acoes": "Ações",
   "horario_inicial": "Horário Inicial",
   "horario_final": "Horário Final",
-  "adicionar_agenda": "Adicionar agenda"
+  "adicionar_agenda": "Adicionar agenda",
+  "permissoes": "Permissões",
+  "editar": "Editor",
+  "visualizar": "Visualizador",
+  "criador": "Criador",
+  "adicionar_membro": "Adicionar membro"
 }

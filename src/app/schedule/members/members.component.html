@@ -1,29 +1,31 @@
 <div class="container">
-    <div class="back-link" routerLink="/schedule"> <mat-icon>arrow_back</mat-icon> Voltar</div>
+    <div class="back-link" routerLink="/schedule">
+        <mat-icon>arrow_back</mat-icon> {{ label.voltar | translate}}
+    </div>
     <div class="form-container">
         <h2>{{ schedule.name}}</h2>
         <div class="form-group row">
             <div class="col-sm-8">
-                <label for="nickname">Nome:</label>
+                <label for="nickname"> {{ label.nome | translate}}</label>
                 <input type="text" id="nickname" name="nickname"  [(ngModel)]="member.nickname" class="my-custom-form-control form-control" required>
             </div>
             <div class="col-sm-4">
-                <label for="type">Permissão:</label>
+                <label for="type">{{ label.permissoes | translate}}</label>
                 <select id="type" name="type" class="my-custom-form-control form-control"  [(ngModel)]="member.type" required>
-                    <option value="EDITOR">Editor</option>
-                    <option value="VIEWER">Visualizador</option>
+                    <option value="EDITOR">{{ label.editar | translate}}</option>
+                    <option value="VIEWER">{{ label.visualizar | translate}}</option>
                 </select>
             </div>
             <div class="col-sm-4">
                 <app-phone [id]="'phone'" [changePhone]="member.phone" (phoneChange)="member.phone = $event" required></app-phone>
             </div>
             <div class="col-sm-8">
-                <label for="email">Email:</label>
+                <label for="email"> {{ label.email | translate}}</label>
                 <input type="email" id="email" name="email" class="my-custom-form-control form-control" [(ngModel)]="member.email" required>
             </div>
            
         </div>
-        <button type="button" (click)="save()" class="btn btn-primary btn-block w-100 text-center mt-3">Adicionar Membro</button>
+        <button type="button" (click)="save()" class="btn btn-primary btn-block w-100 text-center mt-3">{{ label.adicionar_membro | translate}}</button>
     </div>
 </div>
 <div class="container mt-3">
@@ -31,10 +33,10 @@
         <table class="table schedule-table">
             <thead>
                 <tr>
-                    <th class="col-4">Nome</th>
-                    <th class="col-3">Email</th>
-                    <th class="col-2">Telefone</th>
-                    <th class="col-2">Permissão</th>
+                    <th class="col-4"> {{ label.nome | translate}}</th>
+                    <th class="col-3"> {{ label.email | translate}}</th>
+                    <th class="col-2"> {{ label.telefone | translate}}</th>
+                    <th class="col-2">{{ label.permissoes | translate}}</th>
                     <th class="col-1"></th>
                 </tr>
             </thead>
@@ -46,9 +48,9 @@
                     <td class="col-2 action-icons">
                         <select id="type" name="type" class="my-custom-form-control form-control action-icons"
                             [value]="member.member.type" disabled>
-                            <option value="CREATOR">Criador</option>
-                            <option value="EDITOR">Editor</option>
-                            <option value="VIEWER">Visualizador</option>
+                            <option value="CREATOR">{{ label.criador | translate}}</option>
+                            <option value="EDITOR">{{ label.editar | translate}}</option>
+                            <option value="VIEWER">{{ label.visualizar | translate}}</option>
                         </select>
                     </td>
                     <td class="col-1 text-center action-icons align-middle">

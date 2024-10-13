@@ -8,6 +8,8 @@ import { MemberResponse } from './domain/member_response';
 import { MemberSchedule } from './domain/member_schedule';
 import { MemberService } from './service/member.service';
 import { MemberType } from './domain/member';
+import label from 'src/assets/i18n/label';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-members',
@@ -19,6 +21,7 @@ export class MembersComponent implements OnInit {
   public schedule: ScheduleResponse;
   public useSession: UseSession;
   public member: MemberRequest;
+  public label = label;
 
   members: MemberResponse[] = [
     {
@@ -79,6 +82,7 @@ export class MembersComponent implements OnInit {
   ];
 
   constructor(
+    private translate: TranslateService,
     private service: MemberService,
     private loaderService: LoaderService,
     private notificationService: NotificationService
