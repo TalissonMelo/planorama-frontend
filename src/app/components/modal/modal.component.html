@@ -12,22 +12,22 @@
 
         <div class="form-group row mt-2">
             <div class="col-sm-3">
-                <label for="startDate">Data de Início</label>
+                <label for="startDate">{{ label.data_inicio | translate }}</label>
                 <input type="date" class="form-control" [(ngModel)]="sessionRequest.startDate" id="startDate"
                     name="startDate">
             </div>
             <div class="col-sm-3">
-                <label for="startTime">Horário de Início</label>
+                <label for="startTime">{{ label.horario_inicial | translate }}</label>
                 <input type="time" class="form-control" [(ngModel)]="sessionRequest.startTime" id="startTime"
                     name="startTime">
             </div>
             <div class="col-sm-3">
-                <label for="endDate">Data de Fim</label>
+                <label for="endDate">{{ label.data_final | translate }}</label>
                 <input type="date" class="form-control" [(ngModel)]="sessionRequest.endDate" id="endDate"
                     name="endDate">
             </div>
             <div class="col-sm-3">
-                <label for="endTime">Horário de Fim</label>
+                <label for="endTime">{{ label.horario_final | translate }}</label>
                 <input type="time" class="form-control" [(ngModel)]="sessionRequest.endTime" id="endTime"
                     name="endTime">
             </div>
@@ -61,8 +61,11 @@
         </div>
         <div class="form-group row mt-2">
             <div class="col-sm-12">
-                <label for="days">Repetir</label>
-                <div id="days" class="d-flex flex-wrap pt-2">
+                <label for="days">{{ label.repetir | translate }}</label>
+                <p  class="small-text">
+                    {{ label.obs_repetir | translate}}
+                  </p>
+                <div id="days" class="d-flex flex-wrap">
                     <div *ngFor="let day of daysOfWeeks" class="form-check form-check-inline">
                         <input type="checkbox" class="form-check-input" [id]="day.value" [value]="day.value"
                             (change)="onDayChange($event)">
@@ -78,9 +81,9 @@
             <thead>
                 <tr>
                     <th class="col-2">{{ label.titulo | translate }}</th>
-                    <th class="col-1">Inicio</th>
-                    <th class="col-1">Fim</th>
-                    <th class="col-1">Cor</th>
+                    <th class="col-1">{{ label.inicio | translate }}</th>
+                    <th class="col-1">{{ label.fim | translate }}</th>
+                    <th class="col-1">{{ label.legenda | translate }}</th>
                     <th class="col-5">{{ label.descricao | translate }}</th>
                     <th class="col-1"></th>
                 </tr>

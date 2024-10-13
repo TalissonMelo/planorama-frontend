@@ -81,6 +81,11 @@
   "titulo": "Title",
   "descricao": "Description",
   "cancelar": "Cancel",
-  "selecione_agenda": "Select a legend"
-
+  "selecione_agenda": "Select a legend",
+  "data_inicio": "Start Date",
+  "data_final": "End Date",
+  "inicio": "Start",
+  "fim": "End",
+  "repetir": "Frequency",
+  "obs_repetir": "Note: Repeat will only occur between the selected start and end dates."
 }

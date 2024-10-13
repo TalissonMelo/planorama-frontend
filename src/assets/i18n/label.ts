@@ -80,7 +80,13 @@ const label = {
   titulo: "titulo",
   descricao: "descricao",
   cancelar: "cancelar",
-  selecione_agenda: "selecione_agenda"
+  selecione_agenda: "selecione_agenda",
+  data_inicio: "data_inicio",
+  data_final: "data_final",
+  inicio: "inicio",
+  fim: "fim",
+  repetir: "repetir",
+  obs_repetir: "obs_repetir"
 };
 
 export default label;

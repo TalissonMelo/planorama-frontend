@@ -112,3 +112,8 @@
   text-overflow: ellipsis; 
   vertical-align: middle; 
 }
+
+.small-text {
+  font-size: 11px;
+  line-height: 1.0;
+}

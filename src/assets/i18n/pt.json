@@ -81,7 +81,11 @@
   "titulo": "Título",
   "descricao": "Descrição",
   "cancelar": "Cancelar",
-  "selecione_agenda": "Selecione uma legenda"
-
-
+  "selecione_agenda": "Selecione uma legenda",
+  "data_inicio": "Data de Início",
+  "data_final": "Data de Fim",
+  "inicio": "Início",
+  "fim": "Fim",
+  "repetir": "Frequência",
+  "obs_repetir": "Observação: A repetição ocorrerá apenas entre as datas de início e fim selecionadas."
 }
