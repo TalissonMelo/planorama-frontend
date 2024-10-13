@@ -12,7 +12,6 @@ import { MemberType } from './domain/member';
 @Component({
   selector: 'app-members',
   templateUrl: './members.component.html',
-  styleUrls: ['./members.component.css'],
 })
 export class MembersComponent implements OnInit {
   // public members: MemberResponse[] = [];

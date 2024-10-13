@@ -1,7 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="agenda-container">
-      <div class="back-link" routerLink="/schedule"> <mat-icon>arrow_back</mat-icon> Voltar</div>
+      <div class="back-link" routerLink="/">
+        <mat-icon>arrow_back</mat-icon> {{ label.voltar | translate}}
+      </div>
       <h2 class="text-center">{{schedule.name}}</h2>
       <div class="row text-center">
         <div class="col-md-4">
@@ -50,11 +52,14 @@
         </div>
       </div>
       <div [ngSwitch]="view">
-        <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events" (dayClicked)="openModal($event.day)">
+        <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
+          (dayClicked)="openModal($event.day)">
         </mwl-calendar-month-view>
-        <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events" > <!-- [dayStartHour]="start" [dayEndHour]="finish" -->
+        <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events">
+          <!-- [dayStartHour]="start" [dayEndHour]="finish" -->
         </mwl-calendar-week-view>
-        <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events"  (eventClicked)="onEventClicked($event)"> <!-- [dayStartHour]="start" [dayEndHour]="finish" -->
+        <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events"
+          (eventClicked)="onEventClicked($event)"> <!-- [dayStartHour]="start" [dayEndHour]="finish" -->
         </mwl-calendar-day-view>
       </div>
     </div>

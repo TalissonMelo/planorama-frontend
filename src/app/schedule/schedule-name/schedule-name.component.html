@@ -1,22 +1,24 @@
 <div class="container">
-    <div class="back-link" routerLink="/"> <mat-icon>arrow_back</mat-icon> Voltar</div>
-    <h2>Agendas</h2>
+    <div class="back-link" routerLink="/">
+        <mat-icon>arrow_back</mat-icon> {{ label.voltar | translate}}
+    </div>
+    <h2>{{ label.agenda | translate}}</h2>
     <!-- *ngIf="userPermissions && userPermissions.isValid()"  -->
     <div class="form-container">
         <div class="form-group row">
             <div class="row">
                 <div class="col-sm-8">
-                    <label for="name">Nome:</label>
+                    <label for="name">{{ label.nome | translate}}</label>
                     <input type="text" id="name" name="name" [(ngModel)]="schedule.name"
                         class="my-custom-form-control form-control">
                 </div>
                 <div class="col-sm-2">
-                    <label for="startTime">Horário Inicial:</label>
+                    <label for="startTime">{{ label.horario_inicial | translate}}</label>
                     <input type="time" id="startTime" name="startTime" [(ngModel)]="schedule.startTime"
                         class="my-custom-form-control form-control">
                 </div>
                 <div class="col-sm-2">
-                    <label for="endTime">Horário Final:</label>
+                    <label for="endTime">{{ label.horario_final | translate}}</label>
                     <input type="time" id="endTime" name="endTime" [(ngModel)]="schedule.endTime"
                         class="my-custom-form-control form-control">
                 </div>
@@ -24,8 +26,7 @@
         </div>
         <div class="row pt-3">
             <div class="col-sm-12">
-                <button type="button" (click)="save()" class="btn btn-primary btn-block w-100 text-center">Adicionar
-                    Agenda</button>
+                <button type="button" (click)="save()" class="btn btn-primary btn-block w-100 text-center">{{ label.adicionar_agenda | translate}}</button>
             </div>
         </div>
     </div>
@@ -33,25 +34,25 @@
         <table class="table table-bordered schedule-table">
             <thead>
                 <tr>
-                    <th class="col-6">Nome</th>
-                    <th class="col-2">Horário Inicial</th>
-                    <th class="col-2">Horário Final</th>
-                    <th class="col-2">Ações</th>
+                    <th class="col-7">{{ label.nome | translate}}</th>
+                    <th class="col-1 text-center">{{ label.horario_inicial | translate}}</th>
+                    <th class="col-1 text-center">{{ label.horario_final | translate}}</th>
+                    <th class="col-3 text-center">{{ label.acoes | translate}}</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let schedule of schedules">
-                    <td *ngIf="editSchedule != schedule.id" class="col-6">{{ schedule.name }}</td>
-                    <td *ngIf="editSchedule != schedule.id" class="col-2">{{ schedule.startTime }}</td>
-                    <td *ngIf="editSchedule != schedule.id" class="col-2">{{ schedule.endTime }}</td>
-                    <td *ngIf="editSchedule == schedule.id" class="col-6"> <input type="text" id="name" name="name"
+                    <td *ngIf="editSchedule != schedule.id" class="col-7">{{ schedule.name }}</td>
+                    <td *ngIf="editSchedule != schedule.id" class="col-1">{{ schedule.startTime }}</td>
+                    <td *ngIf="editSchedule != schedule.id" class="col-1">{{ schedule.endTime }}</td>
+                    <td *ngIf="editSchedule == schedule.id" class="col-7"> <input type="text" id="name" name="name"
                             [(ngModel)]="schedule.name" class="my-custom-form-control form-control"></td>
-                    <td *ngIf="editSchedule == schedule.id" class="col-2"> <input type="time" id="startTime"
+                    <td *ngIf="editSchedule == schedule.id" class="col-1"> <input type="time" id="startTime"
                             name="startTime" [(ngModel)]="schedule.startTime"
                             class="my-custom-form-control form-control"></td>
-                    <td *ngIf="editSchedule == schedule.id" class="col-2"><input type="time" id="endTime" name="endTime"
+                    <td *ngIf="editSchedule == schedule.id" class="col-1"><input type="time" id="endTime" name="endTime"
                             [(ngModel)]="schedule.endTime" class="my-custom-form-control form-control"></td>
-                    <td *ngIf="editSchedule != schedule.id" class="col-2 text-center  action-icons align-middle">
+                    <td *ngIf="editSchedule != schedule.id" class="col-3 text-center  action-icons align-middle">
                         <button mat-icon-button color="primary" (click)="listSessionsByScheduleId(schedule)">
                             <mat-icon>visibility</mat-icon>
                         </button>

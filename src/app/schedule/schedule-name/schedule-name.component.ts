@@ -7,6 +7,8 @@ import { NotificationService } from 'src/app/components/notification/notificatio
 import { ScheduleRequest } from './domain/schedule_request';
 import { UseSession } from 'src/app/util/useSession';
 import { UserPermissions } from './domain/user_permissions';
+import label from 'src/assets/i18n/label';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-schedule-name',
@@ -19,6 +21,7 @@ export class ScheduleNameComponent implements OnInit {
   public schedule: ScheduleRequest;
   public useSession: UseSession;
   public userId: string;
+  public label = label;
 
   schedules: ScheduleResponse[] = [
     {
@@ -48,7 +51,8 @@ export class ScheduleNameComponent implements OnInit {
     private router: Router,
     private service: ScheduleService,
     private loaderService: LoaderService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private translate: TranslateModule
   ) {
     this.useSession = new UseSession();
     this.schedule = new ScheduleRequest();

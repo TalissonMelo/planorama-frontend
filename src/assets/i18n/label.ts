@@ -29,7 +29,7 @@ const label = {
   validar_senha: 'validar_senha',
   inserir_nova_senha: 'inserir_nova_senha',
   nome: 'nome',
-  nome_description: 'Digite seu nome completo',
+  nome_description: 'nome_description',
   eu_aceito: 'eu_aceito',
   termos_de_uso: 'termos_de_uso',
   crie_sua_conta: 'crie_sua_conta',
@@ -57,5 +57,10 @@ const label = {
   senha_atual: 'senha_atual',
   alterar_senha: 'alterar_senha',
   alterar_dados: 'alterar_dados',
+  acoes: 'acoes',
+  horario_inicial: "horario_inicial",
+  horario_final: "horario_final",
+  adicionar_agenda: "adicionar_agenda"
 };
+
 export default label;

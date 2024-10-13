@@ -15,6 +15,8 @@ import { ScheduleResponse } from './schedule-name/domain/schedule_response';
 import { NotificationEmitter } from '../components/notification/notification_emitter';
 import { addHours, startOfDay } from 'date-fns';
 import { ChatComponent } from '../chat/chat.component';
+import label from 'src/assets/i18n/label';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-schedule',
@@ -23,6 +25,7 @@ import { ChatComponent } from '../chat/chat.component';
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
 })
 export class ScheduleComponent implements OnInit, OnDestroy {
+  label = label;
   notificationSubscription!: Subscription;
   view: CalendarView = CalendarView.Month;
   CalendarView = CalendarView;
@@ -108,6 +111,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private notificationService: NotificationEmitter,
+    private translate: TranslateService,
     private sessionService: SessionService,
     private legendService: LegendService,
     private loaderService: LoaderService,

@@ -95,6 +95,7 @@ registerLocaleData(localePt);
     MatDatepickerModule,
     MatInputModule,
     MatNativeDateModule,
+    TranslateModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory,

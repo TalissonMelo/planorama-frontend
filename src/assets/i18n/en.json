@@ -56,6 +56,10 @@
   "selecionar_cor": "Select a color to match your label",
   "salvar_legenda": "Save legend",
   "senha_atual": "Current password",
-  "alterar_senha" : "Change password",
-  "alterar_dados": "Change data"
+  "alterar_senha": "Change password",
+  "alterar_dados": "Change data",
+  "acoes": "Actions",
+  "horario_inicial": "Start time",
+  "horario_final": "End time",
+  "adicionar_agenda": "Add schedule"
 }

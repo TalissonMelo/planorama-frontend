@@ -3,30 +3,30 @@
     <div class="form-container">
         <h2>{{ schedule.name}}</h2>
         <div class="form-group row">
-            <div class="col-sm-9">
+            <div class="col-sm-8">
                 <label for="nickname">Nome:</label>
                 <input type="text" id="nickname" name="nickname"  [(ngModel)]="member.nickname" class="my-custom-form-control form-control" required>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <label for="type">Permissão:</label>
                 <select id="type" name="type" class="my-custom-form-control form-control"  [(ngModel)]="member.type" required>
                     <option value="EDITOR">Editor</option>
                     <option value="VIEWER">Visualizador</option>
                 </select>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <app-phone [id]="'phone'" [changePhone]="member.phone" (phoneChange)="member.phone = $event" required></app-phone>
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-8">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" class="my-custom-form-control form-control" [(ngModel)]="member.email" required>
             </div>
            
         </div>
-        <button type="button" (click)="save()" class="my-custom-ok-button">Adicionar Membro</button>
+        <button type="button" (click)="save()" class="btn btn-primary btn-block w-100 text-center mt-3">Adicionar Membro</button>
     </div>
 </div>
-<div class="container">
+<div class="container mt-3">
     <div class="table-responsive">
         <table class="table schedule-table">
             <thead>

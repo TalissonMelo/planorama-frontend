@@ -52,10 +52,14 @@
   "termos_rescisao": "Rescisão",
   "termos_rescisao_description": "Podemos rescindir ou suspender sua conta e acesso ao aplicativo imediatamente, sem aviso prévio ou responsabilidade, por qualquer motivo, incluindo violação destes Termos de Uso.",
   "voltar": "Voltar",
-  "nova_legenda" : "Nova legenda",
-  "selecionar_cor" : "Selecione uma cor para corresponder a sua legenda",
-  "salvar_legenda" : "Salvar legenda",
-  "senha_atual" : "Senha atual",
-  "alterar_senha" : "Alterar senha",
-  "alterar_dados": "Alterar dados"
+  "nova_legenda": "Nova legenda",
+  "selecionar_cor": "Selecione uma cor para corresponder a sua legenda",
+  "salvar_legenda": "Salvar legenda",
+  "senha_atual": "Senha atual",
+  "alterar_senha": "Alterar senha",
+  "alterar_dados": "Alterar dados",
+  "acoes": "Ações",
+  "horario_inicial": "Horário Inicial",
+  "horario_final": "Horário Final",
+  "adicionar_agenda": "Adicionar agenda"
 }
