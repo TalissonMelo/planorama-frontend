@@ -65,7 +65,22 @@ const label = {
   editar: "editar",
   visualizar: "visualizar",
   criador: "criador",
-  adicionar_membro: "adicionar_membro"
+  adicionar_membro: "adicionar_membro",
+  hoje: "hoje",
+  proximo: "proximo",
+  anterior: "anterior",
+  mes: "mes",
+  semana: "semana",
+  dia: "dia",
+  enviar: 'enviar',
+  digite_sua_pergunta: "digite_sua_pergunta",
+  selecione_data: "selecione_data",
+  horario_disponivel: "horario_disponivel",
+  selecione_periodo: "selecione_periodo",
+  titulo: "titulo",
+  descricao: "descricao",
+  cancelar: "cancelar",
+  selecione_agenda: "selecione_agenda"
 };
 
 export default label;

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-3">
   <div class="row">
     <div class="agenda-container">
       <div class="back-link" routerLink="/">
@@ -10,32 +10,32 @@
           <div class="btn-group">
             <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
               (viewDateChange)="closeOpenMonthViewDay()">
-              Anterior
+              {{ label.anterior | translate}}
             </div>
             <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
-              Hoje
+              {{ label.hoje | translate}}
             </div>
             <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
               (viewDateChange)="closeOpenMonthViewDay()">
-              Próximo
+              {{ label.proximo | translate}}
             </div>
           </div>
         </div>
         <div class="col-md-4">
-          <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'pt' }}</h3>
+          <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'): defaultLang }}</h3>
         </div>
         <div class="col-md-4">
           <div class="btn-group">
             <div class="btn btn-primary" (click)="setView(CalendarView.Month)"
               [class.active]="view === CalendarView.Month">
-              Mês
+              {{ label.mes | translate}}
             </div>
             <div class="btn btn-primary" (click)="setView(CalendarView.Week)"
               [class.active]="view === CalendarView.Week">
-              Semana
+              {{ label.semana | translate}}
             </div>
             <div class="btn btn-primary" (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day">
-              Dia
+              {{ label.dia | translate}}
             </div>
           </div>
         </div>

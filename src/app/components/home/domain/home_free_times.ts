@@ -1,6 +1,7 @@
 export class HomeFreeTimes {
   public id!: string;
   public title!: string;
+  public scheduleId!: string;
   public times: Times[] = [];
 }
 

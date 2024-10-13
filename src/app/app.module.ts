@@ -49,6 +49,7 @@ import { UseSession } from './util/useSession';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ChatModule } from './chat/chat.module';
+import { AddSessionModalComponent } from './components/add-session-modal/add-session-modal.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -68,6 +69,7 @@ registerLocaleData(localePt);
     MembersComponent,
     LoaderComponent,
     ToastComponent,
+    AddSessionModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -109,7 +111,6 @@ registerLocaleData(localePt);
     }),
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'pt-BR' },
     UseSession,
     {
       provide: HTTP_INTERCEPTORS,

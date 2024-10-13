@@ -12,6 +12,8 @@ import { UseSession } from '../util/useSession';
 import { SessionResponse } from '../components/modal/domain/session_response';
 import { NotificationService } from '../components/notification/notification.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import label from 'src/assets/i18n/label';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-chat',
@@ -24,9 +26,11 @@ export class ChatComponent implements OnInit {
   public newMessage: Message;
   public useSession: UseSession;
   public session!: SessionResponse;
+  public label = label;
 
   constructor(
     private service: MessageService,
+    private translate: TranslateService,
     private notificationService: NotificationService,
     public dialogRef: MatDialogRef<ChatComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any

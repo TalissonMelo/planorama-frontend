@@ -66,5 +66,22 @@
   "editar": "Editor",
   "visualizar": "Visualizador",
   "criador": "Criador",
-  "adicionar_membro": "Adicionar membro"
+  "adicionar_membro": "Adicionar membro",
+  "hoje": "Hoje",
+  "proximo": "Próximo",
+  "anterior": "Anterior",
+  "mes": "Mês",
+  "semana": "Semana",
+  "dia": "Dia",
+  "enviar": "Enviar",
+  "digite_sua_pergunta": "Digite sua pergunta...",
+  "selecione_data": "Selecione uma data",
+  "horario_disponivel": "Horários Disponíveis",
+  "selecione_periodo": "Selecione um período",
+  "titulo": "Título",
+  "descricao": "Descrição",
+  "cancelar": "Cancelar",
+  "selecione_agenda": "Selecione uma legenda"
+
+
 }

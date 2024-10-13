@@ -7,8 +7,16 @@
       </option>
     </select>
 
-    <input [id]="id" type="text" [name]="id" [placeholder]="placeholder || '(00) 0 0000-0000'"
-    class="form-control" [(ngModel)]="changePhone" (ngModelChange)="onPhoneChange($event)"
-      mask="(00) 0 0000-0000" [specialCharacters]="['(', ')', ' ', '-']" [dropSpecialCharacters]="false" />
+    <input 
+      [id]="id" 
+      type="text" 
+      [name]="id" 
+      [placeholder]="selectedMaskAndPlaceholder" 
+      class="form-control" 
+      [(ngModel)]="changePhone" 
+      (ngModelChange)="onPhoneChange($event)"  
+      [mask]="selectedMaskAndPlaceholder" 
+      [dropSpecialCharacters]="false" 
+    />
   </div>
 </div>

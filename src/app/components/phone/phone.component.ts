@@ -9,9 +9,10 @@ import label from 'src/assets/i18n/label';
 })
 export class PhoneComponent {
   public label = label;
-  selectedCountryCode: string = '+55'; // Código de país padrão (Brasil)
+  selectedCountryCode: string = '+55';
+  selectedMaskAndPlaceholder: string = '(00) 0 0000-0000';
 
-  constructor(public translate: TranslateService) {}
+  constructor(public translate: TranslateService) { }
 
   countryCodes: Array<{ name: string; code: string }> = [
     { name: 'Brazil', code: '+55' },
@@ -28,10 +29,14 @@ export class PhoneComponent {
 
   onPhoneChange(event: any) {
     const fullPhoneNumber = this.selectedCountryCode + ' ' + event;
-    console.log(fullPhoneNumber);
   }
 
   onCountryCodeChange(event: any) {
-    this.selectedCountryCode = event;
+    if (this.selectedCountryCode === '+55') {
+      this.selectedMaskAndPlaceholder = '(00) 0 0000-0000';
+    } else {
+      this.selectedMaskAndPlaceholder = '(000) 000-0000';
+    }
   }
+  
 }

@@ -2,7 +2,8 @@
     <div class="row">
         <div class="col-md-12">
             <mat-form-field appearance="fill">
-                <mat-label>Escolha a data</mat-label>
+                <mat-label> {{ label.selecione_data | translate}}
+                </mat-label>
                 <input matInput [matDatepicker]="picker" (dateChange)="onDateChange($event)">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -13,12 +14,14 @@
         <div class="col-md-6">
             <div class="card border-0 shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title">Agendamentos</h5>
+                    <h5 class="card-title"> {{ label.agenda | translate}}
+                    </h5>
                     <div *ngFor="let busyHour of busyHours">
                         <h6 class="card-subtitle">{{ busyHour.name }}</h6>
                         <ul class="list-group">
                             <li *ngFor="let session of busyHour.sessions" class="list-group-item">
-                                {{ session.title }} - {{ session.startTime | date: 'HH:mm' }} às {{ session.endTime | date: 'HH:mm' }}
+                                {{ session.title }} - {{ session.startTime | date: 'HH:mm' }} às {{ session.endTime |
+                                date: 'HH:mm' }}
                             </li>
                         </ul>
                     </div>
@@ -28,9 +31,9 @@
         <div class="col-md-6">
             <div class="card border-0 shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title">Horários Disponíveis</h5>
+                    <h5 class="card-title">{{ label.horario_disponivel | translate}}</h5>
                     <mat-form-field appearance="outline" class="w-100 mb-3">
-                        <mat-label>Selecione a duração</mat-label>
+                        <mat-label>{{ label.selecione_periodo | translate}}</mat-label>
                         <mat-select [(value)]="selectedDuration" (selectionChange)="onDurationChange($event)">
                             <mat-option *ngFor="let duration of durations" [value]="duration.value">
                                 {{ duration.label }}
@@ -40,8 +43,12 @@
                     <div *ngFor="let vacantTime of vacantTimes">
                         <h6 class="card-subtitle">{{ vacantTime.title }}</h6>
                         <ul class="list-group">
-                            <li *ngFor="let time of vacantTime.times" class="list-group-item">
-                                {{ time.startTime }} às {{ time.endTime }}
+                            <li *ngFor="let time of vacantTime.times"
+                                class="list-group-item d-flex justify-content-between align-items-center">
+                                <span>{{ time.startTime }} às {{ time.endTime }}</span>
+                                <button mat-button (click)="openAddModal(time)">
+                                    <i class="fas fa-plus"></i>
+                                 </button>
                             </li>
                         </ul>
                     </div>

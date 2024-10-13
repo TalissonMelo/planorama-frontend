@@ -10,8 +10,8 @@
       </div>
     </div>
     <div class="message-input">
-      <input [(ngModel)]="newMessage.content" (keyup.enter)="sendMessage()" placeholder="Digite sua mensagem..." />
-      <button (click)="sendMessage()">Enviar</button>
+      <input [(ngModel)]="newMessage.content" (keyup.enter)="sendMessage()" placeholder="{{label.digite_sua_pergunta | translate}}" />
+      <button (click)="sendMessage()"> {{ label.enviar | translate}}</button>
     </div>
   </div>
 </div>

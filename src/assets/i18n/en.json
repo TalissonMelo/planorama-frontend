@@ -66,5 +66,21 @@
   "editar": "Editor",
   "visualizar": "Viewer",
   "criador": "Creator",
-  "adicionar_membro": "Add member"
+  "adicionar_membro": "Add member",
+  "hoje": "Today",
+  "proximo": "Next",
+  "anterior": "Previous",
+  "mes": "Month",
+  "semana": "Week",
+  "dia": "Day",
+  "enviar": "Send",
+  "digite_sua_pergunta": "Enter your question...",
+  "selecione_data": "Select a date",
+  "horario_disponivel": "Available Times",
+  "selecione_periodo": "Select a period",
+  "titulo": "Title",
+  "descricao": "Description",
+  "cancelar": "Cancel",
+  "selecione_agenda": "Select a legend"
+
 }

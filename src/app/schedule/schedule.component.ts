@@ -18,11 +18,17 @@ import { ChatComponent } from '../chat/chat.component';
 import label from 'src/assets/i18n/label';
 import { TranslateService } from '@ngx-translate/core';
 
+export function localeFactory(translate: TranslateService) {
+  return translate.getDefaultLang() === 'pt' ? 'pt-BR' : translate.getDefaultLang(); 
+}
+
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.css'],
-  providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
+  providers: [
+    { provide: LOCALE_ID, useFactory: localeFactory, deps: [TranslateService] }
+  ],
 })
 export class ScheduleComponent implements OnInit, OnDestroy {
   label = label;
@@ -127,6 +133,10 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     //   this.notificationService.notificationEmitter.subscribe((message) => {
     //     this.listInit();
     //   });
+  }
+
+  get defaultLang() {
+    return this.translate.getDefaultLang();
   }
 
   listInit(): void {

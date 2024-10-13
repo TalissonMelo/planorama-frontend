@@ -1,0 +1,38 @@
+<div class="my-custom-modal-content fixed-modal">
+    <h2 mat-dialog-title class="my-custom-modal-title">{{ label.adicionar_agenda | translate}}</h2>
+    <div class="container">
+        <div class="container mb-2">
+            <div class="form-group row mt-2">
+                <div class="col-sm-12">
+                    <label for="name">{{ label.titulo | translate}}</label>
+                    <input type="text" id="title" name="title" [(ngModel)]="sessionRequest.title"
+                        class="my-custom-form-control form-control">
+                </div>
+                <div class="col-sm-12">
+                    <label for="nome">{{ label.legenda | translate}}</label>
+                    <div class="dropdown w-100" (click)="toggleDropdown()" [class.show]="dropdownOpen">
+                        <button class="btn btn-light dropdown-toggle w-100 text-start" type="button">
+                            <span class="color-circle me-2" [style.background]="getSelectedLegendColor()"></span>
+                            <span class="legend-description">{{ getSelectedLegendDescription() }}</span>
+                        </button>
+                        <ul class="dropdown-menu w-100" [class.show]="dropdownOpen">
+                            <li *ngFor="let legend of legends" (click)="selectLegend(legend)" class="dropdown-item">
+                                <span class="color-circle me-2" [style.background]="legend.color"></span>
+                                <span class="legend-description">{{ legend.description }}</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <label for="nome">{{ label.descricao | translate}}</label>
+                    <input type="text" class="form-control" [(ngModel)]="sessionRequest.description" id="description"
+                        name="description" />
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary btn-block w-100 text-center mt-3">{{ label.adicionar_agenda |
+                translate}}</button>
+            <button type="button" (click)="onClose()"
+                class="btn btn-light btn-block w-100 text-center mt-3">{{ label.cancelar | translate}}</button>
+        </div>
+    </div>
+</div>

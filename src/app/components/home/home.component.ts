@@ -4,6 +4,9 @@ import { UseSession } from 'src/app/util/useSession';
 import { LoaderService } from '../loader/loader.service';
 import { Home } from './domain/home';
 import { HomeFreeTimes } from './domain/home_free_times';
+import label from 'src/assets/i18n/label';
+import { MatDialog } from '@angular/material/dialog';
+import { AddSessionModalComponent } from 'src/app/components/add-session-modal/add-session-modal.component';
 
 @Component({
   selector: 'app-home',
@@ -11,21 +14,23 @@ import { HomeFreeTimes } from './domain/home_free_times';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  public label = label;
   public useSession: UseSession;
   // public busyHours: Home[] = [];
   public selectedDate!: string;
   // public vacantTimes: HomeFreeTimes[] = [];
   public selectedDuration: number = 30;
   public durations: any[] = [
-    { value: 30, label: '30 minutos' },
-    { value: 60, label: '1 hora' },
-    { value: 90, label: '1h 30m' },
-    { value: 120, label: '2 horas' },
+    { value: 30, label: '30 min' },
+    { value: 60, label: '1 hr' },
+    { value: 90, label: '1 hr 30 min' },
+    { value: 120, label: '2 hr' },
   ];
 
   vacantTimes: HomeFreeTimes[] = [
     {
       id: '1',
+      scheduleId: "34",
       title: 'Morning Availability',
       times: [
         {
@@ -40,6 +45,7 @@ export class HomeComponent implements OnInit {
     },
     {
       id: '2',
+      scheduleId: "34",
       title: 'Afternoon Availability',
       times: [
         {
@@ -102,8 +108,9 @@ export class HomeComponent implements OnInit {
   ];
 
   constructor(
+    private dialog: MatDialog,
     private service: ScheduleService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
   ) {
     this.useSession = new UseSession();
   }
@@ -146,4 +153,10 @@ export class HomeComponent implements OnInit {
   onDurationChange(event: any) {
     this.listVacanTimes();
   }
+
+  openAddModal(time: any) {
+    const dialogRef = this.dialog.open(AddSessionModalComponent, {
+        data: { time: time }
+    });
+}
 }

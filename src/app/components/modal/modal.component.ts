@@ -13,6 +13,8 @@ import { SessionResponse } from './domain/session_response';
 import { SessionService } from './service/session.service';
 import { SessionUpdate } from './domain/session_update';
 import { NotificationEmitter } from '../notification/notification_emitter';
+import label from 'src/assets/i18n/label';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-modal',
@@ -21,6 +23,7 @@ import { NotificationEmitter } from '../notification/notification_emitter';
 })
 export class ModalComponent implements OnInit {
   dropdownOpen = false;
+  public label = label;
   public dateNow: Date = new Date();
   public date: Date;
   public sessionIdEdit: string = '';
@@ -32,7 +35,15 @@ export class ModalComponent implements OnInit {
   public selectedDays: any[] = [];
   public useSession: UseSession;
 
-  public daysOfWeeks = [
+  public daysOfWeeks = this.translate.getDefaultLang() === "en" ? [
+    { label: 'Monday', value: 'MONDAY' },
+    { label: 'Tuesday', value: 'TUESDAY' },
+    { label: 'Wednesday', value: 'WEDNESDAY' },
+    { label: 'Thursday', value: 'THURSDAY' },
+    { label: 'Friday', value: 'FRIDAY' },
+    { label: 'Saturday', value: 'SATURDAY' },
+    { label: 'Sunday', value: 'SUNDAY' },
+  ] : [
     { label: 'Segunda-feira', value: 'MONDAY' },
     { label: 'Terça-feira', value: 'TUESDAY' },
     { label: 'Quarta-feira', value: 'WEDNESDAY' },
@@ -77,7 +88,8 @@ export class ModalComponent implements OnInit {
     private dialogRef: MatDialogRef<ModalComponent>,
     private memberService: MemberService,
     private legendService: LegendService,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    public translate: TranslateService
   ) {
     this.sessionRequest = new SessionRequest();
     this.useSession = new UseSession();
@@ -130,14 +142,14 @@ export class ModalComponent implements OnInit {
           this.loaderService.hide();
           this.sessionRequest = new SessionRequest();
           this.notificationService.showSuccess(
-            'Agendamento cadastrada com sucesso!'
+            'Appointment registered successfully!'
           );
           this.ngOnInit();
         },
         (error) => {
           this.loaderService.hide();
           this.notificationService.showError(
-            'Agendamento inválido por favor tente novamente.'
+            'Invalid booking, please try again.'
           );
         }
       );
@@ -147,18 +159,18 @@ export class ModalComponent implements OnInit {
   isValidSession(): boolean {
     if (this.sessionRequest.endTime <= this.sessionRequest.startTime) {
       this.notificationService.showError(
-        'A data de finalização deve ser maior que a data de início.'
+        'The end date must be greater than the start date.'
       );
       return false;
     }
 
     if (!this.sessionRequest.title) {
-      this.notificationService.showError('O título não pode ser nulo.');
+      this.notificationService.showError('The title cannot be null.');
       return false;
     }
 
     if (!this.sessionRequest.legendId) {
-      this.notificationService.showError('A legenda não pode ser nula.');
+      this.notificationService.showError('The legend cannot be null.');
       return false;
     }
 
@@ -166,7 +178,7 @@ export class ModalComponent implements OnInit {
   }
 
   deleted(eventToDelete: SessionResponse) {
-    if (confirm('Deseja deletar o agendamento: ' + eventToDelete.title)) {
+    if (confirm('Do you want to delete the schedule: ' + eventToDelete.title)) {
       this.loaderService.show();
       this.sessionService.delete(eventToDelete.id).subscribe(
         (res) => {
@@ -174,14 +186,12 @@ export class ModalComponent implements OnInit {
           this.events.splice(index, 1);
           this.loaderService.hide();
           this.notificationService.showSuccess(
-            'Agendamento deletada com sucesso!'
-          );
+            'Appointment deleted successfully!');
         },
         (error) => {
           this.loaderService.hide();
           this.notificationService.showError(
-            'Agendamento não deletada por favor tente novamente.'
-          );
+            'Schedule not deleted, please try again.');
         }
       );
     }
@@ -209,13 +219,12 @@ export class ModalComponent implements OnInit {
         this.sessionIdEdit = '';
         this.loaderService.hide();
         this.notificationService.showSuccess(
-          'Agendamento atualizado com sucesso!'
-        );
+          'Schedule updated successfully!');
       },
       (error) => {
         this.loaderService.hide();
         this.notificationService.showError(
-          'Agendamento não atualizado por favor tente novamente.'
+          'Schedule not updated, please try again.'
         );
       }
     );
@@ -234,7 +243,7 @@ export class ModalComponent implements OnInit {
     const selected = this.legends.find(
       (legend) => legend.id === this.sessionRequest.legendId
     );
-    return selected ? selected.description : 'Selecione uma legenda';
+    return selected ? selected.description : this.translate.getDefaultLang() === "en" ? "Select a legend" : "Selecione uma legenda";
   }
 
   getSelectedLegendColor() {
