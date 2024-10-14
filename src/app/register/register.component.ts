@@ -1,13 +1,18 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { UserRequest } from './model/user_request';
-import { NotificationService } from '../components/notification/notification.service';
-import { UserService } from './service/user.service';
-import { LoaderService } from '../components/loader/loader.service';
 import { MatDialog } from '@angular/material/dialog';
-import { TermsComponent } from '../components/terms/terms.component';
-import label from 'src/assets/i18n/label';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import {
+  CognitoUserAttribute,
+  CognitoUserPool,
+} from 'amazon-cognito-identity-js';
+import label from 'src/assets/i18n/label';
+import { environment } from 'src/environments/environment';
+import { LoaderService } from '../components/loader/loader.service';
+import { NotificationService } from '../components/notification/notification.service';
+import { TermsComponent } from '../components/terms/terms.component';
+import { Iuser } from './model/iuser';
+import { UserRequest } from './model/user_request';
 
 @Component({
   selector: 'app-register',
@@ -22,34 +27,60 @@ export class RegisterComponent {
   constructor(
     private router: Router,
     public dialog: MatDialog,
-    private service: UserService,
     public translate: TranslateService,
     private loaderService: LoaderService,
     private notificationService: NotificationService
   ) {
-    this.user = new UserRequest('', '', '', '');
+    this.user = new UserRequest('', '', '');
   }
 
   onSubmit(): void {
     if (this.isValid()) {
-      this.router.navigate(['/login']);
-      this.notificationService.showSuccess('Usuário registrado com sucesso!');
-      // this.loaderService.show();
-      // this.service.userCreate(this.user).subscribe(
-      //   (res) => {
-      //     this.loaderService.hide();
-      //     this.router.navigate(['/login']);
-      //     this.notificationService.showSuccess(
-      //       'Usuário registrado com sucesso!'
-      //     );
-      //   },
-      //   (error) => {
-      //     this.loaderService.hide();
-      //     this.notificationService.showError(
-      //       'Dados de usuário, inválidos por favor tente novamente.'
-      //     );
-      //   }
-      // );
+      this.loaderService.show();
+      var poolData = {
+        UserPoolId: environment.userPoolId,
+        ClientId: environment.clientId,
+      };
+
+      var userPool = new CognitoUserPool(poolData);
+
+      var attributeList = [];
+
+      var iuser: Iuser = {
+        email: this.user.email,
+        name: this.user.nickname,
+      };
+
+      for (let key in iuser) {
+        var attrData = {
+          Name: key,
+          Value: iuser[key],
+        };
+        var attr = new CognitoUserAttribute(attrData);
+        attributeList.push(attr);
+      }
+
+      userPool.signUp(
+        this.user.email,
+        this.user.password,
+        attributeList,
+        [],
+        (err, result) => {
+          if (err) {
+            alert(err.message || JSON.stringify(err));
+            this.loaderService.hide();
+            return;
+          }
+          // var cognitoUser = result;
+          // console.log(cognitoUser);
+          // console.log('user name is ' + cognitoUser);
+          this.router.navigate([`/register/valid-code/${this.user.email}`]);
+          this.notificationService.showSuccess(
+            'Usuário registrado com sucesso!'
+          );
+          this.loaderService.hide();
+        }
+      );
     }
   }
 
@@ -64,7 +95,6 @@ export class RegisterComponent {
     if (
       this.user.email != '' &&
       this.user.nickname != '' &&
-      this.user.phone != '' &&
       this.validPassword()
     ) {
       return true;

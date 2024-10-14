@@ -20,7 +20,6 @@ export class UserService {
     const user = new UserRequest(
       userRequest.email,
       userRequest.nickname,
-      userRequest.phone,
       btoa(userRequest.password)
     );
     return this.http.post<User>(`${environment.uri}/v1/users`, user);

@@ -9,9 +9,10 @@ import { PhoneModule } from '../components/phone/phone.module';
 import { TermsModule } from '../components/terms/terms.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { TranslateModule } from '@ngx-translate/core';
+import { ValidCodeComponent } from './valid-code/valid-code.component';
 
 @NgModule({
-  declarations: [RegisterComponent],
+  declarations: [RegisterComponent, ValidCodeComponent],
   imports: [
     CommonModule,
     RegisterRoutingModule,

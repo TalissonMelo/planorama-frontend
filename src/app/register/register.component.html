@@ -1,6 +1,7 @@
 <div class="container-fluid vh-100 d-flex p-0">
   <div class="col-md-1"></div>
-  <div class="col-md-5 d-flex flex-column justify-content-center bg-white p-5">
+  <div class="col-md-5 d-flex flex-column justify-content-center bg-white">
+    <img src="./assets/planorama.png" alt="Logo" class="mb-4" style="width: 80px; height: 80px;"> 
     <h1 class="heading-h1">{{ label.crie_sua_conta | translate }}</h1>
     <p class="subtitle">{{ label.ja_tem_conta | translate }}
       <a [routerLink]="['/login']" class="font-weight-bold body-16-medium">{{ label.entrar_agora | translate }}</a>
@@ -15,9 +16,6 @@
         <label for="nickname">{{ label.nome | translate }}</label>
         <input type="text" id="nickname" name="nickname" class="form-control" placeholder="{{ label.nome_description | translate }}"
           [(ngModel)]="user.nickname" required />
-      </div>
-      <div class="form-group mt-3">
-        <app-phone [id]="'phone'" [changePhone]="user.phone" (phoneChange)="user.phone = $event" required></app-phone>
       </div>
       <div class="form-group mt-3">
       <app-password [title]=" label.senha | translate  " [id]="'password'"
