@@ -31,8 +31,8 @@ export class TokenInterceptor implements HttpInterceptor {
     if (tokenString && !url.endsWith('/oauth/token')) {
       request = request.clone({
         setHeaders: {
-          Authorization: 'Bearer ' + tokenString,
-          'X-UserID': userId,
+          'Content-Type': 'application/json',
+          Authorization: tokenString,
         },
       });
     }

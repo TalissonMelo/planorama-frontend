@@ -68,11 +68,12 @@ export class LoginComponent {
               username,
               email,
               name,
-              result.getAccessToken().getJwtToken(),
+              result.getIdToken().getJwtToken(),
               result.getRefreshToken().getToken()
             )
           );
-          this.useSession.setToken(result.getAccessToken().getJwtToken());
+
+          this.useSession.setToken(result.getIdToken().getJwtToken());
           this.loaderService.hide();
           this.router.navigate(['/']);
         },
