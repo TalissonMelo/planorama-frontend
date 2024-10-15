@@ -21,8 +21,8 @@ export class ValidCodeComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private notificationService: NotificationService,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private notificationService: NotificationService
   ) {
     this.email = this.route.snapshot.paramMap.get('email') || '';
   }
@@ -68,20 +68,16 @@ export class ValidCodeComponent {
         (err, result) => {
           if (err) {
             this.notificationService.showError(
-              'Erro ao confirmar código: ' + err.message
+              'Error confirming code: ' + err.message
             );
             return;
           }
-          this.notificationService.showSuccess(
-            'Usuário verificado com sucesso!'
-          );
+          this.notificationService.showSuccess('User verified successfully!');
           this.router.navigate(['/login']);
         }
       );
     } else {
-      this.notificationService.showError(
-        'Código inválido, por favor tente novamente.'
-      );
+      this.notificationService.showError('Invalid code, please try again.');
     }
   }
 
@@ -109,12 +105,12 @@ export class ValidCodeComponent {
     cognitoUser.resendConfirmationCode((err, result) => {
       if (err) {
         this.notificationService.showError(
-          'Erro ao reenviar código: ' + err.message
+          'Error resending code: ' + err.message
         );
         return;
       }
       this.notificationService.showSuccess(
-        'Código reenviado com sucesso! Verifique seu e-mail.'
+        'Code resent successfully! Please check your email.'
       );
     });
   }

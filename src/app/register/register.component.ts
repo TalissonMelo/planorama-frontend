@@ -71,13 +71,8 @@ export class RegisterComponent {
             this.loaderService.hide();
             return;
           }
-          // var cognitoUser = result;
-          // console.log(cognitoUser);
-          // console.log('user name is ' + cognitoUser);
           this.router.navigate([`/register/valid-code/${this.user.email}`]);
-          this.notificationService.showSuccess(
-            'Usuário registrado com sucesso!'
-          );
+          this.notificationService.showSuccess('User registered successfully!');
           this.loaderService.hide();
         }
       );
@@ -87,7 +82,7 @@ export class RegisterComponent {
   isValid(): boolean {
     if (!this.acceptedTerms) {
       this.notificationService.showError(
-        'Para Utilizar o sistema e necessário aceitar os termos de uso!.'
+        'To use the system you must accept the terms of use!.'
       );
       return false;
     }
@@ -99,9 +94,7 @@ export class RegisterComponent {
     ) {
       return true;
     }
-    this.notificationService.showError(
-      'Dados de usuário, inválidos por favor tente novamente.'
-    );
+    this.notificationService.showError('Invalid user data, please try again.');
     return false;
   }
 
@@ -115,7 +108,7 @@ export class RegisterComponent {
     }
 
     this.notificationService.showError(
-      'Senhas não conferem. Por favor, tente novamente.'
+      'Passwords do not match. Please try again.'
     );
     return false;
   }

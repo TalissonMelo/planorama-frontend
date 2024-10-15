@@ -6,7 +6,7 @@ import { RecoverChangePasswordComponent } from './recover-change-password/recove
 
 const routes: Routes = [
   { path: '', component: RecoverPasswordComponent },
-  { path: 'code', component: RecoverCodeComponent },
+  { path: 'code/:email', component: RecoverCodeComponent },
   { path: 'password', component: RecoverChangePasswordComponent },
 ];
 

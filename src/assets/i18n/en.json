@@ -87,5 +87,6 @@
   "inicio": "Start",
   "fim": "End",
   "repetir": "Frequency",
-  "obs_repetir": "Note: Repeat will only occur between the selected start and end dates."
+  "obs_repetir": "Note: Repeat will only occur between the selected start and end dates.",
+  "reenviar_codigo": "Resend code"
 }

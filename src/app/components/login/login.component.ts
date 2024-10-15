@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 import { LoaderService } from '../loader/loader.service';
 import { NotificationService } from '../notification/notification.service';
 import { Login } from './user/model/login';
+import { UserLogin } from './user/model/user_login';
 
 @Component({
   selector: 'app-login',
@@ -26,9 +27,9 @@ export class LoginComponent {
   constructor(
     private router: Router,
     public dialog: MatDialog,
-    private notificationService: NotificationService,
+    public translate: TranslateService,
     private loaderService: LoaderService,
-    public translate: TranslateService
+    private notificationService: NotificationService
   ) {
     this.login = new Login('', '');
   }
@@ -37,49 +38,57 @@ export class LoginComponent {
     if (this.isValid()) {
       this.loaderService.show();
 
-      /*  const poolData = {
+      var poolData = {
         UserPoolId: environment.userPoolId,
         ClientId: environment.clientId,
       };
-      const userPool = new CognitoUserPool(poolData);
+      var userPool = new CognitoUserPool(poolData);
 
-      const authData = {
+      var authData = {
         Username: this.login.email,
         Password: this.login.password,
       };
-      const authDetails = new AuthenticationDetails(authData);
+      var authDetails = new AuthenticationDetails(authData);
 
-      const userData = {
+      var userData = {
         Username: this.login.email,
         Pool: userPool,
       };
-      const cognitoUser = new CognitoUser(userData);
+      var cognitoUser = new CognitoUser(userData);
 
       cognitoUser.authenticateUser(authDetails, {
         onSuccess: (result) => {
-          console.log(result);
-          const idToken = result.getIdToken().getJwtToken();
-          const accessToken = result.getAccessToken().getJwtToken();
+          const payload = result.getIdToken().decodePayload();
+          const email = payload['email'];
+          const username = payload['cognito:username'];
+          const name = payload['name'];
 
-          this.useSession.setToken(idToken);
-
+          this.useSession.setUser(
+            new UserLogin(
+              username,
+              email,
+              name,
+              result.getAccessToken().getJwtToken(),
+              result.getRefreshToken().getToken()
+            )
+          );
+          this.useSession.setToken(result.getAccessToken().getJwtToken());
           this.loaderService.hide();
-          this.notificationService.showSuccess('Login realizado com sucesso!');
           this.router.navigate(['/']);
         },
         onFailure: (err) => {
           this.loaderService.hide();
           this.notificationService.showError(
-            'E-mail ou senha inválidos. Por favor, tente novamente.'
+            'Invalid email or password. Please try again.'
           );
         },
-      });*/
+      });
     }
   }
 
   isValid(): boolean {
     if (this.login.email == '' || this.login.password == '') {
-      this.notificationService.showError('Preencha email e senha!');
+      this.notificationService.showError('Fill in email and password!');
       return false;
     }
     return true;

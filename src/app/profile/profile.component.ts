@@ -31,7 +31,7 @@ export class ProfileComponent {
     this.email = this.useSession.getUser().email;
     this.userUpdate = new UserUpdateRequest(
       this.useSession.getUser().nickname,
-      this.useSession.getUser().phone
+      ''
     );
   }
 

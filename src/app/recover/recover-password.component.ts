@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { CognitoUser, CognitoUserPool } from 'amazon-cognito-identity-js';
+import label from 'src/assets/i18n/label';
+import { environment } from 'src/environments/environment';
 import { LoaderService } from '../components/loader/loader.service';
 import { NotificationService } from '../components/notification/notification.service';
 import { UseSession } from '../util/useSession';
 import { RecoverEmail } from './domain/recover_email';
-import { RecoverService } from './service/recover.service';
-import { TranslateService } from '@ngx-translate/core';
-import label from 'src/assets/i18n/label';
 
 @Component({
   selector: 'app-recover-password',
@@ -19,7 +20,6 @@ export class RecoverPasswordComponent {
 
   constructor(
     private router: Router,
-    private service: RecoverService,
     private loaderService: LoaderService,
     private notificationService: NotificationService,
     public translate: TranslateService
@@ -29,22 +29,33 @@ export class RecoverPasswordComponent {
 
   recoverPassword(): void {
     if (this.isValidEmail()) {
-      this.router.navigate(['/recover-password/code']);
-      //   this.loaderService.show();
-      //   this.service.sendCode(this.recover).subscribe(
-      //     (res) => {
-      //       this.useSession.setData(res);
-      //       this.router.navigate(['/recover-password/code']);
-      //       this.loaderService.hide();
-      //       this.notificationService.showSuccess('Código enviado com sucesso!');
-      //     },
-      //     (error) => {
-      //       this.loaderService.hide();
-      //       this.notificationService.showError(
-      //         'E-mail inválido por favor tente novamente.'
-      //       );
-      //     }
-      //   );
+      this.loaderService.show();
+      const poolData = {
+        UserPoolId: environment.userPoolId,
+        ClientId: environment.clientId,
+      };
+
+      const userPool = new CognitoUserPool(poolData);
+      const userData = {
+        Username: this.recover.email,
+        Pool: userPool,
+      };
+      const cognitoUser = new CognitoUser(userData);
+
+      cognitoUser.forgotPassword({
+        onSuccess: (data) => {
+          this.router.navigate([
+            `/recover-password/code/${this.recover.email}`,
+          ]);
+          this.loaderService.hide();
+        },
+        onFailure: (err) => {
+          this.loaderService.hide();
+          this.notificationService.showError(
+            'Error requesting password recovery.'
+          );
+        },
+      });
     }
   }
 
@@ -52,9 +63,7 @@ export class RecoverPasswordComponent {
     if (this.recover.email != null) {
       return true;
     }
-    this.notificationService.showError(
-      'E-mail inválido por favor tente novamente.'
-    );
+    this.notificationService.showError('Invalid email please try again.');
     return false;
   }
 }

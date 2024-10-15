@@ -6,6 +6,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { MembersComponent } from './schedule/members/members.component';
 import { ScheduleNameComponent } from './schedule/schedule-name/schedule-name.component';
 import { ScheduleComponent } from './schedule/schedule.component';
+import { GuardRotasGuard } from './guard-rotas.guard';
 
 const routes: Routes = [
   {
@@ -15,26 +16,23 @@ const routes: Routes = [
   {
     path: '',
     component: NavComponent,
-    //canActivate: [GuardRotasGuard],
+    canActivate: [GuardRotasGuard],
     children: [
       { path: '', component: HomeComponent },
       {
         path: 'schedule',
         component: ScheduleNameComponent,
-        //canActivate: [GuardRotasGuard],
-        data: { title: 'Agenda' },
+        canActivate: [GuardRotasGuard],
       },
       {
         path: 'session',
         component: ScheduleComponent,
-        //canActivate: [GuardRotasGuard],
-        data: { title: 'Sessões' },
+        canActivate: [GuardRotasGuard],
       },
       {
         path: 'members',
         component: MembersComponent,
-        //canActivate: [GuardRotasGuard],
-        data: { title: 'Participantes' },
+        canActivate: [GuardRotasGuard],
       },
       {
         path: 'profile',
@@ -59,7 +57,9 @@ const routes: Routes = [
       {
         path: 'video',
         loadChildren: () =>
-          import('./video-call/video-call.module').then((v) => v.VideoCallModule),
+          import('./video-call/video-call.module').then(
+            (v) => v.VideoCallModule
+          ),
       },
     ],
   },

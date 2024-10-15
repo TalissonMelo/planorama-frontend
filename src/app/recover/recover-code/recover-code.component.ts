@@ -1,13 +1,12 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { UseSession } from 'src/app/util/useSession';
-import { CodeService } from '../service/code.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { LoaderService } from 'src/app/components/loader/loader.service';
 import { NotificationService } from 'src/app/components/notification/notification.service';
-import { CodeRequest } from '../domain/code_request';
-import { Email } from '../domain/email';
-import { TranslateService } from '@ngx-translate/core';
+import { UseSession } from 'src/app/util/useSession';
 import label from 'src/assets/i18n/label';
+import { CodeRequest } from '../domain/code_request';
+import { CodeResponse } from '../domain/code_response';
 
 @Component({
   selector: 'app-recover-code',
@@ -15,7 +14,7 @@ import label from 'src/assets/i18n/label';
 })
 export class RecoverCodeComponent {
   public label = label;
-  public email!: Email;
+  public email: string;
   public codeRequest: CodeRequest = new CodeRequest();
   public useSession: UseSession = new UseSession();
 
@@ -23,12 +22,12 @@ export class RecoverCodeComponent {
 
   constructor(
     private router: Router,
-    private service: CodeService,
+    private route: ActivatedRoute,
     private loaderService: LoaderService,
     private notificationService: NotificationService,
     public translate: TranslateService
   ) {
-    this.email = this.useSession.getData();
+    this.email = this.route.snapshot.paramMap.get('email') || '';
   }
 
   onInputChange(event: any, index: number) {
@@ -37,7 +36,7 @@ export class RecoverCodeComponent {
 
     if (/^[A-Z0-9]$/.test(value)) {
       input.value = value;
-      if (index < 4) {
+      if (index < 5) {
         const nextInput =
           this.codeInputs.nativeElement.querySelectorAll('.code-input')[
             index + 1
@@ -53,31 +52,16 @@ export class RecoverCodeComponent {
 
   confirmCode() {
     this.createCode();
-    if (this.codeRequest.code.length === 5) {
-      this.router.navigate(['/recover-password/password']);
-      //   this.loaderService.show();
-      //   this.service.sendCode(this.codeRequest).subscribe(
-      //     (res) => {
-      //       this.useSession.setCode(res);
-      //       this.router.navigate(['/recover-password/password']);
-      //       this.loaderService.hide();
-      //     },
-      //     (error) => {
-      //       this.loaderService.hide();
-      //       this.notificationService.showError(
-      //         'Código inválido, por favor tente novamente.'
-      //       );
-      //     }
-      //   );
-      // } else {
-      //   this.notificationService.showError(
-      //     'Por favor, preencha todos os campos.'
-      //   );
-    } else {
-      this.notificationService.showError(
-        'Código inválido, por favor tente novamente.'
+    this.loaderService.show();
+    if (this.codeRequest.code.length === 6) {
+      this.useSession.setCode(
+        new CodeResponse(this.codeRequest.code, this.email)
       );
+      this.router.navigate(['/recover-password/password']);
+    } else {
+      this.notificationService.showError('Invalid code, please try again.');
     }
+    this.loaderService.hide();
   }
 
   createCode(): void {

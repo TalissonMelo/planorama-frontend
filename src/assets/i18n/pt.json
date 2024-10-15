@@ -87,5 +87,6 @@
   "inicio": "Início",
   "fim": "Fim",
   "repetir": "Frequência",
-  "obs_repetir": "Observação: A repetição ocorrerá apenas entre as datas de início e fim selecionadas."
+  "obs_repetir": "Observação: A repetição ocorrerá apenas entre as datas de início e fim selecionadas.",
+  "reenviar_codigo": "Reenviar código"
 }
