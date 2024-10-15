@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { UseSession } from 'src/app/util/useSession';
 import label from 'src/assets/i18n/label';
+import { LoaderService } from '../loader/loader.service';
+import { environment } from 'src/environments/environment';
+import { CognitoUserPool } from 'amazon-cognito-identity-js';
 
 @Component({
   selector: 'app-header',
@@ -32,7 +35,11 @@ export class HeaderComponent {
     },
   ];
 
-  constructor(private router: Router, public translate: TranslateService) {
+  constructor(
+    private router: Router,
+    public translate: TranslateService,
+    private loaderService: LoaderService
+  ) {
     this.useSession = new UseSession();
     this.name = this.useSession.getUser().nickname;
   }
@@ -56,7 +63,17 @@ export class HeaderComponent {
   }
 
   logout() {
+    this.loaderService.show();
+    var poolData = {
+      UserPoolId: environment.userPoolId,
+      ClientId: environment.clientId,
+    };
+    var userPool = new CognitoUserPool(poolData);
+    var currentUser = userPool.getCurrentUser();
+    currentUser?.signOut();
+
     this.useSession.clear();
+    this.loaderService.hide();
     this.router.navigate(['/login']);
   }
 }
