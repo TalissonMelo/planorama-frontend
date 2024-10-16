@@ -43,7 +43,7 @@ export class ScheduleService {
   }
 
   list(): Observable<any> {
-    return this.http.get<any[]>(`${environment.url}/v1/schedule`);
+    return this.http.get<any[]>(`${environment.url}/v1/schedules`);
   }
 
   listed(date: string): Observable<Home[]> {

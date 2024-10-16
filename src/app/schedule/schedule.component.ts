@@ -19,7 +19,9 @@ import label from 'src/assets/i18n/label';
 import { TranslateService } from '@ngx-translate/core';
 
 export function localeFactory(translate: TranslateService) {
-  return translate.getDefaultLang() === 'pt' ? 'pt-BR' : translate.getDefaultLang(); 
+  return translate.getDefaultLang() === 'pt'
+    ? 'pt-BR'
+    : translate.getDefaultLang();
 }
 
 @Component({
@@ -27,7 +29,7 @@ export function localeFactory(translate: TranslateService) {
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.css'],
   providers: [
-    { provide: LOCALE_ID, useFactory: localeFactory, deps: [TranslateService] }
+    { provide: LOCALE_ID, useFactory: localeFactory, deps: [TranslateService] },
   ],
 })
 export class ScheduleComponent implements OnInit, OnDestroy {
@@ -143,8 +145,8 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     this.schedule = this.useSession.getScheduleId();
     const date: Date = new Date();
     this.listSessions(date.getMonth() + 1, date.getFullYear());
-    this.start = this.useSession.toNumber(this.schedule.startTime);
-    this.finish = this.useSession.toNumberAddHour(this.schedule.endTime);
+    //  this.start = this.useSession.toNumber(this.schedule.startTime);
+    //this.finish = this.useSession.toNumberAddHour(this.schedule.endTime);
     this.listLegends();
     this.listMember();
   }

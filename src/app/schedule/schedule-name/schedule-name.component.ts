@@ -9,6 +9,7 @@ import { UseSession } from 'src/app/util/useSession';
 import { UserPermissions } from './domain/user_permissions';
 import label from 'src/assets/i18n/label';
 import { TranslateModule } from '@ngx-translate/core';
+import { DateService } from 'src/app/util/DateService';
 
 @Component({
   selector: 'app-schedule-name',
@@ -28,7 +29,8 @@ export class ScheduleNameComponent implements OnInit {
     private service: ScheduleService,
     private loaderService: LoaderService,
     private notificationService: NotificationService,
-    private translate: TranslateModule
+    private translate: TranslateModule,
+    public dateService: DateService
   ) {
     this.useSession = new UseSession();
     this.schedule = new ScheduleRequest();
@@ -54,8 +56,8 @@ export class ScheduleNameComponent implements OnInit {
     this.loaderService.show();
     this.service.list().subscribe((res) => {
       this.schedules = res;
+      this.loaderService.hide();
     });
-    this.loaderService.hide();
   }
 
   save(): void {
@@ -144,8 +146,8 @@ export class ScheduleNameComponent implements OnInit {
   createSchedule(schedule: ScheduleResponse): ScheduleRequest {
     let scheduleUpdate: ScheduleRequest = new ScheduleRequest();
     scheduleUpdate.name = schedule.name;
-    scheduleUpdate.startTime = schedule.startTime;
-    scheduleUpdate.endTime = schedule.endTime;
+    // scheduleUpdate.startTime = schedule.startTime;
+    // scheduleUpdate.endTime = schedule.endTime;
     return scheduleUpdate;
   }
 }

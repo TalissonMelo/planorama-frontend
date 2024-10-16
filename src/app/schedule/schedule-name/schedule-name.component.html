@@ -44,10 +44,10 @@
                 <tr *ngFor="let schedule of schedules">
                     <td *ngIf="editSchedule != schedule.id" class="col-7">{{ schedule.name }}</td>
                     <td *ngIf="editSchedule != schedule.id" class="col-1">
-                        {{ schedule.startTime | date: 'HH:mm' }}
+                        {{ dateService.formatDateTime(schedule.startTime) | date: 'HH:mm'   }}
                       </td>
                       <td *ngIf="editSchedule != schedule.id" class="col-1">
-                        {{ schedule.endTime | date: 'HH:mm' }}
+                        {{ dateService.formatDateTime(schedule.endTime) | date: 'HH:mm'  }}
                       </td>                      
                     <td *ngIf="editSchedule == schedule.id" class="col-7"> <input type="text" id="name" name="name"
                             [(ngModel)]="schedule.name" class="my-custom-form-control form-control"></td>
