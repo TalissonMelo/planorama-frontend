@@ -17,33 +17,21 @@ export class LegendService {
   }
 
   save(legend: LegendRequest): Observable<LegendResponse> {
+    const userId: string = this.useSession.getUser().id;
     return this.http.post<LegendResponse>(
-      `${environment.uri}/v1/legends`,
+      `${environment.url}/captions/users/${userId}`,
       legend
     );
   }
 
   delete(legendId: string): Observable<any> {
-    return this.http.delete<any>(`${environment.uri}/v1/legends/${legendId}`);
-  }
-
-  update(legendId: string, legend: LegendRequest): Observable<LegendResponse> {
-    return this.http.put<LegendResponse>(
-      `${environment.uri}/v1/legends/${legendId}`,
-      legend
-    );
+    return this.http.delete<any>(`${environment.url}/captions/${legendId}`);
   }
 
   legends(): Observable<LegendResponse[]> {
     const userId: string = this.useSession.getUser().id;
     return this.http.get<LegendResponse[]>(
-      `${environment.uri}/v1/users/${userId}/legends`
-    );
-  }
-
-  legendBySchedule(scheduleId: string): Observable<LegendResponse[]> {
-    return this.http.get<LegendResponse[]>(
-      `${environment.uri}/v1/schedules/${scheduleId}/legends`
+      `${environment.url}/captions/users/${userId}`
     );
   }
 }

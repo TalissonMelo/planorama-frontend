@@ -161,15 +161,15 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
   listLegends(): void {
     this.loaderService.show();
-    this.legendService.legendBySchedule(this.schedule.id).subscribe(
-      (res) => {
-        this.legends = res;
-        this.loaderService.hide();
-      },
-      (error) => {
-        this.loaderService.hide();
-      }
-    );
+    // this.legendService.legendBySchedule(this.schedule.id).subscribe(
+    //   (res) => {
+    //     this.legends = res;
+    //     this.loaderService.hide();
+    //   },
+    //   (error) => {
+    //     this.loaderService.hide();
+    //   }
+    // );
   }
 
   listSessions(month: number, year: number): void {

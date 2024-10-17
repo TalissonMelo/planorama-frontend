@@ -7,14 +7,13 @@
         <button type="button" class="btn btn-primary" (click)="openLegendDialog()">{{label.nova_legenda | translate}}
         </button>
     </div>
-
     <div class="row">
         <div *ngFor="let legend of legends" class="col-sm-6 col-md-4 col-lg-3 mb-4">
             <div class="legend-card">
                 <div class="legend-header" [style.background]="legend.color">
                     <span class="legend-title">{{ legend.description }}</span>
                 </div>
-                <div class="legend-content" >
+                <div class="legend-content">
                     <button mat-icon-button class="delete-button" (click)="deleted(legend)" title="Deletar">
                         <mat-icon>delete</mat-icon>
                     </button>
@@ -23,10 +22,6 @@
         </div>
     </div>
 </div>
-
-
-
-
 <ng-template #legendDialog>
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -37,18 +32,20 @@
                 <form [formGroup]="legendForm">
                     <div class="form-group">
                         <label for="description">{{ label.legenda | translate}} </label>
-                        <input id="description" formControlName="description" class="form-control">
+                        <input id="description" type="text" name="description" class="form-control"
+                            placeholder="{{ label.legenda | translate }}" formControlName="description"
+                            [(ngModel)]="legend.description">
                     </div>
                     <div class="row">
                         <div class="col-sm-12 mt-3">
-                            <label for="description">{{ label.selecionar_cor | translate  }} </label>
+                            <label for="description">{{ label.selecionar_cor | translate }} </label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6" *ngFor="let color of colors">
                             <div class="form-check m-2">
                                 <input class="form-check-input" type="radio" [value]="color.hex" formControlName="color"
-                                    id="{{color.name}}">
+                                    [(ngModel)]="legend.color" id="{{color.name}}">
                                 <label class="form-check-label d-flex align-items-center" [for]="color.name">
                                     <span class="color-circle me-2" [style.background]="color.hex"></span>
                                     {{ color.name }}
@@ -56,7 +53,8 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" (click)="saveLegend()" class="btn btn-primary mt-3">{{ label.salvar_legenda | translate  }}</button>
+                    <button type="button" (click)="saveLegend()" class="btn btn-primary mt-3">{{ label.salvar_legenda |
+                        translate }}</button>
                 </form>
             </div>
         </div>

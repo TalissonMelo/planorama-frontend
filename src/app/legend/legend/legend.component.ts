@@ -19,7 +19,6 @@ export class LegendComponent implements OnInit {
   @ViewChild('legendDialog') legendDialog!: TemplateRef<any>;
   public legends: LegendResponse[] = [];
   public legend: LegendRequest;
-  public isEditing: boolean = false;
   public legendEditId: string = '';
   public colors: { name: string; hex: string }[] = [
     { name: 'Verde', hex: '#90EE90' },
@@ -48,7 +47,6 @@ export class LegendComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.legend = new LegendRequest();
-    this.legend.color = '#000';
     this.legendForm = this.fb.group({
       description: [''],
       color: [''],
@@ -56,54 +54,16 @@ export class LegendComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.loaderService.show();
-    // this.service.legends().subscribe(
-    //   (res) => {
-    //     this.legends = res;
-    //     this.loaderService.hide();
-    //   },
-    //   (error) => {
-    //     this.loaderService.hide();
-    //   }
-    // );
-    this.legends = [
-      {
-        id: '1',
-        color: '#90EE90',
-        ownerId: 'owner123',
-        description: 'A legend item for the first chart',
+    this.loaderService.show();
+    this.service.legends().subscribe(
+      (res) => {
+        this.legends = res;
+        this.loaderService.hide();
       },
-      {
-        id: '2',
-        color: '#ADD8E6',
-        ownerId: 'owner456',
-        description: 'A legend second chart',
-      },
-      {
-        id: '3',
-        color: '#3357FF',
-        ownerId: 'owner789',
-        description: 'A legend  third chart',
-      },
-      {
-        id: '3',
-        color: '#FFD700',
-        ownerId: 'owner789',
-        description: 'A legend  third chart',
-      },
-      {
-        id: '3',
-        color: '#DA70D6',
-        ownerId: 'owner789',
-        description: 'A legend  third chart',
-      },
-      {
-        id: '3',
-        color: '#E6E6FA',
-        ownerId: 'owner789',
-        description: 'A legend  third chart',
-      },
-    ];
+      (error) => {
+        this.loaderService.hide();
+      }
+    );
   }
 
   saveLegend() {
@@ -111,92 +71,55 @@ export class LegendComponent implements OnInit {
       this.loaderService.show();
       this.service.save(this.legend).subscribe(
         (res) => {
-          this.loaderService.hide();
-          this.legends.unshift(res);
+          this.legends.push(res);
           this.legend = new LegendRequest();
+          this.loaderService.hide();
           this.notificationService.showSuccess(
-            'Legenda cadastrada com sucesso!'
+            'Caption registered successfully!'
           );
         },
         (error) => {
           this.loaderService.hide();
           this.notificationService.showError(
-            'Legenda inválido por favor tente novamente.'
+            'Invalid caption please try again.'
           );
         }
       );
     }
-  }
-
-  save(legend: LegendResponse) {
-    let updateLegend: LegendRequest = new LegendRequest();
-    updateLegend.color = legend.color;
-    updateLegend.description = legend.description;
-    this.loaderService.show();
-    this.service.update(legend.id, updateLegend).subscribe(
-      (res) => {
-        legend = res;
-        this.isEditing = false;
-        this.legendEditId = '';
-        this.loaderService.hide();
-        this.notificationService.showSuccess('Legenda atualizada com sucesso!');
-      },
-      (error) => {
-        this.loaderService.hide();
-        this.notificationService.showError(
-          'Legenda inválido por favor tente novamente.'
-        );
-      }
-    );
   }
 
   isValidLegend(): boolean {
     if (this.legend.color != null && this.legend.description != null) {
       return true;
     }
-    this.notificationService.showError(
-      'Legenda inválido por favor tente novamente.'
-    );
+    this.notificationService.showError('Invalid caption please try again.');
     return false;
   }
 
   deleted(legend: LegendResponse) {
-    if (confirm('Deseja deletar a agenda: ' + legend.description)) {
+    if (confirm('Do you want to delete the calendar: ' + legend.description)) {
       this.loaderService.show();
       this.service.delete(legend.id).subscribe(
         (res) => {
           const index = this.legends.indexOf(legend);
           this.legends.splice(index, 1);
           this.loaderService.hide();
-          this.notificationService.showSuccess('Legenda deletada com sucesso!');
+          this.notificationService.showSuccess(
+            'Subtitle deleted successfully!'
+          );
         },
         (error) => {
           this.loaderService.hide();
           this.notificationService.showError(
-            'Legenda não deletada por favor tente novamente.'
+            'Subtitle not deleted please try again.'
           );
         }
       );
     }
   }
 
-  openLegendDialog(legend = null): void {
+  openLegendDialog(): void {
     this.legendForm.reset();
     this.dialog.open(this.legendDialog);
-  }
-
-  clearColor(color: string, amount: number = 30): string {
-    let r = parseInt(color.slice(1, 3), 16);
-    let g = parseInt(color.slice(3, 5), 16);
-    let b = parseInt(color.slice(5, 7), 16);
-
-    r = Math.min(255, r + amount);
-    g = Math.min(255, g + amount);
-    b = Math.min(255, b + amount);
-
-    return `#${((1 << 24) + (r << 16) + (g << 8) + b)
-      .toString(16)
-      .slice(1)
-      .padStart(6, '0')}`;
   }
 }

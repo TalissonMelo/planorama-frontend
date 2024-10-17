@@ -38,10 +38,8 @@ export class ScheduleNameComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.loaderService.show();
     // this.listPermissions();
     this.listSchedules();
-    // this.loaderService.hide();
   }
 
   listPermissions(): void {
