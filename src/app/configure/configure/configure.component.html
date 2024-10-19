@@ -1,25 +1,43 @@
-<div class="container mt-4">
+<div class="container mt-5">
 
-    <div class="mb-3">
-        <div class="back-link" routerLink="/">
-            <mat-icon>arrow_back</mat-icon> {{ label.voltar | translate}}
-          </div>
+    <div class="mb-4">
+      <div class="back-link" routerLink="/" style="cursor: pointer;">
+        <mat-icon>arrow_back</mat-icon> {{ label.voltar | translate }}
+      </div>
     </div>
-
-
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="fw-bold">{{ label.configuracao | translate}}</h2>
-    </div>
-
-
+  
     <h1 class="display-5">{{ 'TITLE' | translate }}</h1>
 
-    <p class="lead">{{ 'DESCRIPTION' | translate }}</p>
-
-    <div class="row mt-3">
-        <div class="col">
-            <button class="btn btn-outline-primary me-2" (click)="switchLanguage('en')">English</button>
-            <button class="btn btn-outline-secondary" (click)="switchLanguage('pt')">Português</button>
-        </div>
+    <div class="d-flex justify-content-between align-items-center">
+      <h2 >{{ label.configuracao | translate }}</h2>
     </div>
-</div>
+  
+    <div class="mb-4">
+      <label for="timezone" class="form-label">{{ label.timezone | translate }} (GMT):</label>
+      <div class="row">
+        <div class=" col-sm-3">
+            <select  id="timezone" [(ngModel)]="settings.timeZone" class="form-select">
+                <option *ngFor="let tz of timeZones" [value]="tz">{{ tz }}</option>
+              </select>
+        </div>
+      </div>
+    </div>
+
+
+    <p class="lead">{{ 'DESCRIPTION' | translate }}</p>
+  
+    <div class="row mt-3">
+      <div class="col">
+        <button class="btn btn-outline-primary me-2" (click)="switchLanguage('en')">English</button>
+        <button class="btn btn-outline-secondary" (click)="switchLanguage('pt')">Português</button>
+      </div>
+    </div>
+  
+    <div class="row mt-4">
+      <div class="col text-end">
+        <button class="btn btn-primary text-center" (click)="saveSettings()">{{ label.salvar_configuracoes | translate }} </button>
+      </div>
+    </div>
+  
+  </div>
+  

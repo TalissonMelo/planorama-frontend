@@ -24,7 +24,6 @@ export class TokenInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     let tokenString: string = this.useSession.getToken();
-    let userId: string = this.useSession.getUser().id;
 
     let url = request.url;
 

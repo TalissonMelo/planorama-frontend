@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ScheduleResponse } from './domain/schedule_response';
-import { ScheduleService } from './service/schedule.service';
+import { TranslateModule } from '@ngx-translate/core';
 import { LoaderService } from 'src/app/components/loader/loader.service';
 import { NotificationService } from 'src/app/components/notification/notification.service';
-import { ScheduleRequest } from './domain/schedule_request';
 import { UseSession } from 'src/app/util/useSession';
-import { UserPermissions } from './domain/user_permissions';
 import label from 'src/assets/i18n/label';
-import { TranslateModule } from '@ngx-translate/core';
-import { DateService } from 'src/app/util/DateService';
+import { ScheduleRequest } from './domain/schedule_request';
+import { ScheduleResponse } from './domain/schedule_response';
+import { UserPermissions } from './domain/user_permissions';
+import { ScheduleService } from './service/schedule.service';
 
 @Component({
   selector: 'app-schedule-name',
@@ -27,10 +26,9 @@ export class ScheduleNameComponent implements OnInit {
   constructor(
     private router: Router,
     private service: ScheduleService,
-    private loaderService: LoaderService,
-    private notificationService: NotificationService,
     private translate: TranslateModule,
-    public dateService: DateService
+    private loaderService: LoaderService,
+    private notificationService: NotificationService
   ) {
     this.useSession = new UseSession();
     this.schedule = new ScheduleRequest();
@@ -64,12 +62,14 @@ export class ScheduleNameComponent implements OnInit {
         this.schedule = new ScheduleRequest();
         this.schedules.unshift(res);
         this.loaderService.hide();
-        this.notificationService.showSuccess('Agenda registrada com sucesso!');
+        this.notificationService.showSuccess(
+          'Schedule registered successfully!'
+        );
       },
       (error) => {
         this.loaderService.hide();
         this.notificationService.showError(
-          'Registro de agenda inválido por favor tente novamente.'
+          'Invalid calendar entry please try again.'
         );
       }
     );
@@ -84,9 +84,7 @@ export class ScheduleNameComponent implements OnInit {
     ) {
       return true;
     }
-    this.notificationService.showError(
-      'Agenda inválido por favor tente novamente.'
-    );
+    this.notificationService.showError('Invalid calendar please try again.');
     return false;
   }
 
@@ -100,19 +98,21 @@ export class ScheduleNameComponent implements OnInit {
   }
 
   deleted(schedule: ScheduleResponse) {
-    if (confirm('Deseja deletar a agenda: ' + schedule.name)) {
+    if (confirm('Do you want to delete the calendar: ' + schedule.name)) {
       this.loaderService.show();
       this.service.delete(schedule.id).subscribe(
         (res) => {
           const index = this.schedules.indexOf(schedule);
           this.schedules.splice(index, 1);
           this.loaderService.hide();
-          this.notificationService.showSuccess('Agenda deletada com sucesso!');
+          this.notificationService.showSuccess(
+            'Schedule deleted successfully!'
+          );
         },
         (error) => {
           this.loaderService.hide();
           this.notificationService.showError(
-            'Agenda não deletada por favor tente novamente.'
+            'Schedule not deleted please try again.'
           );
         }
       );
@@ -125,17 +125,19 @@ export class ScheduleNameComponent implements OnInit {
   }
 
   update(schedule: ScheduleResponse) {
+    this.loaderService.show();
     this.editSchedule = '';
     let scheduleUpdate: ScheduleRequest = this.createSchedule(schedule);
     this.service.update(schedule.id, scheduleUpdate).subscribe(
       (res) => {
         this.loaderService.hide();
-        this.notificationService.showSuccess('Agenda atualizada com sucesso!');
+        this.notificationService.showSuccess('Schedule updated successfully!');
       },
       (error) => {
+        console.log(error);
         this.loaderService.hide();
         this.notificationService.showError(
-          'Agenda não atualizada por favor tente novamente.'
+          'Schedule not updated please try again.'
         );
       }
     );
@@ -144,8 +146,8 @@ export class ScheduleNameComponent implements OnInit {
   createSchedule(schedule: ScheduleResponse): ScheduleRequest {
     let scheduleUpdate: ScheduleRequest = new ScheduleRequest();
     scheduleUpdate.name = schedule.name;
-    // scheduleUpdate.startTime = schedule.startTime;
-    // scheduleUpdate.endTime = schedule.endTime;
+    scheduleUpdate.startTime = schedule.startTime;
+    scheduleUpdate.endTime = schedule.endTime;
     return scheduleUpdate;
   }
 }

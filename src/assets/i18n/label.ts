@@ -88,6 +88,8 @@ const label = {
   repetir: 'repetir',
   obs_repetir: 'obs_repetir',
   reenviar_codigo: 'reenviar_codigo',
+  timezone: 'timezone',
+  salvar_configuracoes: 'salvar_configuracoes',
 };
 
 export default label;

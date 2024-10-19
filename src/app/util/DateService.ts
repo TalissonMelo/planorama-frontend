@@ -28,4 +28,9 @@ export class DateService {
 
     return formattedDate;
   }
+
+  convertTimeToArray(time: string): [number, number, string] {
+    const [hour, minute] = time.split(':').map(Number);
+    return [hour, minute, '-03:00'];
+  }
 }

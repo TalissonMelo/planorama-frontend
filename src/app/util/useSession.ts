@@ -3,6 +3,7 @@ import { UserLogin } from '../components/login/user/model/user_login';
 import { CodeResponse } from '../recover/domain/code_response';
 import { ScheduleResponse } from '../schedule/schedule-name/domain/schedule_response';
 import { SessionResponse } from '../components/modal/domain/session_response';
+import { Settings } from '../configure/model/settings';
 
 @Injectable()
 export class UseSession {
@@ -17,6 +18,15 @@ export class UseSession {
   getUser(): UserLogin {
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user) : '';
+  }
+
+  setSettings(settings: Settings): void {
+    localStorage.setItem('settings', JSON.stringify(settings));
+  }
+
+  getSettings(): Settings {
+    const settings = localStorage.getItem('settings');
+    return settings ? JSON.parse(settings) : '';
   }
 
   setToken(token: string): void {

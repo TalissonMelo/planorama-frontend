@@ -26,7 +26,8 @@
         </div>
         <div class="row pt-3">
             <div class="col-sm-12">
-                <button type="button" (click)="save()" class="btn btn-primary btn-block w-100 text-center">{{ label.adicionar_agenda | translate}}</button>
+                <button type="button" (click)="save()" class="btn btn-primary btn-block w-100 text-center">{{
+                    label.adicionar_agenda | translate}}</button>
             </div>
         </div>
     </div>
@@ -44,11 +45,11 @@
                 <tr *ngFor="let schedule of schedules">
                     <td *ngIf="editSchedule != schedule.id" class="col-7">{{ schedule.name }}</td>
                     <td *ngIf="editSchedule != schedule.id" class="col-1">
-                        {{ dateService.formatDateTime(schedule.startTime) | date: 'HH:mm'   }}
-                      </td>
-                      <td *ngIf="editSchedule != schedule.id" class="col-1">
-                        {{ dateService.formatDateTime(schedule.endTime) | date: 'HH:mm'  }}
-                      </td>                      
+                        {{ schedule.startTime }}
+                    </td>
+                    <td *ngIf="editSchedule != schedule.id" class="col-1">
+                        {{ schedule.endTime }}
+                    </td>
                     <td *ngIf="editSchedule == schedule.id" class="col-7"> <input type="text" id="name" name="name"
                             [(ngModel)]="schedule.name" class="my-custom-form-control form-control"></td>
                     <td *ngIf="editSchedule == schedule.id" class="col-1"> <input type="time" id="startTime"

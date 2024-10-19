@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UseSession } from 'src/app/util/useSession';
@@ -19,16 +19,31 @@ export class ScheduleService {
     this.useSession = new UseSession();
   }
 
-  save(schedule: ScheduleRequest): Observable<ScheduleResponse> {
-    return this.http.post<ScheduleResponse>(
-      `${environment.uri}/v1/schedule`,
-      schedule
+  list(): Observable<any> {
+    const headers = new HttpHeaders({
+      timezone: this.useSession.getSettings().timeZone,
+    });
+
+    const userId: string = this.useSession.getUser().id;
+    return this.http.get<any[]>(
+      `${environment.url}/schedules/users/${userId}`,
+      { headers }
     );
   }
 
   delete(scheduleId: string): Observable<any> {
-    return this.http.delete<any>(
-      `${environment.uri}/v1/schedule/${scheduleId}`
+    return this.http.delete<any>(`${environment.url}/schedules/${scheduleId}`);
+  }
+
+  save(schedule: ScheduleRequest): Observable<ScheduleResponse> {
+    const headers = new HttpHeaders({
+      timezone: this.useSession.getSettings().timeZone,
+    });
+    const userId: string = this.useSession.getUser().id;
+    return this.http.post<ScheduleResponse>(
+      `${environment.url}/schedules/users/${userId}`,
+      schedule,
+      { headers }
     );
   }
 
@@ -36,14 +51,14 @@ export class ScheduleService {
     scheduleId: string,
     schedule: ScheduleRequest
   ): Observable<ScheduleResponse> {
+    const headers = new HttpHeaders({
+      timezone: this.useSession.getSettings().timeZone,
+    });
     return this.http.put<ScheduleResponse>(
-      `${environment.uri}/v1/schedule/${scheduleId}`,
-      schedule
+      `${environment.url}/schedules/${scheduleId}`,
+      schedule,
+      { headers }
     );
-  }
-
-  list(): Observable<any> {
-    return this.http.get<any[]>(`${environment.url}/v1/schedules`);
   }
 
   listed(date: string): Observable<Home[]> {

@@ -88,5 +88,7 @@
   "fim": "End",
   "repetir": "Frequency",
   "obs_repetir": "Note: Repeat will only occur between the selected start and end dates.",
-  "reenviar_codigo": "Resend code"
+  "reenviar_codigo": "Resend code",
+  "timezone": "Time Zone",
+  "salvar_configuracoes": "Save settings"
 }
