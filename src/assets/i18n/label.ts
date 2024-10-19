@@ -90,6 +90,8 @@ const label = {
   reenviar_codigo: 'reenviar_codigo',
   timezone: 'timezone',
   salvar_configuracoes: 'salvar_configuracoes',
+  apelido: 'apelido',
+  sobrenome: 'sobrenome',
 };
 
 export default label;

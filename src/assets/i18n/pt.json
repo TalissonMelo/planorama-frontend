@@ -90,5 +90,7 @@
   "obs_repetir": "Observação: A repetição ocorrerá apenas entre as datas de início e fim selecionadas.",
   "reenviar_codigo": "Reenviar código",
   "timezone": "Fuso Horário",
-  "salvar_configuracoes": "Salvar configurações"
+  "salvar_configuracoes": "Salvar configurações",
+  "apelido": "Apelido",
+  "sobrenome": "Sobrenome"
 }

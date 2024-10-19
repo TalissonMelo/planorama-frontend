@@ -6,8 +6,8 @@
         <h2>{{ schedule.name}}</h2>
         <div class="form-group row">
             <div class="col-sm-8">
-                <label for="nickname"> {{ label.nome | translate}}</label>
-                <input type="text" id="nickname" name="nickname"  [(ngModel)]="member.nickname" class="my-custom-form-control form-control" required>
+                <label for="email"> {{ label.email | translate}}</label>
+                <input type="email" id="email" name="email" class="my-custom-form-control form-control" [(ngModel)]="member.email" required>
             </div>
             <div class="col-sm-4">
                 <label for="type">{{ label.permissoes | translate}}</label>
@@ -15,15 +15,7 @@
                     <option value="EDITOR">{{ label.editar | translate}}</option>
                     <option value="VIEWER">{{ label.visualizar | translate}}</option>
                 </select>
-            </div>
-            <div class="col-sm-4">
-                <app-phone [id]="'phone'" [changePhone]="member.phone" (phoneChange)="member.phone = $event" required></app-phone>
-            </div>
-            <div class="col-sm-8">
-                <label for="email"> {{ label.email | translate}}</label>
-                <input type="email" id="email" name="email" class="my-custom-form-control form-control" [(ngModel)]="member.email" required>
-            </div>
-           
+            </div>           
         </div>
         <button type="button" (click)="save()" class="btn btn-primary btn-block w-100 text-center mt-3">{{ label.adicionar_membro | translate}}</button>
     </div>
